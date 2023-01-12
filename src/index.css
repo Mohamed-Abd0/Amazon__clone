@@ -1,0 +1,64 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Arial","sans-serif" , "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #232f3e;
+}
+
+
+
+
+.container {
+    @apply max-w-full px-3
+}
+
+.hover-item {
+    @apply border border-transparent hover:border-white duration-200 p-2; 
+}
+
+.border-active {
+    @apply border-mainColor
+}
+
+@layer components {
+    .title-sec {
+        @apply text-xl font-bold mb-3  ltr:text-end px-6;
+    }
+
+    .sec {
+        @apply my-3  ; 
+    }
+}

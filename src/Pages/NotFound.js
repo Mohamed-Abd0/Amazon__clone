@@ -1,0 +1,11 @@
+const NotFound = () => {
+    // console.log('no found is running')
+    return (
+      <div  className='centered'>
+        <p>Page not found!</p>
+      </div>
+    );
+  };
+  
+  export default NotFound;
+  
