@@ -1,13 +1,9 @@
-import { useState } from "react";
-// import { Provider } from "react-redux";
+import { useState } from "react"; 
 import { Paper, Step, Stepper, StepLabel, Typography } from "@material-ui/core";
-
 
 import useStyles from "../Components/Payment/styles";
 import ShippingForm from "../Components/Payment/ShippingForm.jsx";
-import PaymentForm from "../Components/Payment/PaymentForm.jsx";
-// import { Provider } from "react-redux";
-// import  store  from "../../../store/Store";
+import PaymentForm from "../Components/Payment/PaymentForm.jsx"; 
 //===================================================================
 const steps = ["Shipping address", "Payment details"];
 
