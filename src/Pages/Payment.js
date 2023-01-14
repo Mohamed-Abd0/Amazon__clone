@@ -1,5 +1,5 @@
 import { useState } from "react"; 
-import { Paper, Step, Stepper, StepLabel, Typography } from "@material-ui/core";
+import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
 
 import useStyles from "../Components/Payment/styles";
 import ShippingForm from "../Components/Payment/ShippingForm.jsx";
@@ -10,7 +10,7 @@ const steps = ["Shipping address", "Payment details"];
 //===================================================================
 
 const Payment = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const classes = useStyles();
 
 
@@ -40,23 +40,23 @@ const Payment = () => {
 
   return (
     <>
-      {/* <Provider store={store}> */}
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Typography variant="h4" align="center">
-              Checkout
-            </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
-              {steps.map((step) => (
-                <Step key={step}>
-                  <StepLabel>{step}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            {activeStep === steps.length ? <Confirmation /> : <Form />}
-          </Paper>
-        </main>
-      {/* </Provider> */}
+      <div className="content">
+        <List>
+          <ListItem button onClick={() => setActiveStep(1)}>
+            <ListItemText primary="1  Choose a shipping address" />
+          </ListItem>
+          {activeStep === 1 && <ShippingForm />}
+          <ListItem button onClick={() => setActiveStep(2)}>
+            <ListItemText primary="2  Payment method" />
+          </ListItem>
+          {activeStep === 2 && <PaymentForm />}
+          <ListItem button onClick={() => setActiveStep(3)}>
+            <ListItemText primary="3  Items and shipping" />
+          </ListItem>
+          {activeStep === 3 && <Confirmation />}
+        </List>
+      </div>
+      <div className="products"></div>
     </>
   );
 };
