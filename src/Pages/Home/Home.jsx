@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { Box, Grid, Card, CardMedia, CardContent, CardActions, Typography} from '@material-ui/core';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button, getScopedCssBaselineUtilityClass } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Rating } from "@material-ui/lab";
 import LinesEllipsis from 'react-lines-ellipsis'
 import useStyles from "./styles";
 import { db } from '../../firebase';
 import {collection, doc, getDocs} from "firebase/firestore";
-
+import { images } from './SliderImages';
 
 function Item(props)
 {
@@ -25,38 +23,6 @@ function Item(props)
 const Home = () => {
   const classes = useStyles();
   const [products, setProduct] = useState([]);
-
-  //   ***** MUI carousel *******
-  const images = [
-    {
-        id: 1,
-        image: 'https://m.media-amazon.com/images/I/71a1nX9Kf0L._SX3000_.jpg'
-    },
-    {
-      id: 2,
-      image: "https://m.media-amazon.com/images/I/71L163zeb-L._SX3000_.jpg"
-    },
-    {
-      id: 3,
-      image: "https://m.media-amazon.com/images/I/71-y-2g-q9L._SX3000_.jpg"
-    },
-    {
-      id: 4,
-      image: "https://m.media-amazon.com/images/I/61cSQbI3+mL._SX3000_.jpg"
-    }
-]
-  
-
-
-    //   *********** commerceJS *******************
-  // const getProduct = async () => {
-
-  // const {data} = await commerce.products.list();
-  // console.log("data", data)
-  // setProduct(data);
-   
-  // };
-
 
     // *********** API *******************
   // const getProduct = async () => {
@@ -72,7 +38,7 @@ const Home = () => {
   //   } , []);   
 
 
-  //  Firebase ***************
+  // ********** Firebase Setup ***************
   const usersCollectionRef = collection(db, "products");
 
   useEffect (() => {
@@ -88,7 +54,6 @@ const Home = () => {
     return (
       <>
       <div  className='home-image'>
-      
        <Carousel animation="slide" autoPlay={true} cycleNavigation timeout={30}>
             { 
               images.map( (image) => <Item key={image.id} item={image} /> )
@@ -132,6 +97,11 @@ const Home = () => {
                         <Typography gutterBottom variant="body1" component="h2"  align="left"  >
                         <Box sx={{ fontWeight: 'bold', m: 1 }}> ${product.price}</Box>
                         </Typography>
+                         {product.stock < 10 &&
+                           <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
+                              Only {product.stock} left in stock.
+                           </Typography>
+                         }
                         </CardContent>
                          <CardActions  className={classes.cardActions} >
                         {/* <AddShoppingCartIcon /> */}
