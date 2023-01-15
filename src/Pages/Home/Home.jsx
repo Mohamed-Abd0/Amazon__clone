@@ -1,5 +1,4 @@
 import {React, useState, useEffect} from 'react';
-// import { commerce } from '../../Library/commerce';
 import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { Box, Grid, Card, CardMedia, CardContent, CardActions, Typography} from '@material-ui/core';
@@ -24,15 +23,13 @@ const Home = () => {
   const classes = useStyles();
   const [products, setProduct] = useState([]);
 
-    // *********** API *******************
+  //     *********** API *******************
   // const getProduct = async () => {
   //    const response = await fetch (`https://fakestoreapi.com/products`)
   //    const data = await response.json();
   //    setProduct(data);
   //    console.log(data);
   // };
-
-
   // useEffect(() => {
   //   getProduct();
   //   } , []);   
@@ -64,7 +61,6 @@ const Home = () => {
           <Grid container justify='center' spacing={4}>
           {products.map((product) => {
             return (
-              
                 <Grid   className='main-grid' item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id}  style={{textDecoration: 'none'}}>
                   <Card className={classes.root}>
@@ -72,35 +68,35 @@ const Home = () => {
                     <CardContent  align= "left" >
                       <div className={classes.cardContent}>
                         <Typography gutterBottom  component="h2"  align="left" overflow="hidden" >
-                        <LinesEllipsis
-                          text= {product.title}
-                          maxLine='2'
-                          lineHeight='16'
-                          
-                          ellipsis='...'
-                          trimRight
-                          basedOn='letters'
-                        />
+                          <LinesEllipsis
+                            text= {product.title}
+                            maxLine='2'
+                            lineHeight='16'
+                            ellipsis='...'
+                            trimRight
+                            basedOn='letters'
+                          />
                         </Typography>
                       </div>
                       <Typography variant="body1" style={{fontSize: 13}}> 
-                      <Rating className={classes.rating}
-                          size="small"
-                          justify='left'
-                          // ratind should come from API
-                          value={product.rate}
-                          precision={0.5} 
-                          readOnly
-                        >
-                        </Rating>
-                        {product.count} reviews</Typography>
+                        <Rating className={classes.rating}
+                            size="small"
+                            justify='left'
+                            // ratind should come from API
+                            value={product.rate}
+                            precision={0.5} 
+                            readOnly
+                          >
+                          </Rating>
+                          {product.count} reviews
+                        </Typography>
                         <Typography gutterBottom variant="body1" component="h2"  align="left"  >
-                        <Box sx={{ fontWeight: 'bold', m: 1 }}> ${product.price}</Box>
+                          <Box sx={{ fontWeight: 'bold', m: 1 }}> ${product.price}</Box>
                         </Typography>
                          {product.stock < 10 &&
-                           <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
-                              Only {product.stock} left in stock.
-                           </Typography>
+                        <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
+                          Only {product.stock} left in stock.
+                        </Typography>
                          }
                         </CardContent>
                          <CardActions  className={classes.cardActions} >
