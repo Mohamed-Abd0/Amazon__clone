@@ -1,11 +1,50 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TextField, Button, Grid, Typography } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  Divider,
+  makeStyles,
+  Modal,
+  Box,
+} from "@material-ui/core";
+import AddIcon from "@mui/icons-material/Add";
 import { setShippingData } from "../../Store/checkout_slice/checkoutSlice";
 
 //=====================================================================
-
+const useStyles = makeStyles({
+  footer: {
+    backgroundColor: "#F0F2F2",
+    padding: "15px",
+  },
+  submitButton: {
+    backgroundColor: "#f7ca00",
+    padding: "5px 10px",
+    fontSize: "0.7rem",
+    fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "#e8bd02",
+    },
+  },
+  boxStyle: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400, 
+    background: '#fff', 
+    borderRadius: "10px",
+    boxShadow: 24, 
+  },
+  textField: {
+    width: "100%", 
+    marginBottom: '10px'
+  }
+});
 const ShippingForm = ({ nextStep }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -14,6 +53,11 @@ const ShippingForm = ({ nextStep }) => {
   const [country, setCountry] = useState("");
   const [zip, setZip] = useState("");
   const [formError, setFormError] = useState("");
+
+
+  const [open, setOpen] = useState(false);
+  const openHandler = () => setOpen(true);
+  const closeHandler = () => setOpen(false);
 
   const validateForm = () => {
     if (!name) {
@@ -34,7 +78,7 @@ const ShippingForm = ({ nextStep }) => {
     return "";
   };
 
-  const SubmitHandler = (e) => {   
+  const SubmitHandler = (e) => {
     const error = validateForm();
     if (error) {
       setFormError(error);
@@ -47,75 +91,99 @@ const ShippingForm = ({ nextStep }) => {
 
   return (
     <>
-      <Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
-
-      <form onSubmit={SubmitHandler}>
-        {formError && <Typography color="error">{formError}</Typography>}
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-basic"
-              label="Name"
-              variant="standard"
-              onChange={(e) => setName(e.target.value)}
-            ></TextField>
-
-            <TextField
-              id="standard-basic"
-              label="Address line 1"
-              variant="standard"
-              onChange={(e) => setAddress(e.target.value)}
-            ></TextField>
-
-            <TextField
-              id="standard-basic"
-              label="City"
-              variant="standard"
-              onChange={(e) => setCity(e.target.value)}
-            ></TextField>
+      <Grid container spacing={1} style={{ padding: "10px 20px" }}>
+        <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+          Your addresses
+        </Typography>
+        <br />
+      </Grid>
+      <Divider />
+      <AddIcon />
+      <Button onClick={openHandler}>Add your address</Button>
+      <Modal
+        open={open}
+        onClose={closeHandler}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box className={classes.boxStyle}>
+          <Grid container spacing={1} style={{ padding: "10px 20px" }}>
+            <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+              Your addresses
+            </Typography>
+            <br />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-basic"
-              label="Email"
-              variant="standard"
-            ></TextField>
-            <TextField
-              id="standard-basic"
-              label="Shipping Country"
-              variant="standard"
-              onChange={(e) => setCountry(e.target.value)}
-            ></TextField>
-            <TextField
-              id="standard-basic"
-              label="Zip/Postal code"
-              variant="standard"
-              onChange={(e) => setZip(e.target.value)}
-            ></TextField>
-          </Grid>
-        </Grid>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "50px",
-          }}
+          <form onSubmit={SubmitHandler} id="modal-modal-title">
+            {formError && <Typography color="error">{formError}</Typography>}
+            <Grid container spacing={2} style={{ padding: "0 20px" }}>
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="Name"
+                variant="outlined"
+                onChange={(e) => setName(e.target.value)}
+              ></TextField>
+
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="Address line 1"
+                variant="outlined"
+                onChange={(e) => setAddress(e.target.value)}
+              ></TextField>
+
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="City"
+                variant="outlined"
+                onChange={(e) => setCity(e.target.value)}
+              ></TextField>
+
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="Email"
+                variant="outlined"
+              ></TextField>
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="Shipping Country"
+                variant="outlined"
+                onChange={(e) => setCountry(e.target.value)}
+              ></TextField>
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="Zip/Postal code"
+                variant="outlined"
+                onChange={(e) => setZip(e.target.value)}
+              ></TextField>
+            </Grid>
+          </form>
+            <Button
+              type="submit"
+              variant="contained"
+              className={classes.submitButton}
+              onClick={(e) => SubmitHandler()}
+            >
+              Use this address
+            </Button>
+        </Box>
+      </Modal>
+      <br />
+      <Divider />
+      <Grid container className={classes.footer}>
+        <Button
+          type="submit"
+          variant="contained"
+          className={classes.submitButton}
+          onClick={(e) => SubmitHandler()}
         >
-          <Button variant="outlined" to="/cart">
-            Back to Cart
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={(e) => SubmitHandler()}
-          >
-            Next
-          </Button>
-        </div>
-      </form>
+          Use this address
+        </Button>
+      </Grid>
     </>
   );
 };
