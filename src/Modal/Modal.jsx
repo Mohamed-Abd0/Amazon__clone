@@ -36,8 +36,8 @@ const Modal = () => {
       root.style.overflow = "hidden";
       root.style.height = "100vh"
     } else {
-      root.style.overflow = "auto";
-      root.style.height = "auto"
+      root.style.overflow = "inherit";
+      root.style.height = "inherit"
     }
   }, [overlayState])
 

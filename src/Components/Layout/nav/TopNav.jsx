@@ -5,33 +5,31 @@ import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
 import words from "../../../leng.json";
+import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
 
 const TopNav = ({ setShowDilog, setShowCanvas }) => {
   const ref = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
-  const lengActive = useSelector((state) => state);
-  dispatch(getactiveLeng());
-  const langWordsActive = words[`${lengActive.leng.lang}`];
-  // console.log(langWordsActive.deleverTo);
-  // using symantic variables
+  const lengActive = useSelector((state) => state.leng);
+  const itemCart = useSelector((state) => state.cartItemNumber) ; 
+  const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
     { name: "العربية - ar", dir: "rtl", short: "ar" },
   ]);
 
-  // change the language and direction
   const handleChangeLueng = (ev) => {
     localStorage.setItem("dir", ev.getAttribute("direction"));
     localStorage.setItem("lengActive", ev.getAttribute("short-name-leng"));
     window.location.reload();
   };
   useEffect(() => {
-    const activeLeng = lengActive.leng.lang;
-    const activeDir = lengActive.leng.dir;
+    dispatch(getactiveLeng());
+    const activeLeng = lengActive.lang;
+    const activeDir = lengActive.dir;
     document.querySelector("html").dir = activeDir;
     document.querySelector("html").lang = activeLeng;
-    // the ref is ambigous
     [...ref.current.children].forEach((e) => {
       if (activeLeng == e.getAttribute("short-name-leng")) {
         e.querySelector("input").setAttribute("checked", "");
@@ -72,8 +70,8 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
           <i className="fa-solid fa-location-dot ltr:mr-2 rtl:ml-2 "></i>
           <div className="">
-            {/* <p className="text-[#ccc] text-[12px]">{langWordsActive.deleverTo}</p> */}
-            {/* <p className="capitalize  font-bold">{langWordsActive.country}</p> */}
+            <p className="text-[#ccc] text-[12px]">{langWordsActive.deleverTo}</p>
+            <p className="capitalize  font-bold">{langWordsActive.country}</p>
           </div>
         </div>
       </div>
@@ -127,9 +125,9 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
             <i className="fa-solid fa-caret-up absolute -top-4 left-[30%] text-white text-xl"></i>
 
             <div className="flex items-center justify-between capitalize ">
-              {/* <span>{langWordsActive.ChangeLanguage}</span> */}
+             <span>{langWordsActive.ChangeLanguage}</span>
               <Link className="text-[#007185]" to={"#"}>
-                {/* {langWordsActive.LearnMore} */}
+               {langWordsActive.LearnMore}
               </Link>
             </div>
 
@@ -170,17 +168,17 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
             </div>
             <div className="currency border-y border-[#e7e7e7] capitalize text-xs py-4">
               <div className="flex items-center justify-between mt-2">
-                <span>Change currency </span>
+                <span>{langWordsActive.ChangeCurrency}</span>
                 <Link className="ltr:ml-1 rtl:mr-1 text-[#007185]" to={"#"}>
                   {" "}
-                  Learn more
+                  {langWordsActive.LearnMore}
                 </Link>
               </div>
               <div className="flex items-center justify-between mt-2">
-                <span>$ - USD - US Dollar</span>
+                <span>$ - USD - {langWordsActive.USDollar}</span>
                 <Link className="ltr:ml-1 rtl:mr-1 text-[#007185]" to={"#"}>
                   {" "}
-                  change
+                  {langWordsActive.change}
                 </Link>
               </div>
             </div>
@@ -188,13 +186,13 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
               <img
                 alt="fleg"
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png"
-                className="w-7 ltr:mr-3 rtl:mr-3"
+                className="w-7 ltr:mr-3 rtl:ml-3"
               />
-              You are shopping on Amazon.com
+              {langWordsActive.shoppingOn} Amazon.com
             </div>
             <div className="text-center mt-4">
-              <Link to={"#"} className="capitalize text-[#0066C0]">
-                Change country/region.
+              <Link to={"/"} className="capitalize text-[#0066C0] hover:underline">
+                {langWordsActive.changeLeng}
               </Link>
             </div>
           </div>
@@ -205,11 +203,11 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
           onMouseLeave={() => setShowDilog(false)}
           className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden "
         >
-          <Link to={"#"} className="text-white">
-            <p className="text-xs ">Hello, sign in</p>
+          <Link to={"LogIn"} className="text-white">
+            <p className="text-xs ">{langWordsActive.helloSignIn}</p>
             <p className="">
-              Account & Lists{" "}
-              <span className="fa-solid fa-caret-down text-[#ccc]"></span>{" "}
+              {langWordsActive.accountLists}
+              <span className="fa-solid fa-caret-down text-[#ccc] mx-2"></span>{" "}
             </p>
           </Link>
 
@@ -218,26 +216,26 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
 
             <div className="sing-in-btn text-center">
               <Link
-                to={"#"}
+                to={"LogIn"}
                 className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
                 style={{
                   backgroundImage:
                     "-webkit-linear-gradient(top,#f8e3ad,#EEBA37)",
                 }}
               >
-                sign in
+                {langWordsActive.signIn}
               </Link>
             </div>
             <p className="text-center my-2 text-xs">
-              New customer?{" "}
+              {langWordsActive.newCustomer}
               <Link to={"#"} className="text-[#05a]">
-                Start here.
+                {langWordsActive.StartHere}
               </Link>
             </p>
 
             <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee]">
-              <div className="left w-1/2 border-r border-[#ccc] ">
-                <h3 className="capitalize font-bold text-lg">Your Lists</h3>
+              <div className="left w-1/2 ltr:border-r rtl:border-l  border-[#ccc] ">
+                <h3 className="capitalize font-bold text-lg">{langWordsActive.YourLists}</h3>
                 <ul className="w-full">
                   <li className="hover:text-mainColor text-[#444] my-3">
                     <Link to={"#"} className="block">
@@ -247,7 +245,7 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
                 </ul>
               </div>
               <div className="right w-1/2 ltr:pl-6 rtl:pr-6">
-                <h3 className="capitalize font-bold text-lg">Your Account</h3>
+                <h3 className="capitalize font-bold text-lg">{langWordsActive.YourAccount}</h3>
                 <ul>
                   <li className="hover:text-mainColor text-[#444] my-3">
                     <Link to={"#"} className="block">
@@ -262,33 +260,34 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
 
         <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:hidden">
           <Link to={"#"} className="text-white">
-            <p className="text-xs">Returns</p>
-            <p className="text-sm font-bold"> & Orders</p>
+            <p className="text-xs">{langWordsActive.returns}</p>
+            <p className="text-sm font-bold">{langWordsActive.Orders}</p>
           </Link>
         </div>
         <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:flex">
           <Link
-            to={"sign-in"}
+            to={"LogIn"}
             className="md:hidden flex items-center text-white ltr:mr-3 rtl:ml-3 "
           >
             <span className="text-[#ccc] text-sm">
-              sign in{" "}
+              {langWordsActive.signIn}
               <span className="fa-solid fa-chevron-right text-xs ltr:mr-1 rtl:ml-1"></span>
             </span>
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
-          <Link to={"#"} className="text-white flex items-end">
+          <Link to={"Cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                0
-              </span>
-            </div>
-
-            <span className="text-xs maxmd:hidden">Carts</span>
-          </Link>
-        </div>
-      </div>
+                {itemCart}
+                </span>
+                </div>
+                
+                <span className="text-sm rtl:text-lg maxmd:hidden">{langWordsActive.carts}</span>
+                </Link>
+                </div>
+                </div>
+                
     </div>
   );
 };
