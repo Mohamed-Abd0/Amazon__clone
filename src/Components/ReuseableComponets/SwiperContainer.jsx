@@ -1,45 +1,42 @@
+import { Children } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useNavigate } from "react-router-dom";
 import "swiper/css";
-import { CardContent, CardMedia, Card } from "@mui/material";
-import { Typography } from "@mui/material";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
+
+import { Box } from "@mui/material";
 
 const SwiperContainer = (props) => {
-  const { products, breakPoints } = props;
+  const { breakPoints, children } = props;
 
-  const navigate = useNavigate();
-
-  const productsRendering = () =>
-    products.map((product) => (
-      <SwiperSlide
-        key={product.id}
-        onClick={() => navigate(`/product/${product.id}`)}
-        style={{ cursor: "pointer" }}
-      >
-        <Card sx={{ boxShadow: "none" }}>
-          <CardMedia
-            src={product?.productImgs[0].src}
-            component="img"
-            sx={{
-              minWidth: "200px",
-              maxHeight: "200px",
-              objectFit: "contain",
-              objectPosition: "center",
-            }}
-          />
-          <CardContent>
-            <Typography variant="body2">
-              {product?.productDetails.title}
-            </Typography>
-          </CardContent>
-        </Card>
-      </SwiperSlide>
-    ));
+  const mapingElements = () =>
+    Children.map(children, function (element) {
+      return <SwiperSlide key={element.id}>{element}</SwiperSlide>;
+    });
 
   return (
-    <Swiper loop={true} breakpoints={breakPoints}>
-      {productsRendering()}
-    </Swiper>
+    <Box
+      sx={{
+        ".swiper-button-next::after , .swiper-button-prev::after": {
+          fontSize: "18px",
+          color: "white",
+
+          py: 1.4,
+          px: 1.5,
+          borderRadius: "8px",
+          bgcolor: "background.main",
+        },
+      }}
+    >
+      <Swiper
+        loop={true}
+        breakpoints={breakPoints}
+        navigation={true}
+        modules={[Navigation]}
+      >
+        {mapingElements()}
+      </Swiper>
+    </Box>
   );
 };
 
