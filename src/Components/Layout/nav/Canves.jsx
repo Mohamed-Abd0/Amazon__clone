@@ -123,7 +123,7 @@ const Canvas = ({showCanvas , setShowCanvas}) => {
             onClick={() => setShowLayer(false)}
             className="flex items-center cursor-pointer ltr:justify-end  text-xl px-6 border-b border-[#ccc] pb-3"
           >
-            <span>الصفحة الرئيسية</span>
+            <span>{langWordsActive.homePage}</span>
             <i className="fa-solid fa-arrow-right mx-3 rtl:order-[-1]"></i>
           </div>
           <h3 className="text-xl font-bold px-6 my-3">{layerTwo.title.ar}</h3>

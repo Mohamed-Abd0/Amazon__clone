@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
@@ -12,7 +12,9 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const lengActive = useSelector((state) => state.leng);
-  const itemCart = useSelector((state) => state.cartItemNumber) ; 
+  const signInStatus = useSelector((state) => state.nameUserSlice);
+  // console.log(signInStatus.status);
+  const itemCart = useSelector((state) => state.cartItemNumber);
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -70,7 +72,9 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
           <i className="fa-solid fa-location-dot ltr:mr-2 rtl:ml-2 "></i>
           <div className="">
-            <p className="text-[#ccc] text-[12px]">{langWordsActive.deleverTo}</p>
+            <p className="text-[#ccc] text-[12px]">
+              {langWordsActive.deleverTo}
+            </p>
             <p className="capitalize  font-bold">{langWordsActive.country}</p>
           </div>
         </div>
@@ -82,7 +86,7 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
       >
         <div className="select-cat h-full">
           <select className="select-category focus:border-mainColor border-2  h-full text-[#0F1111] bg-[#f3f3f3]  border-[#f3f3f3] capitalize outline-none ltr:rounded-l-md rtl:rounded-r-md">
-            <option value={"cat1"}>all</option>
+            <option value={"cat1"}>{langWordsActive.all}</option>
             <option value={"cat2"}>cat1</option>
             <option value={"cat3"}>cat1</option>
             <option value={"cat3"}>cat1</option>
@@ -125,9 +129,9 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
             <i className="fa-solid fa-caret-up absolute -top-4 left-[30%] text-white text-xl"></i>
 
             <div className="flex items-center justify-between capitalize ">
-             <span>{langWordsActive.ChangeLanguage}</span>
+              <span>{langWordsActive.ChangeLanguage}</span>
               <Link className="text-[#007185]" to={"#"}>
-               {langWordsActive.LearnMore}
+                {langWordsActive.LearnMore}
               </Link>
             </div>
 
@@ -191,7 +195,10 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
               {langWordsActive.shoppingOn} Amazon.com
             </div>
             <div className="text-center mt-4">
-              <Link to={"/"} className="capitalize text-[#0066C0] hover:underline">
+              <Link
+                to={"/"}
+                className="capitalize text-[#0066C0] hover:underline"
+              >
                 {langWordsActive.changeLeng}
               </Link>
             </div>
@@ -204,7 +211,12 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
           className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden "
         >
           <Link to={"LogIn"} className="text-white">
-            <p className="text-xs ">{langWordsActive.helloSignIn}</p>
+            <p className="text-xs ">
+              {" "}
+              {signInStatus.status
+                ? `${langWordsActive.welcome} ${signInStatus.name}`
+                : langWordsActive.helloSignIn}{" "}
+            </p>
             <p className="">
               {langWordsActive.accountLists}
               <span className="fa-solid fa-caret-down text-[#ccc] mx-2"></span>{" "}
@@ -213,29 +225,47 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
 
           <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
-
-            <div className="sing-in-btn text-center">
-              <Link
+            {!signInStatus.status && (
+              <Fragment>
+                <div className="sing-in-btn text-center">
+                <Link
                 to={"LogIn"}
                 className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
                 style={{
                   backgroundImage:
-                    "-webkit-linear-gradient(top,#f8e3ad,#EEBA37)",
+                  "-webkit-linear-gradient(top,#f8e3ad,#EEBA37)",
                 }}
-              >
+                >
                 {langWordsActive.signIn}
-              </Link>
-            </div>
-            <p className="text-center my-2 text-xs">
-              {langWordsActive.newCustomer}
-              <Link to={"#"} className="text-[#05a]">
-                {langWordsActive.StartHere}
-              </Link>
-            </p>
+                </Link>
+                </div>
+              
+                <p className="text-center my-2 text-xs">
+                  {langWordsActive.newCustomer}
+                  <Link to={"#"} className="text-[#05a]">
+                    {langWordsActive.StartHere}
+                  </Link>
+                </p>
+              </Fragment>
+
+            )}
+            
+            {signInStatus.status && <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
+                <h3>{langWordsActive.selectProfile}</h3>
+                <h3 className="font-bold text-sm text-[#008296]">
+
+                {langWordsActive.manageProfiles}
+                
+                <i class="fa-solid fa-angle-right ltr:ml-3 rtl:mr-3 text-[#ccc]"></i>
+                </h3>
+                
+            </div>}
 
             <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee]">
               <div className="left w-1/2 ltr:border-r rtl:border-l  border-[#ccc] ">
-                <h3 className="capitalize font-bold text-lg">{langWordsActive.YourLists}</h3>
+                <h3 className="capitalize font-bold text-lg">
+                  {langWordsActive.YourLists}
+                </h3>
                 <ul className="w-full">
                   <li className="hover:text-mainColor text-[#444] my-3">
                     <Link to={"#"} className="block">
@@ -245,7 +275,9 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
                 </ul>
               </div>
               <div className="right w-1/2 ltr:pl-6 rtl:pr-6">
-                <h3 className="capitalize font-bold text-lg">{langWordsActive.YourAccount}</h3>
+                <h3 className="capitalize font-bold text-lg">
+                  {langWordsActive.YourAccount}
+                </h3>
                 <ul>
                   <li className="hover:text-mainColor text-[#444] my-3">
                     <Link to={"#"} className="block">
@@ -280,14 +312,15 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
                 {itemCart}
-                </span>
-                </div>
-                
-                <span className="text-sm rtl:text-lg maxmd:hidden">{langWordsActive.carts}</span>
-                </Link>
-                </div>
-                </div>
-                
+              </span>
+            </div>
+
+            <span className="text-sm rtl:text-lg maxmd:hidden">
+              {langWordsActive.carts}
+            </span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
