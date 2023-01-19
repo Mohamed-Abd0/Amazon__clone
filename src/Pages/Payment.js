@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "../Components/Payment/styles";
-import ShippingForm from "../Components/Payment/ShippingForm.jsx";
+import ShippingForm from "../Components/Payment/shippingform/ShippingForm";
 import PaymentForm from "../Components/Payment/PaymentForm.jsx";
 //===================================================================
 // const steps = ["Shipping address", "Payment details"];

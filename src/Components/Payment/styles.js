@@ -22,5 +22,20 @@ export default makeStyles((theme) => ({
   paperStyle: {
     margin: "5px 0 20px 40px",
   },
-  
+  footer: {
+    width: "100%",
+    backgroundColor: "#F0F2F2",
+    padding: "15px 30px 15px",
+  },
+
+  boxStyle: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)", 
+    background: "#fff",
+    borderRadius: "10px",
+    boxShadow: 24,
+    overflow: "hidden",
+  },
 }));
