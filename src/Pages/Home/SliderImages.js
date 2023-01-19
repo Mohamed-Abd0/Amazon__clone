@@ -20,5 +20,9 @@
     {
       id: 5,
       image: "https://m.media-amazon.com/images/I/612mMTUAxdL._SX3000_.jpg"
+    },
+    {
+      id: 6,
+      image: "https://m.media-amazon.com/images/I/61Xr6naVXlL._SX3000_.jpg"  
     }
 ]

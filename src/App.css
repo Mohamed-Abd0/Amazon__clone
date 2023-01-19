@@ -3,7 +3,7 @@
     height: 100%;
     z-index: -1;
     margin-bottom: -350px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to bottom, rgb(15, 14, 14), rgba(17, 15, 15, 0));
   }
 
   .carousel-image {
@@ -18,3 +18,31 @@
     margin: 0; 
     padding: 0 ;
 }
+
+.swiper-button-next, .swiper-button-prev {
+  position: absolute;
+  top: 55px;
+  background-color: #fff;
+  height: 80px !important;
+  line-height: 200px !important;
+  width: 45px;
+  text-align: center;
+  box-shadow: 0 1px 3px #888;
+  margin-top: -40px !important;
+  margin-left: -10px !important;
+}
+
+.swiper-button-next {
+  margin-right: 0px !important;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  color: black;
+  line-height: normal;
+  position: relative;
+  top: 50%;
+  height: 90px !important ;
+  width: 25px;
+  margin-top: -30px;
+}
+ 
