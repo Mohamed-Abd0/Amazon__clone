@@ -43,9 +43,6 @@ const PaymentForm = ({ nextStep, backStep }) => {
 
   return (
     <>
-      <Typography variant="h6" gutterBottom>
-        Payment Method
-      </Typography>
       <form onSubmit={SubmitHandler}>
         {formError && <Typography color="error">{formError}</Typography>}
         <Grid container spacing={1}>
