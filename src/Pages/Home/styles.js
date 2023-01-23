@@ -61,7 +61,7 @@ export default makeStyles((theme) => ({
       marginBottom: theme.spacing.unit * 2,
       height: 400,
       borderRadius: 0,
-      whiteSpace: 'normal'
+     
     },
     swiperImage: {
       padding: 10,
