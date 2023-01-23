@@ -138,7 +138,7 @@ const Category = () => {
         </Grid>
 
         {products.map(product => {
-                if(product?.id === 2){
+                if(product?.id == 2){
                   return (
         <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id} >
@@ -231,7 +231,7 @@ const Category = () => {
           {/*   Deals Card */}
           
           {products.map(product => {
-                if(product?.id === 1){
+                if(product?.id == 1){
                   return (
                     <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     <Link to={'/product/' + product.id} >
