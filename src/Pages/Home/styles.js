@@ -5,7 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     root: {
       maxWidth: '100%',
-      minHeight: '100%',
+      maxHeight: '100%',
+      height: 'auto',
+      // backgroundColor: 'white',
+      borderRadius: 0,
+     paddingBottom: 20
+      
       
     },
     media: {
@@ -14,8 +19,11 @@ export default makeStyles((theme) => ({
       backgroundSize: 'contain',
     },
     media1: {
-      paddingTop: '56.25%', // 16:9
-      backgroundSize: '90%',
+      height: 'auto',
+      maxHeight: '50%',
+      width: 'auto',
+      maxWidth: '250',
+      padding: 10
     },
 
     cardHeader: {
@@ -70,5 +78,7 @@ export default makeStyles((theme) => ({
     },
     swiper: {
       marginLeft: 50
-    }
+    },
+
+    
   }));

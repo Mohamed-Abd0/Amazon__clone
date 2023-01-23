@@ -3,13 +3,15 @@
             "country" : "egypt" , 
             "ChangeLanguage" : "Change language" ,
             "LearnMore" : "Learn more" ,  
-            "deleverTo" : "delverTo" 
+            "deleverTo" : "delverTo"   
+           
         } ,
         "ar" : {
             "country" : "مصر" ,
             "ChangeLanguage" : "تغيير اللغة" ,
             "LearnMore" : "معرفة المزيد" ,
-            "deleverTo" : "توصيل الى" 
+            "deleverTo" : "توصيل الى"    
+            
         } 
         
     

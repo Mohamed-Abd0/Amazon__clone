@@ -24,7 +24,7 @@ const Home = () => {
   const [products, setProduct] = useState([]);
   const productsCollectionRef = collection(db, "products");
   const categoryType = useParams();
-  const res = [];
+  const queryResults = [];
   //     *********** API *******************
   // const getProduct = async () => {
   //    const response = await fetch (`https://fakestoreapi.com/products`)
@@ -53,27 +53,20 @@ const Home = () => {
 
   
     const getProducts = async () => {
-     
       const q = query(productsCollectionRef, where("category", "==", categoryType.type));
       const querySnapshot = await getDocs(q);
-      // console.log(querySnapshot.docs)
       querySnapshot.forEach((doc) => {
-      //   // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.data())
-        
-        res.push({ ...doc.data(), id: doc.id}) 
-        setProduct(res);
-      });
-        
-    return res
-   
-  } 
+        queryResults.push({ ...doc.data(), id: doc.id}) 
+        setProduct(queryResults);
+         });  
+       return queryResults
+    } 
   
     useEffect (() => {
     getProducts();
   }, [categoryType])
   
- console.log(res)
+ console.log(queryResults)
     
     return (
       <>
@@ -85,10 +78,10 @@ const Home = () => {
         </Carousel>
         </div> */}
 
-        <Typography variant="h2"   align='center' style={{fontSize: 20}}>
+        <Typography variant="h2"   align='center' style={{fontSize: 20, paddingTop: 50}}>
           {categoryType.type}
         </Typography>
-        <Typography variant="h1"   align='center' style={{fontSize: 20}}>
+        <Typography variant="h1"   align='center' style={{fontSize: 20, paddingBottom: 50}}>
            Featured categories
         </Typography>
         <Container  maxWidth="xl"> 
