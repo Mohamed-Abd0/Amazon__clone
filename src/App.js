@@ -8,12 +8,16 @@ import LogIn from '../src/Pages/LogIn';
 import Payment from './Pages/Payment';
 import NotFound from '../src/Pages/NotFound';
 import Product from '../src/Pages/Product';
+import Category from './Components/Category/Category';
 
 
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />} >
-    <Route index element={<Home />} />
+    
+    <Route index element={<Category />} />
+    <Route path="/category/:type" element={<Home />}/> 
+    {/* <Route index element={<Home />} /> */}
     <Route path="/product/:productId" element={<Product />} />
     <Route path="/cart" element={<Cart />} />
     <Route path= "/login" element={<LogIn />} />
