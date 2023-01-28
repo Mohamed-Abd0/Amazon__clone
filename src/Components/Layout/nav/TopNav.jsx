@@ -277,7 +277,7 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
             </span>
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
-          <Link to={"#"} className="text-white flex items-end">
+          <Link to={"/cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">

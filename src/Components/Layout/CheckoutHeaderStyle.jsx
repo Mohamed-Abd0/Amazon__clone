@@ -2,33 +2,27 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    height: "12vh",
+    width: "100vw",
+    height: "10vh",
     background: "linear-gradient(to bottom, #fff, #ededed)",
-    margin: " 0  20px ",
-    boxShadow: " 0px 1px 0px #a6a5a5",
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-  },
-  root: {
-    height: "100%",
-    margin: "0 auto",
+    margin: " 0  25px ",
     textAlign: "center",
+    boxShadow: " 0px 1px 0px #a6a5a5",
   },
   imgContainer: {
     float: "left",
-    margin: "35px 5px",
-    height: "48px",
+    paddingTop: "0.5rem",
+    margin: "1.5rem 0 0 1.2rem",
+    height: "55%",
+    width: "30%",
   },
   logo: {
-    height: "95%",
+    height: "100%",
   },
   textcontainer: {
-    marginTop: "25px",
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
+    width: "70%",
     textAlign: "center",
+    paddingTop: "1.3rem",
   },
   headerText: {
     fontSize: "1.8rem",
