@@ -1,5 +1,5 @@
 import {React, useState, useEffect, useCallback} from 'react';
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 import { db } from '../../firebase';
 import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
@@ -58,7 +58,7 @@ const Category = () => {
   useEffect (() => {
       const getProducts = async () => {
         const data = await getDocs(productsCollectionRef);
-        console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+        // console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
         setProduct(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       }
          getProducts();
@@ -67,7 +67,7 @@ const Category = () => {
   return (
    <>  
   {/*  Main Slider */}
-  <div  className='home-image'>
+  <div className='home-image'>
     <Carousel animation="slide" autoPlay={true} cycleNavigation timeout={30}>
         { images.map( (image) => <Item key={image.id} item={image} /> )}
     </Carousel>
@@ -87,6 +87,7 @@ const Category = () => {
               className={classes.media1}
               src={women}
               title=""
+              alt=''
                />
                <CardContent>
                <Typography variant="body2" color="textSecondary" component="p">
@@ -107,6 +108,7 @@ const Category = () => {
                 className={classes.media1}
                 src={men1}
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -127,6 +129,7 @@ const Category = () => {
                 className={classes.media1}
                 src={coupon}
                 title=""
+                alt=''
               />
                <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -138,7 +141,7 @@ const Category = () => {
         </Grid>
 
         {products.map(product => {
-                if(product?.id == 2){
+                if(product?.id === 2){
                   return (
         <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id} >
@@ -231,7 +234,7 @@ const Category = () => {
           {/*   Deals Card */}
           
           {products.map(product => {
-                if(product?.id == 1){
+                if(product?.id === 1){
                   return (
                     <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     <Link to={'/product/' + product.id} >
@@ -248,7 +251,6 @@ const Category = () => {
                             color: 'white',
                             fontSize: 12,
                             fontWeight: 'bold',
-                            color: 'white',
                             padding: 5,
                             marginRight: 20
                             }}>
@@ -299,6 +301,7 @@ const Category = () => {
                 className={classes.media1}
                 src={decor} 
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -319,6 +322,7 @@ const Category = () => {
                 className={classes.media1}
                 src={home} 
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -339,6 +343,7 @@ const Category = () => {
                 className={classes.media1}
                 src={sport} 
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">

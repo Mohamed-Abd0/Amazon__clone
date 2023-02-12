@@ -48,7 +48,7 @@ const Home = () => {
     //   getProducts();
     // }, []);
  
-  console.log("******", categoryType.type)
+  // console.log("******", categoryType.type)
   // ********** Firebase query ***************
 
   
@@ -70,13 +70,6 @@ const Home = () => {
     
     return (
       <>
-      {/* <div  className='home-image'>
-       <Carousel animation="slide" autoPlay={true} cycleNavigation timeout={30}>
-            { 
-              images.map( (image) => <Item key={image.id} item={image} /> )
-            }
-        </Carousel>
-        </div> */}
 
         <Typography variant="h2"   align='center' style={{fontSize: 20, paddingTop: 50}}>
           {categoryType.type}
