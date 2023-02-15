@@ -37,63 +37,71 @@ const classes = useStyles();
     >
       {formError && <Typography color="error">{formError}</Typography>}
       <Grid container style={{ padding: "0 20px" }}>
+        
+        <Typography style={{ fontWeight: "bold" }}>Country/region</Typography>
         <TextField
           id="outlined-size-small"
-          className={classes.textField}
-          label="Country/region"
+          className={classes.textField} 
           variant="outlined"
           size="small"
           margin="normal"
+          placeholder="Enter your country/region"
+          InputLabelProps={{shrink: true}}
           onChange={(e) => setCountry(e.target.value)}
         ></TextField>
-
+        
+        <Typography style={{ fontWeight: "bold" }}>Full name </Typography>
         <TextField
           id="outlined-size-small"
-          className={classes.textField}
-          label="Full name (First and Last name)"
+          className={classes.textField} 
           variant="outlined"
           size="small"
           margin="normal"
+          placeholder="Enter your full name"
           onChange={(e) => setName(e.target.value)}
         ></TextField>
 
+        <Typography style={{ fontWeight: "bold" }}>Mobile number</Typography>
         <TextField
           id="outlined-size-small"
-          className={classes.textField}
-          label="Mobile number"
+          className={classes.textField} 
           variant="outlined"
           size="small"
           margin="normal"
+          placeholder="Your 10 digit phone number"
+          onChange={(e) => setAddress(e.target.value)}
+        ></TextField>
+      
+        <Typography style={{ fontWeight: "bold" }}>Street name</Typography>
+        <TextField
+          id="outlined-size-small"
+          className={classes.textField} 
+          variant="outlined"
+          size="small"
+          margin="normal"
+          placeholder="Start typing your address to get suggestions"
+
           onChange={(e) => setAddress(e.target.value)}
         ></TextField>
 
+        <Typography style={{ fontWeight: "bold" }}>City/Area</Typography>
         <TextField
           id="outlined-size-small"
-          className={classes.textField}
-          label="Street name"
+          className={classes.textField} 
           variant="outlined"
           size="small"
-          margin="normal"
-          onChange={(e) => setAddress(e.target.value)}
-        ></TextField>
-
-        <TextField
-          id="outlined-size-small"
-          className={classes.textField}
-          label="City/Area"
-          variant="outlined"
-          size="small"
-          margin="normal"
+          margin="normal" 
           onChange={(e) => setCity(e.target.value)}
         ></TextField>
 
+        <Typography style={{ fontWeight: "bold" }}>Postcode</Typography>
         <TextField
           id="outlined-size-small"
-          className={classes.textField}
-          label="Zip/Postal code"
+          className={classes.textField} 
           variant="outlined"
           size="small"
           margin="normal"
+          placeholder="Enter your area postcode"
           onChange={(e) => setZip(e.target.value)}
         ></TextField>
       </Grid>
