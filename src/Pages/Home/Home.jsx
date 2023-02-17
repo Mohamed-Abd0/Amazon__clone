@@ -31,7 +31,6 @@ function Item(props) {
 const Home = () => {
   const classes = useStyles();
   const [products, setProduct] = useState([]);
-
   const prods = useSelector((state) => state.CartSlice.items);
   console.log(prods);
   // *********** API *******************
