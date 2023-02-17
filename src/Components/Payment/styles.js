@@ -1,41 +1,52 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-  root: {
-    width: "80vw",
-    margin: "0 auto",
-  },
-  container: {
+  appBar: {
     position: "relative",
-    height: "100vh",
   },
-  checkoutContainer: {
-    position: "absolute",
-    width: "100%",
+  toolbar: theme.mixins.toolbar,
+  layout: {
+    marginTop: "5%",
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
   },
-  orderSummary: {
-    position: "absolute",
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      marginTop: 60,
+    },
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
   },
-  activeStep: {
-    color: "#c45500",
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
   },
-  paperStyle: {
-    margin: "5px 0 20px 40px",
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
-  footer: {
-    width: "100%",
-    backgroundColor: "#F0F2F2",
-    padding: "15px 30px 15px",
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
   },
-
-  boxStyle: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)", 
-    background: "#fff",
-    borderRadius: "10px",
-    boxShadow: 24,
-    overflow: "hidden",
+  divider: {
+    margin: "20px 0",
+  },
+  spinner: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));

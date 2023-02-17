@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
-
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, Fade } from "@mui/material";
 import { CartMenuSection } from "./";
-import { overlayfunc } from "../Store/product_slice/ModalSlice";
+import { allModalsState } from "../Store/ModalSlice";
+import { overlayStyless } from "../Constants/Constants";
 
 const Modal = () => {
-  const { overlayState } = useSelector(({ ModalSlice }) => ModalSlice);
+  const { overlayState, cartMenuSectionState } = useSelector(
+    ({ ModalSlice }) => ModalSlice
+  );
 
-  const [viewState, setViewState] = useState(overlayState);
+  const matches = useMediaQuery("(min-width:900px)");
 
-  const action = useDispatch();
+  const dispatch = useDispatch();
 
-  const ParentStyless = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100vh",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: 10,
-  };
-
-  const Parent = overlayState && (
-    <Box sx={ParentStyless} onClick={() => action(overlayfunc(false))}>
-      <CartMenuSection />
-    </Box>
+  const Parent = (
+    <Fade in={overlayState} mountOnEnter unmountOnExit>
+      <Box
+        sx={overlayStyless}
+        onClick={() => dispatch(allModalsState(false))}
+      ></Box>
+    </Fade>
   );
 
   useEffect(() => {
@@ -35,10 +30,14 @@ const Modal = () => {
       root.style.overflow = "hidden";
       root.style.height = "100vh";
     } else {
-      // root.style.overflow = "auto";
-      // root.style.height = "auto"
+      root.style.overflow = "unset";
+      root.style.height = "auto";
     }
   }, [overlayState]);
+
+  useEffect(() => {
+    dispatch(allModalsState(false));
+  }, [matches, dispatch]);
 
   return createPortal(Parent, document.getElementById("modal"));
 };
