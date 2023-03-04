@@ -19,7 +19,6 @@
     "firebase": "^9.15.0",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
-    "react-countup": "^6.4.0",
     "react-dom": "^18.2.0",
     "react-lines-ellipsis": "^0.15.3",
     "react-material-ui-carousel": "^3.4.2",

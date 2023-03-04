@@ -3,15 +3,63 @@
             "country" : "egypt" , 
             "ChangeLanguage" : "Change language" ,
             "LearnMore" : "Learn more" ,  
-            "deleverTo" : "delverTo"   
-           
+            "deleverTo" : "delverTo"  ,
+            "change" : "change" , 
+            "ChangeCurrency" : "Change currency" , 
+            "USDollar" : "US Dollar" ,
+            "shoppingOn" : "You are shopping on",
+            "changeLeng" : "Change country/region." , 
+            "helloSignIn" : "Hello, sign in"  ,
+            "accountLists" : "Account & Lists" ,
+            "signIn" : "sign in" ,
+            "newCustomer" : "New customer? ",
+            "StartHere" : "Start here.",
+            "YourLists" : "Your Lists",
+            "YourAccount" : "Your Account",
+            "returns" : "Returns",
+            "Orders" : "& Orders",
+            "carts" : "carts",
+            "all" : "all",
+            "ShopHoliday" : "Shop holiday fashion deals",
+            "welcome" : "welcome",
+            "selectProfile" : "Who's shopping? Select a profile.",
+            "manageProfiles" : "Manage Profiles",
+            "homePage" : "Home Page",
+            "" : "",
+            "" : ""
+            
+
         } ,
         "ar" : {
             "country" : "مصر" ,
             "ChangeLanguage" : "تغيير اللغة" ,
             "LearnMore" : "معرفة المزيد" ,
-            "deleverTo" : "توصيل الى"    
-            
+            "deleverTo" : "توصيل الى"  ,
+            "change" : "تغيير" , 
+            "ChangeCurrency" : "تغيير العملة" ,
+            "USDollar" : "دولار امريكى" ,
+            "shoppingOn" : "انت تتسوق على " , 
+            "changeLeng" : "تغيير البلد/المنطقة.",
+            "helloSignIn" : "مرحبا , تسجيل الدخول",
+            "accountLists" : "الحساب والقوائم",
+            "signIn" : "تسجيل الدخول" , 
+            "newCustomer" : "عميل جديد "  ,
+            "StartHere" : "أبدأ هنا."  ,
+            "YourLists" : "قوائمك"  ,
+            "YourAccount" : "الحساب الخاص بك"  ,
+            "returns" : "مرتجعاتك"  ,
+            "Orders" : "ومشترياتك"  ,
+            "carts" : "العربة"  , 
+            "all" : "الكل"  , 
+            "ShopHoliday" : "تسوَّق العروض الرائعة الآن"  , 
+            "welcome" : "مرحبا"  , 
+            "selectProfile" : "من يقوم بالتسوق؟ حدد ملف شخصي."  , 
+            "manageProfiles" : "إدارة الملفات الشخصية"  , 
+            "homePage" : "الصفحة الرئيسية"  , 
+            "" : ""  , 
+            "" : ""  , 
+            "" : ""  , 
+            "" : ""   
         } 
         
     
