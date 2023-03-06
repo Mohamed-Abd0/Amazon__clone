@@ -73,6 +73,7 @@ const Category = () => {
     </Carousel>
     </div>
     {/* Main Container */}
+    
     <Container  maxWidth= "l" style={{ background: '#E2E6E6'}}> 
       <Grid container justify='center' spacing={2}>
       <Grid  className='main-grid' container spacing={2}>
