@@ -1,10 +1,24 @@
 export const LightModePalette = {
   background: {
-    primary: "#ffcd72",
-    secondary: "#FF9933",
+    main: "#232f3e",
+    primary: "#FFD814",
+    secondary: "#FFA41C",
+    gray: "#e3e3e3",
+  },
+  text: {
+    gray: "#606060",
+    darkOriange: "#C7511F",
+    teal: "#007185",
+    green: "#007600",
+    black: "#3e3e3e",
+  },
+  border: {
+    gray: "#d3d3d3",
+    lightgray: "#e1e1e1",
+    darkgray: "#afafaf",
   },
   action: {
-    primaryHover: "#ff9933e3",
-    secondaryHover: "#dd8732e3",
+    primaryHover: "#F7CA00",
+    secondaryHover: "#FA8900",
   },
-};  
+};

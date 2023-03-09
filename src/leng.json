@@ -24,9 +24,7 @@
             "welcome" : "welcome",
             "selectProfile" : "Who's shopping? Select a profile.",
             "manageProfiles" : "Manage Profiles",
-            "homePage" : "Home Page",
-            "" : "",
-            "" : ""
+            "homePage" : "Home Page"
             
 
         } ,
@@ -55,11 +53,7 @@
             "welcome" : "مرحبا"  , 
             "selectProfile" : "من يقوم بالتسوق؟ حدد ملف شخصي."  , 
             "manageProfiles" : "إدارة الملفات الشخصية"  , 
-            "homePage" : "الصفحة الرئيسية"  , 
-            "" : ""  , 
-            "" : ""  , 
-            "" : ""  , 
-            "" : ""   
+            "homePage" : "الصفحة الرئيسية"  
         } 
         
     
