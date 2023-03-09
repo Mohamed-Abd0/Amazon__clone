@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
     },
     media1: {
       height: 'auto',
-      maxHeight: '50%',
+      // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
       padding: 10
@@ -44,9 +44,10 @@ export default makeStyles((theme) => ({
     },
     
     cardActions: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      textAlign: 'right',
+      // display: 'flex',
+      // justifyContent: 'space-between',
+      textAlign: 'left',
+      marginBottom: 300,
     },
     cardContent: {
       display: 'flex',

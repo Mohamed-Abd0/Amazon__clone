@@ -58,8 +58,9 @@ const Home = () => {
       querySnapshot.forEach((doc) => {
         queryResults.push({ ...doc.data(), id: doc.id}) 
         setProduct(queryResults);
-         });  
-       return queryResults
+        });  
+        console.log("query", queryResults)
+      return queryResults
     } 
   
     useEffect (() => {
@@ -75,7 +76,7 @@ const Home = () => {
           {categoryType.type}
         </Typography>
         <Typography variant="h1"   align='center' style={{fontSize: 20, paddingBottom: 50}}>
-           Featured categories
+          Featured categories
         </Typography>
         <Container  maxWidth="xl"> 
           <Grid container justify='center' spacing={4}>
@@ -84,12 +85,12 @@ const Home = () => {
                 <Grid   className='main-grid' item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id}  style={{textDecoration: 'none'}}>
                   <Card className={classes.root}>
-                    <CardMedia className={classes.media} image={product.image} title = {product.title} />
+                    <CardMedia className={classes.media} image={product.mainImg} title = {product.title} />
                     <CardContent  align= "left" >
                       <div className={classes.cardContent}>
                         <Typography gutterBottom  component="h2"  align="left" overflow="hidden" >
                           <LinesEllipsis
-                            text= {product.title}
+                            text= {product.mainTitle}
                             maxLine='2'
                             lineHeight='16'
                             ellipsis='...'
@@ -119,23 +120,23 @@ const Home = () => {
                             <span>{(product.price - Math.floor(product.price)).toFixed(2) * 100}</span>
                           </Box>
                         </Typography>
-                         {product.stock < 10 &&
+                        {product.stock < 10 &&
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
                           Only {product.stock} left in stock.
                         </Typography>
-                         }
+                          }
                         </CardContent>
-                         <CardActions  className={classes.cardActions} >
+                          <CardActions  className={classes.cardActions} >
                         {/* <AddShoppingCartIcon /> */}
                     </CardActions>
-                   </Card>
-                 </Link>
+                    </Card>
+                  </Link>
                 </Grid>
-             );
-           })}
-       </Grid>
+              );
+            })}
+        </Grid>
       </Container>
-     </>
+      </>
     );
     }
 export default Home;
