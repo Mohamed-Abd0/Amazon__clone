@@ -45,37 +45,50 @@ const Home = () => {
   //   getProduct();
   //   } , []);
 
-  // ********** Firebase Setup ***************
-  const usersCollectionRef = collection(db, "products");
+    // ********** Firebase Setup ***************
+    
 
-  useEffect(() => {
+    // useEffect (() => {
+    //   const getProducts = async () => {
+    //     const data = await getDocs(productsCollectionRef);
+    //     console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    //     setProduct(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    //   }
+    //   getProducts();
+    // }, []);
+ 
+  // console.log("******", categoryType.type)
+  // ********** Firebase query ***************
+
+  
     const getProducts = async () => {
-      const data = await getDocs(usersCollectionRef);
-      console.log(
-        "data",
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-      setProduct(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+      const q = query(productsCollectionRef, where("category", "==", categoryType.type));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        queryResults.push({ ...doc.data(), id: doc.id}) 
+        setProduct(queryResults);
+        });  
+        console.log("query", queryResults)
+      return queryResults
+    } 
+  
+    useEffect (() => {
     getProducts();
-  }, []);
+  }, [categoryType])
+  
+ console.log(queryResults)
+    
+    return (
+      <>
 
-  return (
-    <>
-      <div className="home-image">
-        <Carousel
-          animation="slide"
-          autoPlay={true}
-          cycleNavigation
-          timeout={30}
-        >
-          {images.map((image) => (
-            <Item key={image.id} item={image} />
-          ))}
-        </Carousel>
-      </div>
-      <Container maxWidth="xl">
-        <Grid container justify="center" spacing={4}>
+        <Typography variant="h2"   align='center' style={{fontSize: 20, paddingTop: 50}}>
+          {categoryType.type}
+        </Typography>
+        <Typography variant="h1"   align='center' style={{fontSize: 20, paddingBottom: 50}}>
+          Featured categories
+        </Typography>
+        <Container  maxWidth="xl"> 
+          <Grid container justify='center' spacing={4}>
           {products.map((product) => {
             return (
               <Grid
@@ -92,12 +105,8 @@ const Home = () => {
                   style={{ textDecoration: "none" }}
                 >
                   <Card className={classes.root}>
-                    <CardMedia
-                      className={classes.media}
-                      image={product.image}
-                      title={product.title}
-                    />
-                    <CardContent align="left">
+                    <CardMedia className={classes.media} image={product.mainImg} title = {product.title} />
+                    <CardContent  align= "left" >
                       <div className={classes.cardContent}>
                         <Typography
                           gutterBottom
@@ -106,62 +115,53 @@ const Home = () => {
                           overflow="hidden"
                         >
                           <LinesEllipsis
-                            text={product.title}
-                            maxLine="2"
-                            lineHeight="16"
-                            ellipsis="..."
+                            text= {product.mainTitle}
+                            maxLine='2'
+                            lineHeight='16'
+                            ellipsis='...'
                             trimRight
                             basedOn="letters"
                           />
                         </Typography>
                       </div>
-                      <Typography variant="body1" style={{ fontSize: 13 }}>
-                        <Rating
-                          className={classes.rating}
-                          size="small"
-                          justify="left"
-                          // ratind should come from API
-                          value={product.rate}
-                          precision={0.5}
-                          readOnly
-                        ></Rating>
-                        {product.count} reviews
-                      </Typography>
-                      <Typography
-                        gutterBottom
-                        variant="body1"
-                        component="h2"
-                        align="left"
-                      >
-                        <Box sx={{ fontWeight: "bold", m: 1 }}>
-                          {" "}
-                          ${product.price}
-                        </Box>
-                      </Typography>
-                      {product.stock < 10 && (
-                        <Typography
-                          style={{
-                            color: "red",
-                            fontWeight: "bold",
-                            fontSize: 12,
-                          }}
-                        >
-                          Only {product.stock} left in stock.
+                      <Typography variant="body1" style={{fontSize: 13}}> 
+                        <Rating className={classes.rating}
+                            size="small"
+                            justify='left'
+                            // ratind should come from API
+                            value={product.rate}
+                            precision={0.5} 
+                            readOnly
+                          >
+                          </Rating>
+                          {product.count} reviews
                         </Typography>
-                      )}
-                    </CardContent>
-                    <CardActions className={classes.cardActions}>
-                      {/* <AddShoppingCartIcon /> */}
+                        <Typography gutterBottom variant="body1" component="h2"  align="left"  >
+                          <Box  sx={{ span: { fontSize: "12px" }, display: "flex"}}>
+                            <span style={{ marginLeft: "10px" }}> $</span>
+                            <Typography variant="h4" sx={{ mt: "-3px" }}>
+                              {Math.floor(product.price)}
+                            </Typography>
+                            <span>{(product.price - Math.floor(product.price)).toFixed(2) * 100}</span>
+                          </Box>
+                        </Typography>
+                        {product.count < 10 &&
+                        <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
+                          Only {product.count} left in stock.
+                        </Typography>
+                          }
+                        </CardContent>
+                          <CardActions  className={classes.cardActions} >
+                        {/* <AddShoppingCartIcon /> */}
                     </CardActions>
-                  </Card>
-                </Link>
-              </Grid>
-            );
-          })}
+                    </Card>
+                  </Link>
+                </Grid>
+              );
+            })}
         </Grid>
       </Container>
-    </>
-  );
-};
-
+      </>
+    );
+    }
 export default Home;
