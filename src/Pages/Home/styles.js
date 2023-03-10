@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
       // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
-      padding: 10
+      padding: '10'
     },
 
     cardHeader: {
@@ -36,10 +36,8 @@ export default makeStyles((theme) => ({
     },
     
     cardActions: {
-      // display: 'flex',
-      // justifyContent: 'space-between',
       textAlign: 'left',
-      marginBottom: 300,
+     
     },
     cardContent: {
       display: 'flex',
@@ -51,8 +49,8 @@ export default makeStyles((theme) => ({
     },
     carouselImage: {
       width: '100%',
-     },
-     container: {
+    },
+    container: {
       display: 'grid',
       gridTemplateColumns: 'repeat(12, 1fr)',
       gridGap: `${theme.spacing.unit * 3}px`,
@@ -62,16 +60,15 @@ export default makeStyles((theme) => ({
       marginBottom: theme.spacing.unit * 2,
       height: 400,
       borderRadius: 0,
-     
     },
     swiperImage: {
       padding: 10,
       margin: 10,
       width: 'auto',
-    height: 'auto',
-    maxWidth: 270,
-    maxHeight: 200,
-    verticalAlign: 'middle'
+      height: 'auto',
+      maxWidth: 270,
+      maxHeight: 200,
+      verticalAlign: 'middle'
     },
     swipeSlide: {
       alignContent: 'center',

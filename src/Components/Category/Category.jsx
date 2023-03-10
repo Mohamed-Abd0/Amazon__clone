@@ -185,14 +185,14 @@ const Category = () => {
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
                           Only {product.stock} left in stock.
                         </Typography>
-                         }
+                        }
                         </CardContent>
-                        <div  style={{
+                        <Box  style={{
                           display: 'flex',
                           justifyContent: 'space-around',
-                          alignSelf: 'center'
-                         }}
-                         >
+                          alignSelf: 'center',
+                        }}
+                        >
                           <Button className='coupon'
                             style={{ 
                             backgroundColor: '#E57A00',
@@ -205,7 +205,8 @@ const Category = () => {
                             fontWeight: 'bold',
                             color: 'white',
                             // padding: 0,
-                            marginRight: 40
+                            marginRight: 40,
+                            marginBottom: '20px'
                             }}>
                           $25 off coupon
                           </Button>
@@ -219,12 +220,13 @@ const Category = () => {
                             boxShadow: '0 2px 5px 0 hsl(180deg 5% 84% / 50%)',
                             color: '#0f1111',
                             // textAlign: 'center'
-                            alignItems:'center'
+                            alignItems:'center',
+                            marginBottom: '20px'
                             }}
                             >
                               Shop now
                             </Button>
-                        </div>
+                        </Box>
                   </Card> 
                 </Link>
                 </Grid>
@@ -234,7 +236,7 @@ const Category = () => {
           {/*   Deals Card */}
           
           {products.map(product => {
-                if(product.price < 700){
+                if(product.price < 800){
                   return (
                     <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     <Link to={'/product/' + product.id} >
