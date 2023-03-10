@@ -120,9 +120,9 @@ const Home = () => {
                             <span>{(product.price - Math.floor(product.price)).toFixed(2) * 100}</span>
                           </Box>
                         </Typography>
-                        {product.stock < 10 &&
+                        {product.count < 10 &&
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
-                          Only {product.stock} left in stock.
+                          Only {product.count} left in stock.
                         </Typography>
                           }
                         </CardContent>

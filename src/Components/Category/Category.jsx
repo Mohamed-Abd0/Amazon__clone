@@ -268,7 +268,7 @@ const Category = () => {
                             Top deal
                           </span>
                         </Typography>
-                     
+                
                           <Typography   variant='body2'  overflow="hidden" >
                             <LinesEllipsis
                               text= {product.mainTitle}
@@ -281,13 +281,7 @@ const Category = () => {
                             />
                           </Typography>
                   </CardContent>
-
-                  <CardActions>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                   Shop all deals
-                </Typography>
-                  </CardActions>
-
+                  
                 </Card> 
               </Link>
             </Grid>
@@ -298,7 +292,7 @@ const Category = () => {
             <Card className={classes.root}>
             
             <Typography className={classes.cardHeader}   >
-                 Shop our Home décor 
+                Shop our Home décor 
               </Typography>
               <img
                 className={classes.media1}
@@ -311,7 +305,7 @@ const Category = () => {
                   see more
                 </Typography>
               </CardActions>
-             </Card>
+            </Card>
             </Link>
         </Grid>
 

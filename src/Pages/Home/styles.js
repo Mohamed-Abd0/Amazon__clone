@@ -4,20 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-    //   maxWidth: '100%',
-    //   maxHeight: '100%',
-    //   height: 'auto',
-    //   // backgroundColor: 'white',
-    //   borderRadius: 0,
-    //  paddingBottom: 20
-
-    background: '#fff',
-    height: '100%',
-    position: 'relative',
-    marginBottom: '0',
-    marginTop: '0',
-    overflow: 'hidden',
-    paddingTop: '20px'
+      // maxWidth: '100%',
+      maxHeight: '100%',
+      height: 'auto',
+      background: '#fff',
+    
+  
       
       
     },
