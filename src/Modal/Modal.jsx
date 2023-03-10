@@ -1,47 +1,45 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useSelector, useDispatch } from 'react-redux';
-
-import { Box } from '@mui/material';
-import {CartMenuSection} from './';
-import { overlayfunc } from '../Store/product_slice/ModalSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { Box, useMediaQuery, Fade } from "@mui/material";
+import { CartMenuSection } from "./";
+import { allModalsState } from "../Store/ModalSlice";
+import { overlayStyless } from "../Constants/Constants";
 
 const Modal = () => {
+  const { overlayState, cartMenuSectionState } = useSelector(
+    ({ ModalSlice }) => ModalSlice
+  );
 
-  const {overlayState} = useSelector(({ModalSlice}) => ModalSlice)
+  const matches = useMediaQuery("(min-width:900px)");
 
-  const [viewState, setViewState] = useState(overlayState);
-
-  const action = useDispatch();
-
-  const ParentStyless = {
-    position : "fixed",
-    top: 0,
-    left :0,
-    width : "100%",
-    height: "100vh",
-    backgroundColor : "rgba(0, 0, 0, 0.5)",
-    zIndex : 10
-  }
+  const dispatch = useDispatch();
 
   const Parent = (
-    overlayState && <Box sx={ParentStyless} onClick={() => action(overlayfunc(false))}>
-      <CartMenuSection />
-    </Box>
-  )
+    <Fade in={overlayState} mountOnEnter unmountOnExit>
+      <Box
+        sx={overlayStyless}
+        onClick={() => dispatch(allModalsState(false))}
+      ></Box>
+    </Fade>
+  );
 
   useEffect(() => {
     const root = document.getElementById("modal").previousElementSibling;
     if (overlayState) {
       root.style.overflow = "hidden";
-      root.style.height = "100vh"
+      root.style.height = "100vh";
     } else {
-      root.style.overflow = "auto";
-      root.style.height = "auto"
+      root.style.overflow = "inherit";
+      root.style.height = "inherit"
     }
-  }, [overlayState])
+  }, [overlayState]);
 
-  return createPortal(Parent, document.getElementById("modal"))
-}
+  useEffect(() => {
+    dispatch(allModalsState(false));
+  }, [matches, dispatch]);
 
-export default Modal
+  return createPortal(Parent, document.getElementById("modal"));
+};
+
+export default Modal;

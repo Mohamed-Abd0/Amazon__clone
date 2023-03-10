@@ -1,9 +1,12 @@
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import words from "../../../leng.json";
 
 const Canvas = ({showCanvas , setShowCanvas}) => {
   const [showlayer, setShowLayer] = useState(false);
+  const lengActive = useSelector((state) => state.leng);
+  const langWordsActive = words[`${lengActive.lang}`];
   const [allSection, setAllSecions] = useState([
     {
     title: {
@@ -84,9 +87,9 @@ const Canvas = ({showCanvas , setShowCanvas}) => {
       <i onClick={() => setShowCanvas(false)} className="fa-solid fa-xmark close-canvas absolute rtl:-left-10 ltr:-right-10 top-6 text-3xl font-bold text-white cursor-pointer"></i>
       <Link
         to={"#"}
-        className="sign-in-canves bg-[#232f3e] text-white flex items-center text-2xl h-[50px] px-6 ltr:justify-end font-bold sticky top-0"
+        className="sign-in-canves bg-[#232f3e] text-white flex items-center text-2xl h-[50px] px-6 justify-center font-bold sticky top-0"
       >
-        <span>مرحباً. تسجيل الدخول</span>
+        <span>{langWordsActive.helloSignIn}</span>
         <i className="fa-solid fa-circle-user text-2xl mx-3"></i>
       </Link>
       <div className="allSections relative overflow-scroll h-full">
@@ -120,7 +123,7 @@ const Canvas = ({showCanvas , setShowCanvas}) => {
             onClick={() => setShowLayer(false)}
             className="flex items-center cursor-pointer ltr:justify-end  text-xl px-6 border-b border-[#ccc] pb-3"
           >
-            <span>الصفحة الرئيسية</span>
+            <span>{langWordsActive.homePage}</span>
             <i className="fa-solid fa-arrow-right mx-3 rtl:order-[-1]"></i>
           </div>
           <h3 className="text-xl font-bold px-6 my-3">{layerTwo.title.ar}</h3>
@@ -140,5 +143,6 @@ const Canvas = ({showCanvas , setShowCanvas}) => {
 
   );
 };
+
 
 export default Canvas;

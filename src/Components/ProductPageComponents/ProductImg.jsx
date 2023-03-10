@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Stack, Box, CardMedia } from "@mui/material";
-import { setCurrentImg } from "../../Store/product_slice/ProductSlice";
+import { setCurrentImg } from "../../Store/ProductSlice";
+import useCurrentProduct from "../../Hooks/useCurrentProduct";
 const ProductImg = () => {
-  const {
-    product: { productImgs },
-    currentImg,
-  } = useSelector(({ ProductSlice }) => ProductSlice);
+  const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
+
+  const imgsArr = useCurrentProduct("productImgs");
 
   const action = useDispatch();
 
   const renderinOthersIms = () =>
-    productImgs?.map((item, index) => (
+    imgsArr?.map((item, index) => (
       <Box
         key={index}
         sx={{
@@ -35,10 +35,21 @@ const ProductImg = () => {
       </Box>
     ));
 
+  useEffect(() => {
+    const targetImg = imgsArr.find((li) => li.state === true);
+    action(setCurrentImg(targetImg.src));
+  }, [action, imgsArr]);
+
   return (
     <Stack
       flexDirection={{ xs: "column", sm: "row" }}
-      sx={{position : {md : "sticky"},top : "80px",maxHeight: { md : "400px"} ,width: { md: "40%" } }}
+      justifyContent="space-between"
+      sx={{
+        position: { lg: "sticky" },
+        top: "80px",
+        maxHeight: { md: "400px" },
+        minWidth: { lg: "400px" },
+      }}
       gap={3}
     >
       <Stack
@@ -49,12 +60,19 @@ const ProductImg = () => {
       >
         {renderinOthersIms()}
       </Stack>
-      <Box sx={{ flexGrow: 1, order: { xs: 1, sm: 2 } }}>
+      <Box
+        sx={{
+          maxWidth: { lg: "400px" },
+          height: "400px",
+          order: { xs: 1, sm: 2 },
+          flexGrow: 1,
+        }}
+      >
         <CardMedia
           src={currentImg}
           component="img"
           sx={{
-            maxHeight: "400px",
+            height: "100%",
             objectFit: "contain",
           }}
         />

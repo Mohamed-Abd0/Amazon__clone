@@ -1,2 +1,2 @@
 export {default as Modal} from "./Modal";
-export {default as CartMenuSection} from "./CartMenuSection";
+export {default as CartMenuSection} from "./CartMenuSection/CartMenuSection";

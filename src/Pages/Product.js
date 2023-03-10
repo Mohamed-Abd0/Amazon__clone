@@ -1,43 +1,40 @@
-import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-
+import React, { Fragment } from "react";
 import {
   ProductImg,
   ProductContent,
   SuggestProducts,
+  ProductOptions,
 } from "../Components/ProductPageComponents";
-import BackToHome from "../Components/ReuseableComponets/BackToHome";
-
+import { BackToHome, FloatingIcon } from "../Components/ReuseableComponets";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { Stack, Box } from "@mui/material";
-import { getProductFromParam } from "../Store/product_slice/ProductSlice";
-import { productContent } from "../Data/TestData";
 
 const Product = () => {
-  const { productId } = useParams();
-
-  const action = useDispatch();
-
-  const product = productContent[+productId];
-
-  //for test
-  //dispatch action from home page to product page when determind product 
-  //this action contains product object that contains all details
-  useEffect(() => {
-    action(getProductFromParam(product));
-  }, [action, product]);
-
   return (
     <Fragment>
-      <BackToHome />
-      <Box sx={{ width: { lg: "80%" }, m: "auto" }}>
+      <Box sx={{ maxWidth: "1400px", m: "auto" }}>
+        <Box sx={{ mx: { xs: "1rem", sm: "2rem" } }}>
+          <BackToHome />
+        </Box>
         <Stack
           flexDirection={{ md: "row" }}
-          justifyContent="space-evenly"
-          gap={3}
+          sx={{ mx: { xs: "1rem", sm: "2rem" } }}
+          justifyContent="space-between"
+          gap={2}
         >
-          <ProductImg />
-          <ProductContent />
+          <FloatingIcon
+            type={<SettingsIcon />}
+            action={"productOptionsState"}
+          />
+          <Stack
+            flexDirection={{ lg: "row" }}
+            sx={{ maxWidth: { xs: "100%", md: "65%", lg: "75%" } }}
+            gap={4}
+          >
+            <ProductImg />
+            <ProductContent />
+          </Stack>
+          <ProductOptions />
         </Stack>
       </Box>
       <SuggestProducts />
