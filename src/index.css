@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,12 +9,20 @@
   text-transform: capitalize;
 }
 
-
 body {
   margin: 0;
-  font-family: "Arial","sans-serif" , "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
+  font-family: "Arial", "sans-serif", "Segoe UI", "Roboto", "Oxygen",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.row {
+  @apply flex items-center justify-between maxlg:flex-col gap-6 my-3;
+}
+
+.error-Input {
+  @apply border-red-600 text-red-500 placeholder:text-red-500;
 }
 
 /* code {
@@ -38,27 +45,24 @@ Track
   background: #232f3e;
 }
 
-
-
-
 .container {
-    @apply max-w-full px-3
+  @apply max-w-full px-3;
 }
 
 .hover-item {
-    @apply border border-transparent hover:border-white duration-200 p-2; 
+  @apply border border-transparent hover:border-white duration-200 p-2;
 }
 
 .border-active {
-    @apply border-mainColor
+  @apply border-mainColor;
 }
 
 @layer components {
-    .title-sec {
-        @apply text-xl font-bold mb-3  ltr:text-end px-6;
-    }
+  .title-sec {
+    @apply text-xl font-bold mb-3  ltr:text-end px-6;
+  }
 
-    .sec {
-        @apply my-3  ; 
-    }
+  .sec {
+    @apply my-3;
+  }
 }
