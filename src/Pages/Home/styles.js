@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      maxWidth: '100%',
+      // maxWidth: '100%',
       maxHeight: '100%',
       height: 'auto',
-      // backgroundColor: 'white',
-      borderRadius: 0,
-     paddingBottom: 20
+      background: '#fff',
+    
+  
       
       
     },
@@ -20,10 +20,10 @@ export default makeStyles((theme) => ({
     },
     media1: {
       height: 'auto',
-      maxHeight: '50%',
+      // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
-      padding: 10
+      padding: '10'
     },
 
     cardHeader: {
@@ -36,9 +36,8 @@ export default makeStyles((theme) => ({
     },
     
     cardActions: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      textAlign: 'right',
+      textAlign: 'left',
+     
     },
     cardContent: {
       display: 'flex',
@@ -50,8 +49,8 @@ export default makeStyles((theme) => ({
     },
     carouselImage: {
       width: '100%',
-     },
-     container: {
+    },
+    container: {
       display: 'grid',
       gridTemplateColumns: 'repeat(12, 1fr)',
       gridGap: `${theme.spacing.unit * 3}px`,
@@ -61,16 +60,15 @@ export default makeStyles((theme) => ({
       marginBottom: theme.spacing.unit * 2,
       height: 400,
       borderRadius: 0,
-     
     },
     swiperImage: {
       padding: 10,
       margin: 10,
       width: 'auto',
-    height: 'auto',
-    maxWidth: 270,
-    maxHeight: 200,
-    verticalAlign: 'middle'
+      height: 'auto',
+      maxWidth: 270,
+      maxHeight: 200,
+      verticalAlign: 'middle'
     },
     swipeSlide: {
       alignContent: 'center',

@@ -19,6 +19,10 @@
     padding: 0 ;
 }
 
+.MuiCard-root {
+  overflow: visible !important;
+}
+
 .swiper-button-next, .swiper-button-prev {
   position: absolute;
   top: 55px;
@@ -59,12 +63,10 @@ transform: skew(-30deg);
 }
 
 .MuiButton-label {
-
   justify-content: center;
 }
 
 .scroll-to-top {
-  background-color: red;
   right: 40px;
   bottom: 40px;
   position: fixed;
@@ -76,4 +78,3 @@ transform: skew(-30deg);
   box-shadow: 0 9px 25px 0 rgb(132 128 177 / 28%);
   border: none;
 }
- 

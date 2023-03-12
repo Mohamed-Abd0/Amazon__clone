@@ -1,10 +1,10 @@
 import {React, useState, useEffect, useCallback} from 'react';
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 import { db } from '../../firebase';
 import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import {Grid, Card, CardMedia, CardContent, Typography, Button, Box} from '@material-ui/core';
-import {Zoom, Fab} from "@mui/material";
+import {Zoom, Fab, CardActions} from "@mui/material";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import LinesEllipsis from 'react-lines-ellipsis';
@@ -58,21 +58,22 @@ const Category = () => {
   useEffect (() => {
       const getProducts = async () => {
         const data = await getDocs(productsCollectionRef);
-        console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+        // console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
         setProduct(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       }
-         getProducts();
+        getProducts();
     }, []);
 
   return (
-   <>  
+    <>  
   {/*  Main Slider */}
-  <div  className='home-image'>
+  <div className='home-image'>
     <Carousel animation="slide" autoPlay={true} cycleNavigation timeout={30}>
         { images.map( (image) => <Item key={image.id} item={image} /> )}
     </Carousel>
     </div>
     {/* Main Container */}
+    
     <Container  maxWidth= "l" style={{ background: '#E2E6E6'}}> 
       <Grid container justify='center' spacing={2}>
       <Grid  className='main-grid' container spacing={2}>
@@ -81,18 +82,18 @@ const Category = () => {
           <Link to="category/women"> 
             <Card className={classes.root}>
             <Typography className={classes.cardHeader}   >
-               Women's fashion
+              Women's fashion
               </Typography>
               <img 
               className={classes.media1}
-              src={women}
+              src={men1}
               title=""
-               />
-               <CardContent>
-               <Typography variant="body2" color="textSecondary" component="p">
-                see more
-                </Typography>
-               </CardContent>
+              alt=''
+              />
+               <CardActions className={classes.cardActions}>
+        <Button size="small">See more</Button>
+       
+      </CardActions>
              </Card>
           </Link>
         </Grid>
@@ -107,6 +108,7 @@ const Category = () => {
                 className={classes.media1}
                 src={men1}
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -127,6 +129,7 @@ const Category = () => {
                 className={classes.media1}
                 src={coupon}
                 title=""
+                alt=''
               />
                <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -138,17 +141,17 @@ const Category = () => {
         </Grid>
 
         {products.map(product => {
-                if(product?.id == 2){
+                if(product.rating === "4"){
                   return (
         <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id} >
                     <Card className={classes.root}   >
-                    <CardMedia className={classes.media} image={product.image} title = {product.title}/>
+                    <CardMedia className={classes.media} image={product.mainImg} title = {product.title}/>
                     <CardContent  align= "left" >
                       <div className={classes.cardContent}  >
                         <Typography gutterBottom  variant='body2' align="left" overflow="hidden" >
                           <LinesEllipsis
-                            text= {product.title}
+                            text= {product.mainTitle}
                             maxLine='2'
                             lineHeight='16'
                             ellipsis='...'
@@ -182,14 +185,14 @@ const Category = () => {
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
                           Only {product.stock} left in stock.
                         </Typography>
-                         }
+                        }
                         </CardContent>
-                        <div  style={{
+                        <Box  style={{
                           display: 'flex',
                           justifyContent: 'space-around',
-                          alignSelf: 'center'
-                         }}
-                         >
+                          alignSelf: 'center',
+                        }}
+                        >
                           <Button className='coupon'
                             style={{ 
                             backgroundColor: '#E57A00',
@@ -202,7 +205,8 @@ const Category = () => {
                             fontWeight: 'bold',
                             color: 'white',
                             // padding: 0,
-                            marginRight: 40
+                            marginRight: 40,
+                            marginBottom: '20px'
                             }}>
                           $25 off coupon
                           </Button>
@@ -216,14 +220,15 @@ const Category = () => {
                             boxShadow: '0 2px 5px 0 hsl(180deg 5% 84% / 50%)',
                             color: '#0f1111',
                             // textAlign: 'center'
-                            alignItems:'center'
+                            alignItems:'center',
+                            marginBottom: '20px'
                             }}
                             >
                               Shop now
                             </Button>
-                        </div>
+                        </Box>
                   </Card> 
-                 </Link>
+                </Link>
                 </Grid>
                 )}
               })}
@@ -231,7 +236,7 @@ const Category = () => {
           {/*   Deals Card */}
           
           {products.map(product => {
-                if(product?.id == 1){
+                if(product.price < 800){
                   return (
                     <Grid   item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     <Link to={'/product/' + product.id} >
@@ -239,23 +244,22 @@ const Category = () => {
                       <Typography className={classes.cardHeader}   >
                       Today's deals
                       </Typography>
-                      <CardMedia className={classes.media} image={product.image} title = {product.title}/>
+                      <CardMedia className={classes.media} image={product.mainImg} title = {product.title}/>
                       <CardContent  align= "left" >
                         <Typography style={{marginBottom: 9}}>
                           <span style={{
-                            background: 'red',
+                            background: '#CC0C39',
                             boxShadow: '0 2px 5px 0 hsl(180deg 5% 84% / 50%)',
                             color: 'white',
                             fontSize: 12,
                             fontWeight: 'bold',
-                            color: 'white',
                             padding: 5,
                             marginRight: 20
                             }}>
                             Up to 22% off 
                           </span>
                           <span style={{
-                            color: 'red',
+                            color: '#CC0C39',
                             alignItems:'center',
                             fontSize: 12,
                             textAlign:'center',
@@ -266,10 +270,10 @@ const Category = () => {
                             Top deal
                           </span>
                         </Typography>
-                        <div className={classes.cardContent}  >
-                          <Typography   variant='body2' align="left" overflow="hidden" >
+                
+                          <Typography   variant='body2'  overflow="hidden" >
                             <LinesEllipsis
-                              text= {product.title}
+                              text= {product.mainTitle}
                               maxLine='2'
                               lineHeight='16'
                               fontSize= '8'
@@ -278,11 +282,8 @@ const Category = () => {
                               basedOn='letters'
                             />
                           </Typography>
-                        </div>
-                      {/* <Typography variant="body2" color="textSecondary" component="p">
-                      see more
-                    </Typography> */}
                   </CardContent>
+                  
                 </Card> 
               </Link>
             </Grid>
@@ -293,19 +294,20 @@ const Category = () => {
             <Card className={classes.root}>
             
             <Typography className={classes.cardHeader}   >
-                 Shop our Home décor 
+                Shop our Home décor 
               </Typography>
               <img
                 className={classes.media1}
                 src={decor} 
                 title=""
+                alt=''
               />
-              <CardContent>
+              <CardActions>
                 <Typography variant="body2" color="textSecondary" component="p">
                   see more
                 </Typography>
-              </CardContent>
-             </Card>
+              </CardActions>
+            </Card>
             </Link>
         </Grid>
 
@@ -319,6 +321,7 @@ const Category = () => {
                 className={classes.media1}
                 src={home} 
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -339,6 +342,7 @@ const Category = () => {
                 className={classes.media1}
                 src={sport} 
                 title=""
+                alt=''
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -367,7 +371,7 @@ const Category = () => {
       {products.map(product => (
         <SwiperSlide  className={classes.swipeSlide}  key={product.id}>
           <Link to={'/product/' + product?.id}>
-            <img  className={classes.swiperImage}  src={product?.image} />
+            <img  className={classes.swiperImage}  src={product?.mainImg} />
           </Link>
           </SwiperSlide>
       ))}

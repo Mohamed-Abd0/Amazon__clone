@@ -12,16 +12,14 @@ import LogIn from "../src/Pages/LogIn";
 import Payment from "./Pages/Payment";
 import NotFound from "../src/Pages/NotFound";
 import Product from "../src/Pages/Product";
-import { AddCategory } from "../src/Pages/AddCategory";
-import { AddProduct } from "../src/Pages/AddProduct";
+import { AddProduct } from "./Pages/AddProduct";
+import { AddCategory } from "./Pages/AddCategory";
 import Category from "./Components/Category/Category";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Category />} />
-      <Route path="/category/:type" element={<Home />} />
-      <Route index element={<Home />} />
       <Route path="/product/:productId" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<LogIn />} />
