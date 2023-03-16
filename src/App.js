@@ -15,6 +15,7 @@ import Product from "../src/Pages/Product";
 import { AddProduct } from "./Pages/AddProduct";
 import { AddCategory } from "./Pages/AddCategory";
 import Category from "./Components/Category/Category";
+import AddProduct2 from "./Pages/Home/AddProduct2";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +25,7 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/payment" element={<Payment />} />
-      <Route path="/addProduct" element={<AddProduct />} />
+      <Route path="/addProduct" element={<AddProduct2 />} />
       <Route path="/addCategory" element={<AddCategory />} />
       <Route path="*" element={<NotFound />} />
     </Route>
