@@ -25,35 +25,10 @@ const Home = () => {
   const productsCollectionRef = collection(db, "products");
   const categoryType = useParams();
   const queryResults = [];
-  //     *********** API *******************
-  // const getProduct = async () => {
-  //    const response = await fetch (`https://fakestoreapi.com/products`)
-  //    const data = await response.json();
-  //    setProduct(data);
-  //    console.log(data);
-  // };
-  // useEffect(() => {
-  //   getProduct();
-  //   } , []);   
 
-    // ********** Firebase Setup ***************
-    
-
-    // useEffect (() => {
-    //   const getProducts = async () => {
-    //     const data = await getDocs(productsCollectionRef);
-    //     console.log("data", data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-    //     setProduct(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-    //   }
-    //   getProducts();
-    // }, []);
- 
-  // console.log("******", categoryType.type)
   // ********** Firebase query ***************
-
-  
     const getProducts = async () => {
-      const q = query(productsCollectionRef, where("category", "==", categoryType.type));
+      const q = query(productsCollectionRef, where("category", "array-contains", categoryType.type));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         queryResults.push({ ...doc.data(), id: doc.id}) 

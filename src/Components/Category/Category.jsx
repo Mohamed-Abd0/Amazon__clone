@@ -122,7 +122,7 @@ const Category = () => {
             </Grid>
             {/* Save big with coupons */}
             <Grid className={classes.paper} item xs={4} md={3}>
-              <Link to="category/laptop">
+              <Link to="category/لابتوب">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
                     Save big with coupons
