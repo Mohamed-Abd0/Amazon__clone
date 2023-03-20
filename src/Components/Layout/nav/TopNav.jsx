@@ -7,11 +7,13 @@ import cart from "../../../assets/cart.png";
 import words from "../../../leng.json";
 import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
 
-const TopNav = ({ setShowDilog, setShowCanvas }) => {
+const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
   const lengActive = useSelector((state) => state.leng);
+  const activeLeng = lengActive.lang;
+
   const signInStatus = useSelector((state) => state.nameUserSlice);
   // console.log(signInStatus.status);
   const itemCart = useSelector((state) => state.cartItemNumber);
@@ -39,8 +41,10 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
         e.classList.add("font-bold");
       }
     });
+    // console.log();
   }, []);
 
+  // console.log(activeLeng);
   const focusInput = (ev) => {
     inputRef.current.classList.add("border-active");
     setShowDilog(true);
@@ -51,10 +55,11 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
     inputRef.current.classList.remove("border-active");
   };
 
+  // console.log(activeLeng);
   return (
     <div
       className={
-        "top-nav flex items-center md:h-[60px] maxmd:flex-wrap maxmd:justify-between"
+        "top-nav flex items-center md:h-[60px] maxmd:flex-wrap maxmd:justify-between "
       }
     >
       <div className="left flex  md:items-center ">
@@ -87,14 +92,13 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
         <div className="select-cat h-full">
           <select className="select-category focus:border-mainColor border-2  h-full text-[#0F1111] bg-[#f3f3f3]  border-[#f3f3f3] capitalize outline-none ltr:rounded-l-md rtl:rounded-r-md">
             <option value={"cat1"}>{langWordsActive.all}</option>
-            <option value={"cat2"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
-            <option value={"cat3"}>cat1</option>
+            {category.map((e, i) => {
+              return (
+                <option key={i} value={e[`${activeLeng}`]}>
+                  {e[`${activeLeng}`]}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="input flex-1 h-full relative">
@@ -122,10 +126,10 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
               src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png"
               className="w-7"
             />
-            <span className="mx-2">en</span>
+            <span className="mx-2">{activeLeng}</span>
             <span className="fa-solid fa-caret-down text-[#ccc]"></span>
           </Link>
-          <div className="leng-drop-down absolute w-52 bg-white left-0 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden group-hover:block">
+          <div className="leng-drop-down absolute w-52 bg-white left-0 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden group-hover:block z-[99999999999]">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[30%] text-white text-xl"></i>
 
             <div className="flex items-center justify-between capitalize ">
@@ -174,7 +178,6 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
               <div className="flex items-center justify-between mt-2">
                 <span>{langWordsActive.ChangeCurrency}</span>
                 <Link className="ltr:ml-1 rtl:mr-1 text-[#007185]" to={"#"}>
-                  {" "}
                   {langWordsActive.LearnMore}
                 </Link>
               </div>
@@ -223,23 +226,23 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
             </p>
           </Link>
 
-          <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block">
+          <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999]">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
             {!signInStatus.status && (
               <Fragment>
                 <div className="sing-in-btn text-center">
-                <Link
-                to={"LogIn"}
-                className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
-                style={{
-                  backgroundImage:
-                  "-webkit-linear-gradient(top,#f8e3ad,#EEBA37)",
-                }}
-                >
-                {langWordsActive.signIn}
-                </Link>
+                  <Link
+                    to={"LogIn"}
+                    className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
+                    style={{
+                      backgroundImage:
+                        "-webkit-linear-gradient(top,#f8e3ad,#EEBA37)",
+                    }}
+                  >
+                    {langWordsActive.signIn}
+                  </Link>
                 </div>
-              
+
                 <p className="text-center my-2 text-xs">
                   {langWordsActive.newCustomer}
                   <Link to={"#"} className="text-[#05a]">
@@ -247,19 +250,18 @@ const TopNav = ({ setShowDilog, setShowCanvas }) => {
                   </Link>
                 </p>
               </Fragment>
-
             )}
-            
-            {signInStatus.status && <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
+
+            {signInStatus.status && (
+              <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
                 <h3>{langWordsActive.selectProfile}</h3>
                 <h3 className="font-bold text-sm text-[#008296]">
+                  {langWordsActive.manageProfiles}
 
-                {langWordsActive.manageProfiles}
-                
-                <i class="fa-solid fa-angle-right ltr:ml-3 rtl:mr-3 text-[#ccc]"></i>
+                  <i class="fa-solid fa-angle-right ltr:ml-3 rtl:mr-3 text-[#ccc]"></i>
                 </h3>
-                
-            </div>}
+              </div>
+            )}
 
             <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee]">
               <div className="left w-1/2 ltr:border-r rtl:border-l  border-[#ccc] ">

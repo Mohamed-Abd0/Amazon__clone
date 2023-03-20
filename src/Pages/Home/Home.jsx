@@ -10,14 +10,14 @@ import { db } from '../../firebase';
 import {collection, getDocs, query, where} from "firebase/firestore";
 import { images } from './SliderImages';
 
-// function Item(props)
-// {
-//   return (
-//       <>
-//         <img className='carousel-image' src={props.item.image} />
-//       </>
-//   )
-// }
+function Item(props)
+{
+  return (
+      <>
+        <img className='carousel-image' src={props.item.image} />
+      </>
+  )
+}
 
 const Home = () => {
   const classes = useStyles();
@@ -67,7 +67,7 @@ const Home = () => {
     getProducts();
   }, [categoryType])
   
- console.log(queryResults)
+ console.log(")))))", queryResults)
     
     return (
       <>
@@ -140,6 +140,3 @@ const Home = () => {
     );
     }
 export default Home;
-
-
-
