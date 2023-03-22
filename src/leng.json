@@ -24,7 +24,12 @@
             "welcome" : "welcome",
             "selectProfile" : "Who's shopping? Select a profile.",
             "manageProfiles" : "Manage Profiles",
-            "homePage" : "Home Page"
+            "homePage" : "Home Page",
+            "seeMore" : "See More",
+            "menFasion" : "mens' Fasion",
+            "discount" : "Up to",
+            "deal" : "Top Deal",
+            "todaysDeals": "Today's deals"
             
 
         } ,
@@ -53,7 +58,12 @@
             "welcome" : "مرحبا"  , 
             "selectProfile" : "من يقوم بالتسوق؟ حدد ملف شخصي."  , 
             "manageProfiles" : "إدارة الملفات الشخصية"  , 
-            "homePage" : "الصفحة الرئيسية"  
+            "homePage" : "الصفحة الرئيسية",
+            "seeMore": "شاهد المزيد",
+            "menFasion" : "ملابس رجالى" ,
+            "discount" : "خصم يصل إلى",
+            "deal" : "أفضل صفقة",
+            "todaysDeals" : "عروض اليوم"
         } 
         
     

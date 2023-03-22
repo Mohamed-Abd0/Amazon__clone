@@ -20,6 +20,11 @@ import sport from '../Category/CategoryImages/sport.jpg'
 import home from '../Category/CategoryImages/home.jpg'
 import deals from '../Category/CategoryImages/deals.jpg'
 import { images } from '../../Pages/Home/SliderImages'
+import { useSelector, useDispatch } from "react-redux";
+import { query, where} from "firebase/firestore";
+import words from "/Users/zakiya/Documents/React/Amazon__clone/src/leng.json";
+// Active Language selector
+import { getactiveLeng } from "/Users/zakiya/Documents/React/Amazon__clone/src/Store/nav_slice/lengRedusers.jsx";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide} from 'swiper/react';
@@ -54,6 +59,12 @@ const Category = () => {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
+  // Active lang
+  const dispatch = useDispatch();
+  const lengActive = useSelector((state) => state.leng);
+  const activeLeng = lengActive.lang;
+  console.log("activeLeng", activeLeng)
+  const langWordsActive = words[`${lengActive.lang}`];
 
   // Get data from firebase Database
   useEffect (() => {
@@ -65,10 +76,18 @@ const Category = () => {
         const randomIndex = Math.floor(Math.random() * documents.length);
         setRandomDoc(documents[randomIndex]);
       }
+      
         getProducts();
+        dispatch(getactiveLeng());
     }, []);
   
-  // console.log("::::", randomDoc) 
+// var query = productsRef.where(lang, "==", true); // Assuming the English sub-field is a boolean value
+// query(productsRef, where("lang", "==", true));
+// query.get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     console.log(doc.id, " => ", doc.data());
+//   });
+// }); 
     
   return (
     <>
@@ -99,22 +118,22 @@ const Category = () => {
                   </Typography>
                   <img className={classes.media1} src={men1} title="" alt="" />
                   <CardActions className={classes.cardActions}>
-                    <Button size="small">See more</Button>
+                    <Button size="small"> {langWordsActive.seeMore}</Button>
                   </CardActions>
                 </Card>
               </Link>
             </Grid>
             {/*  Men's fashion */}
             <Grid className={classes.paper} item xs={4} md={3}>
-              <Link to="category/men">
+              <Link to="category/ملابس رجالى">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    Men's fashion
+                    {langWordsActive.menFasion}
                   </Typography>
                   <img className={classes.media1} src={men1} title="" alt="" />
                   <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p" >
-                      see more
+                    {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -135,7 +154,7 @@ const Category = () => {
                   />
                   <CardContent>
                     <Typography variant="body2" color="textSecondary"  component="p">
-                      see more
+                    {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -255,22 +274,22 @@ const Category = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Shop now
+                      {langWordsActive.seeMore}
                     </Button>
                   </Box>
                 </Card>
               </Link>
             </Grid>
 
-            {/*   Deals Card */}
-            {products.map((product) => {
-              if (product.price === 20) {
+              {/* Deals Card */}
+            {/* {products.map((product) => {
+              if (product.discountValue && product.discountValue <= 10) {
                 return (
                   <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     <Link to={"/product/" + product.id}>
                       <Card className={classes.root}>
                         <Typography className={classes.cardHeader}>
-                          Today's deals
+                          {langWordsActive.todaysDeals}
                         </Typography>
                         <CardMedia
                           className={classes.media}
@@ -291,7 +310,8 @@ const Category = () => {
                                 marginRight: 20,
                               }}
                             >
-                              Up to 22% off
+                              {langWordsActive.discount}
+                             
                             </span>
                             <span
                               style={{
@@ -304,7 +324,7 @@ const Category = () => {
                                 marginRight: 20,
                               }}
                             >
-                              Top deal
+                              {langWordsActive.deal}
                             </span>
                           </Typography>
 
@@ -325,7 +345,7 @@ const Category = () => {
                   </Grid>
                 );
               }
-            })}
+            })} */}
             <Grid className={classes.paper} item xs={4} md={3}>
               <Link to="category/decor">
                 <Card className={classes.root}>
@@ -339,7 +359,7 @@ const Category = () => {
                       color="textSecondary"
                       component="p"
                     >
-                      see more
+                       {langWordsActive.seeMore}
                     </Typography>
                   </CardActions>
                 </Card>
@@ -359,7 +379,7 @@ const Category = () => {
                       color="textSecondary"
                       component="p"
                     >
-                      see more
+                       {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -379,14 +399,107 @@ const Category = () => {
                       color="textSecondary"
                       component="p"
                     >
-                      see more
+                       {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
               </Link>
             </Grid>
           </Grid>
-          {/*  Swiper MUI */}
+          
+          {/* Today's Deals */}
+           {/* Swiper MUI */}
+           <Grid
+            className={classes.paper}
+            item
+            xs={12}
+            style={{ background: "#fff", maxHeight: "auto" }}
+          >
+            <Typography className={classes.cardHeader}>
+              {langWordsActive.todaysDeals}
+            </Typography>
+            <Swiper
+              className={classes.swiper}
+              style={{ background: "#fff" }}
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={10}
+              slidesPerView={5}
+              navigation
+              // pagination={{ clickable: false }}
+              scrollbar={{ draggable: true }}
+            >
+              {products.map((product) => {
+                if (product.discountValue && product.discountValue <= 10) {
+                  return (
+                <SwiperSlide className={classes.swipeSlide} key={product.id}>
+                 <Link to={"/product/" + product.id}>
+                      <Card className={classes.root}>
+                        {/* <Typography className={classes.cardHeader}>
+                          {langWordsActive.todaysDeals}
+                        </Typography> */}
+                        <CardMedia
+                          className={classes.media}
+                          image={product.mainImg}
+                          title={product.title}
+                        />
+                        <CardContent align="left">
+                          <Typography style={{ marginBottom: 9 }}>
+                            <span
+                              style={{
+                                background: "#CC0C39",
+                                boxShadow:
+                                  "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
+                                color: "white",
+                                fontSize: 12,
+                                fontWeight: "bold",
+                                padding: 5,
+                                marginRight: 20,
+                              }}
+                            >
+                              {langWordsActive.discount}
+                              {`${product.discountValue}%`}
+                            </span>
+                            <span
+                              style={{
+                                color: "#CC0C39",
+                                alignItems: "center",
+                                fontSize: 12,
+                                textAlign: "center",
+                                fontWeight: "bold",
+                                padding: 5,
+                                marginRight: 20,
+                              }}
+                            >
+                              {langWordsActive.deal}
+                            </span>
+                          </Typography>
+
+                          <Typography variant="body2" overflow="hidden">
+                            <LinesEllipsis
+                              text={product.mainTitle}
+                              maxLine="2"
+                              lineHeight="16"
+                              fontSize="8"
+                              ellipsis="..."
+                              trimRight
+                              basedOn="letters"
+                            />
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                </SwiperSlide>
+                );
+              }
+            })}
+              
+            </Swiper>
+          </Grid>
+
+
+
+
+           {/* Swiper MUI
           <Grid
             className={classes.paper}
             item
@@ -417,7 +530,9 @@ const Category = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </Grid>
+          </Grid> */}
+
+          {/* Bact To Top button */}
           <Zoom in={trigger}>
             <Box
               role="presentation"

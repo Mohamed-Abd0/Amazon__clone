@@ -10,14 +10,7 @@ import { db } from '../../firebase';
 import {collection, getDocs, query, where} from "firebase/firestore";
 import { images } from './SliderImages';
 
-function Item(props)
-{
-  return (
-      <>
-        <img className='carousel-image' src={props.item.image} />
-      </>
-  )
-}
+
 
 const Home = () => {
   const classes = useStyles();
@@ -47,12 +40,12 @@ const Home = () => {
     return (
       <>
 
-        <Typography variant="h2"   align='center' style={{fontSize: 20, paddingTop: 50}}>
+        <Typography variant="h1"   align='center' style={{fontSize: 30, paddingTop: 50, fontWeight: 'bold'}}>
           {categoryType.type}
         </Typography>
-        <Typography variant="h1"   align='center' style={{fontSize: 20, paddingBottom: 50}}>
+        {/* <Typography variant="h1"   align='center' style={{fontSize: 20, paddingBottom: 50}}>
           Featured categories
-        </Typography>
+        </Typography> */}
         <Container  maxWidth="xl"> 
           <Grid container justify='center' spacing={4}>
           {products.map((product) => {
@@ -84,7 +77,7 @@ const Home = () => {
                             readOnly
                           >
                           </Rating>
-                          {product.count} reviews
+                          {product.count} 
                         </Typography>
                         <Typography gutterBottom variant="body1" component="h2"  align="left"  >
                           <Box  sx={{ span: { fontSize: "12px" }, display: "flex"}}>
