@@ -1,0 +1,16 @@
+
+.errorMassage{
+    font-size: 12px;
+    color: #c40000;
+    transition: transform 0.5 ease-in-out;
+    font-style: italic;
+}
+.errorMassage span{
+    transform: rotateZ(30deg);
+}
+.alert {
+    font-size: 12px;
+}
+.alert span:first-of-type{
+    color: #0066c0;
+}
