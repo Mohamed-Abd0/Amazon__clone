@@ -1,9 +1,15 @@
+* {
+  font-family: 'Prompt', sans-serif;
+}
+
+
+
 .home-image {
-    width: 100%;
+    width: 100% !important;
     height: 100%;
     z-index: -1;
     margin-bottom: -350px;
-    mask-image: linear-gradient(to bottom, rgb(15, 14, 14), rgba(17, 15, 15, 0));
+    mask-image: linear-gradient(to bottom, rgb(240, 233, 233), rgba(180, 197, 226, 0));
   }
 
   .carousel-image {

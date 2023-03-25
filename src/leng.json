@@ -26,10 +26,18 @@
             "manageProfiles" : "Manage Profiles",
             "homePage" : "Home Page",
             "seeMore" : "See More",
-            "menFasion" : "mens' Fasion",
+            "menFasion" : "Men's Clothes",
             "discount" : "Up to",
             "deal" : "Top Deal",
-            "todaysDeals": "Today's deals"
+            "todaysDeals": "Today's deals",
+            "KitchenEssentials": "Kitchen essentials",
+            "makeUp" : "Makeup",
+            "newArrivals": " New arrivals",
+            "kitchenAppliances": "Kitchen appliances",
+            "installments": "Buy with installments",
+            "musicalInstruments" : "Musical Instruments",
+            "WideSelection": "Wide selection",
+            "cameraAccessories": "Camera & accessories"
             
 
         } ,
@@ -60,10 +68,18 @@
             "manageProfiles" : "إدارة الملفات الشخصية"  , 
             "homePage" : "الصفحة الرئيسية",
             "seeMore": "شاهد المزيد",
-            "menFasion" : "ملابس رجالى" ,
+            "menFasion" : "ملابس للرجال" ,
             "discount" : "خصم يصل إلى",
             "deal" : "أفضل صفقة",
-            "todaysDeals" : "عروض اليوم"
+            "todaysDeals" : "عروض اليوم",
+            "KitchenEssentials" :  "أساسيات المطبخ",
+            "makeUp" : "مكياج",
+            "newArrivals": "أحدث ما وصل",
+            "installments": " اشتري بالتقسيط",
+            "kitchenAppliances": "أجهزة المطبخ | اشتري بالتقسيط",
+            "musicalInstruments" : "الآلات الموسيقية",
+            "WideSelection": " أكبر تشكيلة من المنتجات",
+            "cameraAccessories": "الكاميرات والإكسسوارات"
         } 
         
     

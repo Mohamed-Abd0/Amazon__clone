@@ -1,9 +1,10 @@
 import React from 'react'
-import Loginform from '../Components/Login/LoginForm'
+import SigninForm from '../Components/Login/SigninForm'
 
 const LogIn = () => {
   return (
-    <Loginform />
+    <SigninForm />
+    
   )
 }
 

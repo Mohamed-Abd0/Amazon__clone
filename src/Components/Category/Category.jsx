@@ -11,14 +11,16 @@ import LinesEllipsis from 'react-lines-ellipsis';
 import { Rating } from "@material-ui/lab";
 import Carousel from 'react-material-ui-carousel';
 import useStyles from '../../Pages/Home/styles';
-import men1 from '../Category/CategoryImages/men1.jpeg';
+import menClothes from '../../assets/men-clothes.jpg';
 import decor from '../Category/CategoryImages/decor.jpg';
-import coupon from '../Category/CategoryImages/coupon.jpg'
-import women from '../Category/CategoryImages/women.jpeg'
+import KitchenAppliances from '../../assets/Kitchen-appliances.jpg'
+import makeup from '../../assets/makeUp.jpg'
 import training from '../Category/CategoryImages/training.jpg'
 import sport from '../Category/CategoryImages/sport.jpg'
-import home from '../Category/CategoryImages/home.jpg'
+import cameraAccessories from '../../assets/cameraAccessories.jpg'
 import deals from '../Category/CategoryImages/deals.jpg'
+import kitchen from '../../assets/Kitchen.jpg'
+import homeTools from '../../assets/toolsHome.jpg'
 import { images } from '../../Pages/Home/SliderImages'
 import { useSelector, useDispatch } from "react-redux";
 import { query, where} from "firebase/firestore";
@@ -114,9 +116,9 @@ const Category = () => {
               <Link to="category/ملابس حريمى">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    Women's fashion
+                  {langWordsActive.makeUp} | {langWordsActive.newArrivals}
                   </Typography>
-                  <img className={classes.media1} src={men1} title="" alt="" />
+                  <img className={classes.media1} src={makeup} title="makeup" alt="makeup" />
                   <CardActions className={classes.cardActions}>
                     <Button size="small"> {langWordsActive.seeMore}</Button>
                   </CardActions>
@@ -128,11 +130,11 @@ const Category = () => {
               <Link to="category/ملابس رجالى">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    {langWordsActive.menFasion}
+                    {langWordsActive.menFasion} | {langWordsActive.discount} 70%
                   </Typography>
-                  <img className={classes.media1} src={men1} title="" alt="" />
+                  <img className={classes.media1} src={menClothes} title="" alt="" />
                   <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p" >
+                    <Typography  color="#007185" component="p" >
                     {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
@@ -144,11 +146,11 @@ const Category = () => {
               <Link to="category/لابتوب">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    Save big with coupons
+                      {langWordsActive.kitchenAppliances} | {langWordsActive.installments}
                   </Typography>
                   <img
                     className={classes.media1}
-                    src={coupon}
+                    src={KitchenAppliances}
                     title="men"
                     alt="men"
                   />
@@ -161,7 +163,7 @@ const Category = () => {
               </Link>
             </Grid>
 
-            <Grid item key={randomDoc.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid item key={randomDoc.id} xs={4} md={3}>
               <Link to={"/product/" + randomDoc.id}>
                 <Card className={classes.root}>
                   <CardMedia
@@ -197,7 +199,7 @@ const Category = () => {
                         precision={0.5}
                         readOnly
                       ></Rating>
-                      {randomDoc.count} reviews
+                      {randomDoc.count} 
                     </Typography>
                     <Typography
                       gutterBottom
@@ -359,7 +361,7 @@ const Category = () => {
                       color="textSecondary"
                       component="p"
                     >
-                       {langWordsActive.seeMore}
+                      {langWordsActive.seeMore}
                     </Typography>
                   </CardActions>
                 </Card>
@@ -370,16 +372,16 @@ const Category = () => {
               <Link to="category/decor">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    Shop easy smart home
+                    {langWordsActive.musicalInstruments} | {langWordsActive.WideSelection}
                   </Typography>
-                  <img className={classes.media1} src={home} title="" alt="" />
+                  <img className={classes.media1} src={homeTools} title="" alt="" />
                   <CardContent>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                       {langWordsActive.seeMore}
+                      {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -390,25 +392,41 @@ const Category = () => {
               <Link to="category/decor">
                 <Card className={classes.root}>
                   <Typography className={classes.cardHeader}>
-                    Shop our Sports & Outdoors
+                    {langWordsActive.cameraAccessories} | {langWordsActive.discount} 10% 
                   </Typography>
-                  <img className={classes.media1} src={sport} title="" alt="" />
+                  <img className={classes.media1} src={cameraAccessories} title="camera Accessories" alt="camera Accessories" />
                   <CardContent>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                       {langWordsActive.seeMore}
+                      {langWordsActive.seeMore}
                     </Typography>
                   </CardContent>
                 </Card>
               </Link>
             </Grid>
-          </Grid>
-          
-          {/* Today's Deals */}
-           {/* Swiper MUI */}
+         
+
+          {/* Kitchen essentials  */}
+          <Grid className={classes.paper} item xs={4} md={3}>
+              <Link to="category/decor">
+                <Card className={classes.root}>
+                  <Typography className={classes.cardHeader}>
+                      {langWordsActive.KitchenEssentials} | {langWordsActive.discount} 15% 
+                  </Typography>
+                  <img className={classes.media1} src={kitchen} title="" alt="" />
+                  <CardActions>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {langWordsActive.seeMore}
+                    </Typography>
+                  </CardActions>
+                </Card>
+              </Link>
+            </Grid>
+            </Grid>
+          {/* Today's Deals Using Swiper MUI */}
            <Grid
             className={classes.paper}
             item
@@ -453,11 +471,10 @@ const Category = () => {
                                 fontSize: 12,
                                 fontWeight: "bold",
                                 padding: 5,
-                                marginRight: 20,
+                                marginRight: 5,
                               }}
                             >
-                              {langWordsActive.discount}
-                              {`${product.discountValue}%`}
+                              {langWordsActive.discount  }  {`${product.discountValue}%`} off
                             </span>
                             <span
                               style={{
@@ -467,7 +484,7 @@ const Category = () => {
                                 textAlign: "center",
                                 fontWeight: "bold",
                                 padding: 5,
-                                marginRight: 20,
+                                marginRight: 10,
                               }}
                             >
                               {langWordsActive.deal}

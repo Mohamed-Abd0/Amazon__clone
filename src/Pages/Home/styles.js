@@ -5,13 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     root: {
       // maxWidth: '100%',
-      maxHeight: '100%',
-      height: 'auto',
+      // height: '100%',
+      maxHeight: 'auto',
       background: '#fff',
-    
-  
-      
-      
+      overflow: 'hidden',
+      borderRadius: 0,
+      // marginBottom: '10'
     },
     media: {
       paddingTop: '56.25%', // 16:9
@@ -19,25 +18,26 @@ export default makeStyles((theme) => ({
       backgroundSize: 'contain',
     },
     media1: {
-      height: 'auto',
-      // maxHeight: '50%',
+      // height: 'auto',
+      maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
-      padding: '10'
+      paddingLeft: 10,
+      paddingRight: 10
     },
 
     cardHeader: {
-      paddingLeft: 15, 
-      paddingBottom: 15, 
-      paddingTop: 15, 
-      fontSize: 20,
+      padding: 15,
+      fontSize: 21,
+      // lineHeight: 27.3,
       color: 'black',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      whiteSpace: 'normal',
+      fontWeight: 'bolder'
     },
     
     cardActions: {
       textAlign: 'left',
-     
     },
     cardContent: {
       display: 'flex',
