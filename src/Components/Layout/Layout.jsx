@@ -11,8 +11,7 @@ const Layout = () => {
 
   // sellect the nave will appear depend on the route
   let header;
-  if(location.pathname === "/login" || location.pathname === "/signup") {
-    console.log('iam here')
+  if(location.pathname === "/signin" || location.pathname === "/signup") {
     header = null
   }else {
     header = location.pathname=== "/payment"? <CheckoutHeader /> : <Header />
