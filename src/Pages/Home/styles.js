@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      // maxWidth: '100%',
-      // height: '100%',
-      maxHeight: 'auto',
+      // height: '400',
       background: '#fff',
       overflow: 'hidden',
       borderRadius: 0,
-      // marginBottom: '10'
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'space-between'
     },
     media: {
       paddingTop: '56.25%', // 16:9
@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
     },
     media1: {
       // height: 'auto',
-      maxHeight: '50%',
+      // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
       paddingLeft: 10,
@@ -56,10 +56,10 @@ export default makeStyles((theme) => ({
       gridGap: `${theme.spacing.unit * 3}px`,
     },
     paper: {
-      whiteSpace: 'nowrap',
+      // whiteSpace: 'nowrap',
       marginBottom: theme.spacing.unit * 2,
-      height: 400,
-      borderRadius: 0,
+      // height: 400,
+      // borderRadius: 0,
     },
     swiperImage: {
       padding: 10,

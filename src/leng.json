@@ -37,7 +37,10 @@
             "installments": "Buy with installments",
             "musicalInstruments" : "Musical Instruments",
             "WideSelection": "Wide selection",
-            "cameraAccessories": "Camera & accessories"
+            "cameraAccessories": "Camera & accessories",
+            "securityCameras": "Security cameras",
+            "starting": "Starting",
+            "EGP": "EGP"
             
 
         } ,
@@ -79,7 +82,10 @@
             "kitchenAppliances": "أجهزة المطبخ | اشتري بالتقسيط",
             "musicalInstruments" : "الآلات الموسيقية",
             "WideSelection": " أكبر تشكيلة من المنتجات",
-            "cameraAccessories": "الكاميرات والإكسسوارات"
+            "cameraAccessories": "الكاميرات والإكسسوارات",
+            "securityCameras": "كاميرات المراقبة",
+            "starting": "تبدأ من",
+            "EGP": "جنيه"
         } 
         
     
