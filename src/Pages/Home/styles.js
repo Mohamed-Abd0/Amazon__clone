@@ -4,10 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      // height: '400',
+      // height: '100%',
       background: '#fff',
       overflow: 'hidden',
       borderRadius: 0,
+      boxShadow: 'none',
+      
   // display: 'flex',
   // flexDirection: 'column',
   // justifyContent: 'space-between'
@@ -33,7 +35,8 @@ export default makeStyles((theme) => ({
       color: 'black',
       fontWeight: 'bold',
       whiteSpace: 'normal',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
+      fontFamily: `'Alexandria', sans-serif`
     },
     
     cardActions: {
@@ -56,7 +59,7 @@ export default makeStyles((theme) => ({
       gridGap: `${theme.spacing.unit * 3}px`,
     },
     paper: {
-      // whiteSpace: 'nowrap',
+      whiteSpace: 'nowrap',
       marginBottom: theme.spacing.unit * 2,
       // height: 400,
       // borderRadius: 0,

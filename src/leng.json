@@ -40,7 +40,8 @@
             "cameraAccessories": "Camera & accessories",
             "securityCameras": "Security cameras",
             "starting": "Starting",
-            "EGP": "EGP"
+            "EGP": "EGP",
+            "backToTop": "back To Top"
             
 
         } ,
@@ -85,7 +86,8 @@
             "cameraAccessories": "الكاميرات والإكسسوارات",
             "securityCameras": "كاميرات المراقبة",
             "starting": "تبدأ من",
-            "EGP": "جنيه"
+            "EGP": "جنيه",
+            "backToTop": "الرجوع للأعلى"
         } 
         
     

@@ -8,8 +8,8 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import useStyles from "./styles";
 import { db } from '../../firebase';
 import {collection, getDocs, query, where} from "firebase/firestore";
-import { images } from './SliderImages';
-
+import { useDispatch, useSelector } from 'react-redux';
+import words from "../../leng.json";
 
 
 const Home = () => {
@@ -18,6 +18,12 @@ const Home = () => {
   const productsCollectionRef = collection(db, "products");
   const categoryType = useParams();
   const queryResults = [];
+   // Active lang
+   const dispatch = useDispatch();
+   const lengActive = useSelector((state) => state.leng);
+   const activeLeng = lengActive.lang;
+   console.log("activeLeng", activeLeng);
+   const langWordsActive = words[`${lengActive.lang}`];
 
   // ********** Firebase query ***************
     const getProducts = async () => {
@@ -35,11 +41,11 @@ const Home = () => {
     getProducts();
   }, [categoryType])
   
- console.log(")))))", queryResults)
+ console.log("queryResults", queryResults)
     
     return (
       <>
-
+       
         <Typography variant="h1"   align='center' style={{fontSize: 30, paddingTop: 50, fontWeight: 'bold'}}>
           {categoryType.type}
         </Typography>
@@ -50,15 +56,15 @@ const Home = () => {
           <Grid container justify='center' spacing={4}>
           {products.map((product) => {
             return (
-                <Grid   className='main-grid' item key={product.id} xs={12} sm={6} md={4} lg={3}>
+                <Grid  className='main-grid' item key={product.id} xs={12} sm={6} md={4} lg={3}>
                   <Link to={'/product/' + product.id}  style={{textDecoration: 'none'}}>
-                  <Card className={classes.root}>
+                  <Card className={classes.root} style={{border: "1px solid #CBCECD", backgroundColor: '#FFFFFF'}}>
                     <CardMedia className={classes.media} image={product.mainImg} title = {product.title} />
                     <CardContent  align= "left" >
                       <div className={classes.cardContent}>
                         <Typography gutterBottom  component="h2"  align="left" overflow="hidden" >
                           <LinesEllipsis
-                            text= {product.mainTitle}
+                            text= {product?.minTitle[activeLeng]}
                             maxLine='2'
                             lineHeight='16'
                             ellipsis='...'
@@ -90,7 +96,7 @@ const Home = () => {
                         </Typography>
                         {product.count < 10 &&
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
-                          Only {product.count} left in stock.
+                          Only {product.count} left in stock
                         </Typography>
                           }
                         </CardContent>
