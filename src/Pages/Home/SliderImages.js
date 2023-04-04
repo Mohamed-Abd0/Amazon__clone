@@ -3,7 +3,7 @@
  export const images = [
     {
         id: 1,
-        image: 'https://m.media-amazon.com/images/I/71a1nX9Kf0L._SX3000_.jpg'
+        image: 'https://m.media-amazon.com/images/I/7182c6GjIdL._SX3000_.jpg'
     },
     {
       id: 2,
