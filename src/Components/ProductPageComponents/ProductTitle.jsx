@@ -2,11 +2,25 @@ import React from "react";
 import ProductRating from "./ProductRating";
 
 import { Box, Typography, Link } from "@mui/material";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
+// import useCurrentProduct from "../../Hooks/useCurrentProduct";
+import { useSelector } from "react-redux";
 
 const ProductTitle = () => {
-  const { title, productStore, rating, answers } =
-    useCurrentProduct("productDetails");
+
+  const {product} = useSelector(({ProductSlice}) => ProductSlice)
+  const lengActive = useSelector(({leng}) => leng)
+  
+  console.log(product)
+  console.log(lengActive.lang)
+
+
+  let title = product.minTitle?.en;
+  // let brand = product.category[1];
+  let rating = product.reting?.mainRating;
+
+  
+  // const { title, productStore, rating, answers } =
+  //   useCurrentProduct("productDetails");
 
   return (
     <Box>
@@ -14,7 +28,7 @@ const ProductTitle = () => {
         {title}
       </Typography>
       <Link variant="body2" underline="hover">
-        visit the {productStore} gaming Store
+        {/* brand: {brand}g */}
       </Link>
       <Box
         sx={{
@@ -31,7 +45,7 @@ const ProductTitle = () => {
         </Link>
         <span style={{ marginTop: "-5px" }}>|</span>
         <Link variant="subtitle2" underline="hover">
-          {answers} answered questions
+          {0} answered questions
         </Link>
       </Box>
     </Box>

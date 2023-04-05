@@ -5,31 +5,37 @@ import { Box, Rating, IconButton } from "@mui/material";
 import { productContent } from "./../../Data/TestData";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import {doc, getDoc} from "firebase/firestore";
-import {db} from "../../firebase";
+import { useSelector } from "react-redux";
+
+// import {doc, getDoc} from "firebase/firestore";
+// import {db} from "../../firebase";
 
 
 const ProductRating = ({ max }) => {
-  const { productId } = useParams();
+  
+  // const { productId } = useParams();
+  // const [productDetails, setProductDetails] = useState(null);
 
-  const [productDetails, setProductDetails] = useState(null);
-  const [value, setValue] = useState(null);
+  const {product} = useSelector(({ProductSlice}) => ProductSlice);
+  let mainRating = product.Rating?.mainRating;
 
-  useEffect(() => {
-    async function fetchProductDetails() {
-      const productRef = doc(db, "products", productId);
-      const productDoc = await getDoc(productRef);
+  // const [value, setValue] = useState(mainRating);
 
-      if (productDoc.exists()) {
-        setProductDetails(productDoc.data());
-        setValue(productDoc.data());
-      } else {
-        console.log("No such document!")
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchProductDetails() {
+  //     const productRef = doc(db, "products", productId);
+  //     const productDoc = await getDoc(productRef);
 
-    fetchProductDetails()
-  }, [productId])
+  //     if (productDoc.exists()) {
+  //       setProductDetails(productDoc.data());
+  //       setValue(productDoc.data());
+  //     } else {
+  //       console.log("No such document!")
+  //     }
+  //   }
+
+  //   fetchProductDetails()
+  // }, [productId])
   
 
   return (
@@ -38,16 +44,16 @@ const ProductRating = ({ max }) => {
         sx={{ label: { color: "background.secondary" } }}
         name="read-only"
         readOnly
-        value={value}
+        value={mainRating}
         max={max}
         precision={0.1}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        // onChange={(event, newValue) => {
+        //   setValue(newValue);
+        // }}
         size="small"
       />
       <IconButton sx={{ p: "0", ml: 0.5 }}>
-        <ExpandMoreIcon sx={{ fontSize: "1.2rem" }} />
+        {/* <ExpandMoreIcon sx={{ fontSize: "1.2rem" }} /> */}
       </IconButton>
     </Box>
   );

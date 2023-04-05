@@ -7,6 +7,8 @@ import useCurrentProduct from "../../Hooks/useCurrentProduct";
 const ProductPrice = () => {
   const { price } = useCurrentProduct("productDetails");
 
+  
+
   return (
     <Box>
       <Box
