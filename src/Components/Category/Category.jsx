@@ -15,6 +15,7 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 import LinesEllipsis from "react-lines-ellipsis";
 import { Rating } from "@material-ui/lab";
+
 import useStyles from "../../Pages/Home/styles";
 import menClothes from "../../assets/men-clothes.jpg";
 import KitchenAppliances from "../../assets/Kitchen-appliances.jpg";
@@ -23,11 +24,13 @@ import cameraAccessories from "../../assets/cameraAccessories.jpg";
 import cameraDeals from "../../assets/cameraDeals.jpg";
 import kitchen from "../../assets/Kitchen.jpg";
 import homeTools from "../../assets/toolsHome.jpg";
+
 import { useSelector, useDispatch } from "react-redux";
 import words from '../../leng.json';
 import GridSkeleton from "../ReuseableComponets/GridSkeleton";
 // Active Language selector
 import { getactiveLeng } from '../../Store/nav_slice/lengRedusers';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -37,8 +40,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { style } from "@mui/system";
 import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
+
 
 
 const Category = () => {
