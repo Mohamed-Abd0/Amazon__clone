@@ -6,15 +6,21 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
+import { useSelector } from "react-redux";
 
 const ProductTable = () => {
-  const obj = useCurrentProduct("productTable");
+
+  const {product} = useSelector(({ProductSlice}) => ProductSlice)
+  const lengActive = useSelector(({leng}) => leng)
+
+  const technicalProperties = product.technicalProperties
+
+
 
   const renderTable = () => {
-    return Object.entries(obj).map((list) => (
+    return technicalProperties.map((item , index) => (
       <TableRow
-        key={list[0]}
+        key={index}
         sx={{
           "&:last-child td, &:last-child th": { border: 0 },
           th: { p: 1, fontSize: "13px", borderBottom: "unset" },
@@ -23,10 +29,10 @@ const ProductTable = () => {
         }}
       >
         <TableCell component="th" scope="row">
-          {list[0]}
+          {item.name[`${lengActive.lang}`]}
         </TableCell>
         <TableCell component="th" scope="row">
-          {list[1]}
+          {item.value[`${lengActive.lang}`]}
         </TableCell>
       </TableRow>
     ));

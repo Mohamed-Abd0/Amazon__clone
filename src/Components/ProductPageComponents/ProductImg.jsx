@@ -1,10 +1,9 @@
-// import React, { useEffect, useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { Stack, Box, CardMedia } from "@mui/material";
 import { setCurrentImg } from "../../Store/ProductSlice";
 
-// import { getFirestore, collection, getDocs, QuerySnapshot } from "firebase/firestore";
 
 
 const ProductImg = () => {
@@ -12,7 +11,7 @@ const ProductImg = () => {
 
   // get product data from the product slice [redux]
   const { product } = useSelector(({ProductSlice}) => ProductSlice);
-  console.log(product.images)
+
   // get the main image of product from product slice
   const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
 
@@ -20,26 +19,9 @@ const ProductImg = () => {
 
 
 
-  // useEffect(() => {
-  //   const db = getFirestore();
-  //   const imgRef = collection(db, 'images');
-
-  //   // fetch the documents from the 'images' collection
-  //   const fetchData = async () => {
-  //     const guerySnapshot = await getDocs(imgRef)
-  //     // convert the snapshot query to an array of object with src and state properties
-  //     const imgData = QuerySnapshot.docs.map((doc) => ({
-  //       src: doc.data().images,
-  //     }));
-  //     setImgArr(imgData)
-  //   };
-  //   fetchData();
-  // }, [ ]);
-
-
 
   const renderinOthersIms = () =>
-      product.images?.map((item, index) => (
+      product.images.map((item, index) => (
       <Box
         key={index}
         sx={{

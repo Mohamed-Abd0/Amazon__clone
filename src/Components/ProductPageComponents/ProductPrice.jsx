@@ -3,11 +3,14 @@ import { Box, Typography, Link, IconButton } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ErrorIcon from "@mui/icons-material/Error";
 import useCurrentProduct from "../../Hooks/useCurrentProduct";
+import { useSelector } from "react-redux";
 
 const ProductPrice = () => {
-  const { price } = useCurrentProduct("productDetails");
+  // const { price } = useCurrentProduct("productDetails");
 
-  
+  const {product} = useSelector(({ProductSlice}) => ProductSlice);
+  const price = product.price
+
 
   return (
     <Box>

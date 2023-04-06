@@ -1,34 +1,33 @@
 import React, {useState, useEffect} from "react";
 import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
-import { db } from "../../firebase";
-import { getFirestore, collection, getDocs, QuerySnapshot } from "firebase/firestore";
+
+
+
+
+
 
 const ProductAbout = () => {
 
-  const [aboutItem, setAboutItem] = useState([]);
-
-  useEffect(() => {
-    const fetchAboutItem = async () => {
-      const snapshot = await db.collection("products").get();
-      const aboutItemData = snapshot.docs.map((doc) => doc.data());
-      setAboutItem(aboutItemData)
-    };
-    fetchAboutItem(); 
-  }, [])
   
+  const {product} = useSelector(({ProductSlice}) => ProductSlice)
+  const lengActive = useSelector(({leng}) => leng)
+
+  // extranct product propertes from the product obj
+  const productPropertes = product.ProductProperties
 
 
   const renderingList = () => (
     <ul style={{ listStyle: "disc" }}>
-      {aboutItem.map((li, idx) => (
-        <li key={idx}>
+      {productPropertes.map((li, index) => (
+        <li key={index}>
           <Typography
             variant="body2"
             color="text.gray"
             sx={{ fontSize: "12px" }}
           >
-            {li}
+            {li[`${lengActive.lang}`]}
           </Typography>
         </li>
       ))}

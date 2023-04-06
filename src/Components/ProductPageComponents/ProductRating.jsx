@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 import { Box, Rating, IconButton } from "@mui/material";
-import { productContent } from "./../../Data/TestData";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useSelector } from "react-redux";
 
-// import {doc, getDoc} from "firebase/firestore";
-// import {db} from "../../firebase";
 
 
 const ProductRating = ({ max }) => {
   
-  // const { productId } = useParams();
-  // const [productDetails, setProductDetails] = useState(null);
 
   const {product} = useSelector(({ProductSlice}) => ProductSlice);
-  let mainRating = product.Rating?.mainRating;
 
-  // const [value, setValue] = useState(mainRating);
+  let mainRating = product.reting.mainRating;
 
-  // useEffect(() => {
-  //   async function fetchProductDetails() {
-  //     const productRef = doc(db, "products", productId);
-  //     const productDoc = await getDoc(productRef);
-
-  //     if (productDoc.exists()) {
-  //       setProductDetails(productDoc.data());
-  //       setValue(productDoc.data());
-  //     } else {
-  //       console.log("No such document!")
-  //     }
-  //   }
-
-  //   fetchProductDetails()
-  // }, [productId])
   
 
   return (

@@ -2,8 +2,9 @@ import React from "react";
 import ProductRating from "./ProductRating";
 
 import { Box, Typography, Link } from "@mui/material";
-// import useCurrentProduct from "../../Hooks/useCurrentProduct";
 import { useSelector } from "react-redux";
+
+
 
 const ProductTitle = () => {
 
@@ -13,14 +14,12 @@ const ProductTitle = () => {
   console.log(product)
   console.log(lengActive.lang)
 
-
-  let title = product.minTitle?.en;
-  // let brand = product.category[1];
-  let rating = product.reting?.mainRating;
+  // extract the wanted data from product object 
+  const title = product.minTitle[`${lengActive.lang}`];
+  const brand = product.category[1];
+  const rating = product.reting.mainRating;
 
   
-  // const { title, productStore, rating, answers } =
-  //   useCurrentProduct("productDetails");
 
   return (
     <Box>
@@ -28,7 +27,7 @@ const ProductTitle = () => {
         {title}
       </Typography>
       <Link variant="body2" underline="hover">
-        {/* brand: {brand}g */}
+        brand: {brand}
       </Link>
       <Box
         sx={{
