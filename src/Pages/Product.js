@@ -21,11 +21,7 @@ const Product = () => {
           sx={{ mx: { xs: "1rem", sm: "2rem" } }}
           justifyContent="space-between"
           gap={2}
-        >
-          <FloatingIcon
-            type={<SettingsIcon />}
-            action={"productOptionsState"}
-          />
+        > 
           <Stack
             flexDirection={{ lg: "row" }}
             sx={{ maxWidth: { xs: "100%", md: "65%", lg: "75%" } }}
