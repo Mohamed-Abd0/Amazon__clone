@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Typography, Link, IconButton } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ErrorIcon from "@mui/icons-material/Error";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
+import ErrorIcon from "@mui/icons-material/Error"; 
 import { useSelector } from "react-redux";
 
 const ProductPrice = () => {
