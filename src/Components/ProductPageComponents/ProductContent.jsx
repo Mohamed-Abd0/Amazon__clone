@@ -11,7 +11,6 @@ const ProductContent = () => {
     <Stack
       sx={{
         width: { lg: "65%" },
-        textAlign: "left",
         textTransform: "capitalize",
         h6: {
           fontSize: { xs: "1rem", md: "1.2rem" },

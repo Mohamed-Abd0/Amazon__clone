@@ -41,7 +41,12 @@
             "securityCameras": "Security cameras",
             "starting": "Starting",
             "EGP": "EGP",
-            "backToTop": "back To Top"
+            "backToTop": "back To Top",
+            
+            "brand": "brand",
+            "rating": "rating",
+            "askedQuestions": "asked questions"
+            
             
 
         } ,
@@ -87,7 +92,13 @@
             "securityCameras": "كاميرات المراقبة",
             "starting": "تبدأ من",
             "EGP": "جنيه",
-            "backToTop": "الرجوع للأعلى"
+            "backToTop": "الرجوع للأعلى",
+
+
+            "brand": "العلامة التجارية",
+            "rating": "تقييم",
+            "askedQuestions": "أسئلة مجاب عنها"
+            
         } 
         
     

@@ -2,24 +2,21 @@ import React from "react";
 import ProductRating from "./ProductRating";
 
 import { Box, Typography, Link } from "@mui/material";
+import words from "../../leng.json";
 import { useSelector } from "react-redux";
 
-
-
 const ProductTitle = () => {
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
 
-  const {product} = useSelector(({ProductSlice}) => ProductSlice)
-  const lengActive = useSelector(({leng}) => leng)
-  
-  console.log(product)
-  console.log(lengActive.lang)
+  console.log(product);
+  console.log(lengActive.lang);
 
-  // extract the wanted data from product object 
+  // extract the wanted data from product object
   const title = product.minTitle[`${lengActive.lang}`];
   const brand = product.category[1];
   const rating = product.reting.mainRating;
-
-  
 
   return (
     <Box>
@@ -27,7 +24,7 @@ const ProductTitle = () => {
         {title}
       </Typography>
       <Link variant="body2" underline="hover">
-        brand: {brand}
+        {`${activWrods.brand}: ${brand}`}
       </Link>
       <Box
         sx={{
@@ -40,11 +37,11 @@ const ProductTitle = () => {
       >
         <ProductRating max={5} />
         <Link variant="subtitle2" underline="hover">
-          {rating} rating
+          {`${rating} ${activWrods.rating}`}
         </Link>
         <span style={{ marginTop: "-5px" }}>|</span>
         <Link variant="subtitle2" underline="hover">
-          {0} answered questions
+          {`${0} ${activWrods.askedQuestions}`}
         </Link>
       </Box>
     </Box>

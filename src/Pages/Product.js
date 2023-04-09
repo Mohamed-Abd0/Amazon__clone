@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { setProductData } from "../Store/ProductSlice";
 import { useParams } from "react-router-dom";
 import {
@@ -12,14 +12,13 @@ import { BackToHome, FloatingIcon } from "../Components/ReuseableComponets";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Stack, Box } from "@mui/material";
 import getProductData from "../Firebase-APIS/Product/getProductData";
-import { useSelector } from "react-redux";
 
 const Product = () => {
   console.log("product is running");
 
   // get productId from the url
   const { productId } = useParams();
-  console.log(productId);
+  
   const dispatch = useDispatch();
 
   // get product object from redux store

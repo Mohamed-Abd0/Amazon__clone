@@ -1,16 +1,13 @@
-
 import { useSelector, useDispatch } from "react-redux";
 
 import { Stack, Box, CardMedia } from "@mui/material";
 import { setCurrentImg } from "../../Store/ProductSlice";
 
-
-
 const ProductImg = () => {
-  console.log('productImg is running')
+  console.log("productImg is running");
 
   // get product data from the product slice [redux]
-  const { product } = useSelector(({ProductSlice}) => ProductSlice);
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
 
   // get the main image of product from product slice
   const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
@@ -18,23 +15,23 @@ const ProductImg = () => {
   const action = useDispatch();
 
 
-
-
-  const renderinOthersIms = () =>
-      product.images.map((item, index) => (
+  
+  const renderinOthersIms = () => {
+    // Combine the main image and the thumbnail images into one array
+    const images = [product.mainImg, ...product.images];
+  
+    return images.map((item, index) => (
       <Box
         key={index}
         sx={{
           border: `${
             item === currentImg ? "1px solid transparent" : "1px solid gray"
           }`,
-          boxShadow: `${
-            item === currentImg ? "0px 0px 2px 2px orange" : ""
-          }`,
+          boxShadow: `${item === currentImg ? "0px 0px 2px 2px orange" : ""}`,
           p: 0.3,
           cursor: "pointer",
         }}
-        onClick={() => action(setCurrentImg(item))}
+        onMouseOver={() => action(setCurrentImg(item))}
       >
         <CardMedia
           component="img"
@@ -43,9 +40,11 @@ const ProductImg = () => {
         />
       </Box>
     ));
+  };
+  
 
 
-
+    
   return (
     <Stack
       flexDirection={{ xs: "column", sm: "row" }}
@@ -59,12 +58,14 @@ const ProductImg = () => {
       gap={3}
     >
 
+
       <Stack
         gap={1}
         justifyContent="center"
         flexDirection={{ xs: "row", sm: "column" }}
         sx={{ order: { xs: 2, sm: 1 } }}
       >
+
         {renderinOthersIms()}
       </Stack>
 
@@ -76,8 +77,6 @@ const ProductImg = () => {
           flexGrow: 1,
         }}
       >
-
-
         <CardMedia
           src={currentImg}
           component="img"
