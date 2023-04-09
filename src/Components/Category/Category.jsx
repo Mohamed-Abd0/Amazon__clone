@@ -3,15 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
-import {
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-} from "@material-ui/core";
+import {Grid, Card, CardMedia, CardContent, Typography, Button, Box} from "@material-ui/core";
 import "react-loading-skeleton/dist/skeleton.css";
 import LinesEllipsis from "react-lines-ellipsis";
 import { Rating } from "@material-ui/lab";
@@ -43,6 +35,7 @@ import "swiper/css/scrollbar";
 import { style } from "@mui/system";
 import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
+import Footer from "../Footer/Footer";
 
 
 
@@ -97,7 +90,7 @@ const Category = () => {
             <Grid container justify="center" spacing={2}>
               <Grid className="main-grid" container spacing={2}>
                 {/*  Women's fashion */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/ملابس حريمى">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -118,7 +111,7 @@ const Category = () => {
                   </Link>
                 </Grid>
                 {/*  Men's fashion */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/ملابس رجالى">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -144,7 +137,7 @@ const Category = () => {
                   </Link>
                 </Grid>
                 {/* Save big with coupons */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/لابتوب">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -171,7 +164,7 @@ const Category = () => {
                 </Grid>
 
                 {randomDoc && (
-                  <Grid item key={randomDoc?.id} xs={4} md={3}>
+                  <Grid item key={randomDoc?.id} xs={12} sm={6} md={3}>
                     <Link to={"/product/" + randomDoc.id}>
                       <Card className={classes.root}>
                         <CardMedia
@@ -293,7 +286,7 @@ const Category = () => {
                   </Grid>
                 )}
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -319,7 +312,7 @@ const Category = () => {
                   </Link>
                 </Grid>
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -345,7 +338,7 @@ const Category = () => {
                   </Link>
                 </Grid>
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -372,7 +365,7 @@ const Category = () => {
                 </Grid>
 
                 {/* Kitchen essentials  */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -489,12 +482,12 @@ const Category = () => {
                     }
                   })}
                 </Swiper>
-              </Grid>
-
-              {/* Bact To Top button */}
-              <BackToTopButton/>
+              </Grid>    
             </Grid>
           </Container>
+           {/* Bact To Top button */}
+              <BackToTopButton/>
+          <Footer/>
         </>
       )}
       

@@ -37,6 +37,8 @@ const BackToTopButton = () => {
           width: "100%",
           backgroundColor: "#485768",
           borderRadius: 0,
+          boxShadow: 0,
+          padding: 0,
           '&:hover': {
             backgroundColor: '#5f7287 !important',
         }
