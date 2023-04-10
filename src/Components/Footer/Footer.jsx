@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Divider, List, ListItem, Typography } from "@mui/material";
 import { Box, width } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import TopNav from "../../Components/Layout/nav/TopNav";
 // Active Language selector
-import Flag from '../../assets/USA_flag.webp'
+import Flag from '../../assets/Flag_of_Egypt.png'
 import words from "../../leng.json";
 import { useDispatch, useSelector } from "react-redux";
+import languageChange from "./LangChoose";
+import LangChoose from "./LangChoose";
+import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 const useStyles = makeStyles((theme) => ({
   listItem: {
     lineHeight: "120%",
@@ -24,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "120%",
     color: "#DDD",
     paddingTop: "0 !important",
+    paddingRight: '0 !important'
   },
 
   listTitle: {
@@ -42,17 +47,31 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFF",
   },
   logo: {
-    height: "40px",
-    width: "60px",
+    // height: "40px",
+    width: "80px",
   },
 }));
 
+const handleImageLoad = () => {
+  window.location.reload();
+  window.scrollTo(0, 0);
+}
+const homePage = () => {
+  Navigate("/");
+}
+
+
 export default function Footer() {
   const classes = useStyles();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const lengActive = useSelector((state) => state.leng);
+  console.log(lengActive)
   const activeLeng = lengActive.lang;
   const langWordsActive = words[`${lengActive.lang}`];
+
+
   return (
     <>
       <Box sx={{ backgroundColor: "#222F3E" }}>
@@ -65,59 +84,59 @@ export default function Footer() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3}>
               <Typography className={classes.listTitle}>
-                Get to Know Us
+              {langWordsActive.knowUs}
               </Typography>
+              
               <List>
-                <ListItem className={classes.listItem}>About Amazon</ListItem>
-                <ListItem className={classes.listItem}>Careers</ListItem>
-                <ListItem className={classes.listItem}>Amazon Science</ListItem>
+              <a href="https://www.amazon.eg/b?node=22624915031">
+                <ListItem className={classes.listItem}>{langWordsActive.aboutAmazon}</ListItem>
+              </a>
+                <ListItem className={classes.listItem}>{langWordsActive.careers}</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.amazonScience}</ListItem>
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <Typography className={classes.listTitle}>
-                {" "}
-                Shop with Us{" "}
+                {langWordsActive.shopWithUs}
               </Typography>
               <List>
-                <ListItem className={classes.listItem}>Your Account</ListItem>
-                <ListItem className={classes.listItem}>Your Orders</ListItem>
-                <ListItem className={classes.listItem}>Your Addresses</ListItem>
-                <ListItem className={classes.listItem}>Your Lists</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.yourAccount}</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.yourOrders}</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.yourAddresses}</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.yourLists}</ListItem>
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <Typography className={classes.listTitle}>
-                {" "}
-                Make Money with Us{" "}
+                {langWordsActive.makeMoneyWithUs}
               </Typography>
               <List>
                 <ListItem className={classes.listItem}>
-                  {" "}
-                  Protect and build your brand
+                  {langWordsActive.protectYourBrand}
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                  Advertise Your Products{" "}
+                  {langWordsActive.advirtiseProducts}
                 </ListItem>
-                <ListItem className={classes.listItem}>Sell on Amazon</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.sellOnAmazon}</ListItem>
                 <ListItem className={classes.listItem}>
-                  Fulfillment by Amazon
+                  {langWordsActive.fulfillmentByAmazon}
                 </ListItem>
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <Typography className={classes.listTitle}>
-                Let Us Help You
+                {langWordsActive.helpYou}
               </Typography>
               <List>
-                <ListItem className={classes.listItem}>Help</ListItem>
+                <ListItem className={classes.listItem}>{langWordsActive.help}</ListItem>
                 <ListItem className={classes.listItem}>
-                  Shipping & Delivery
+                  {langWordsActive.shippingAndDelivery}
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                  Returns & Replacements
+                  {langWordsActive.returnsReplacements}
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                  Amazon App Download{" "}
+                  {langWordsActive.amazonAppDownload}
                 </ListItem>
               </List>
             </Grid>
@@ -129,32 +148,42 @@ export default function Footer() {
             style={{
               border: "none",
               height: 0.1,
-              margin: 0,
               backgroundColor: "#F1F1F1",
             }}
           ></Divider>
         </Grid>
 
-        <Grid container spacing={2} style={{ justifyContent: "center", alignItems: "center", }}>
-          <Grid item xs={12} sm={6} md={3} lg={2} xl={2} style={{ padding: '20px'}}>
-        <div className={classes.logo}>
-          <Link to="/">
-            <img src={logo} alt="Amazon logo" />
-          </Link>
-          </div>
+        <Grid
+          container
+          spacing={2}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "30px",
+          }}
+        >
+          <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            
+            <div className={classes.logo}>
+              <Link to="/">
+                {location.pathname === "/" ? (
+                  <img
+                    src={logo}
+                    alt="Amazon logo"
+                    onClick={homePage}
+                    onClick={handleImageLoad}
+                  />
+                ) : (
+                  <img src={logo} alt="Amazon logo" onClick={homePage} />
+                )}
+              </Link>
+            </div>
           </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={2} xl={2} style={{ padding: '20px'}}>
-          <Link to={"#"} className="leng-top flex cursor-pointer">
-            <img
-              alt="fleg"
-              src={Flag}
-              className="w-7"
-            />
-            <span className="mx-2">{activeLeng}</span>
-            <span className="fa-solid fa-caret-down text-[#ccc]"></span>
-          </Link>
-       
-        </Grid>
+          <Grid item xs={12} sm={6} md={3} lg={2} xl={2}
+            style={{ padding: "20px" }}
+          >
+          {/* <LangChoose/> */}
+          </Grid>
         </Grid>
       </Box>
       {/* <TopNav/> */}
@@ -166,59 +195,60 @@ export default function Footer() {
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            <a href="https://advertising.amazon.com/?ref=footer_advtsing_2_eg">
             <Typography className={classes.listTitle1}>
-              {" "}
-              Amazon Advertising{" "}
+              {langWordsActive.amazonAdvertising}
             </Typography>
             <List>
               <ListItem className={classes.listItem1}>
                 {" "}
-                Find, attract, and engage customers{" "}
+                {langWordsActive.findAttract} and <br/> 
+                engage customers{" "}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            <a href="https://sell.amazon.ae/?ld=AZEGSOA_footer_affiliateAE_AR&ref_=AZEGSOA_footer_affiliateAE_AR">
             <Typography className={classes.listTitle1}>
-              {" "}
-              Sell on Amazon.ae{" "}
+              {langWordsActive.sellOnAmazonAE}
             </Typography>
             <List>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Sell globally, start with UAE{" "}
+                {langWordsActive.sellGlobally}, {langWordsActive.startWith} {langWordsActive.UAE}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            <a href="https://sell.amazon.sa/?ld=AZEGSOA_footer_affiliateSA_AR&ref_=AZEGSOA_footer_affiliateSA_AR">
             <Typography className={classes.listTitle1}>
-              {" "}
-              Sell on Amazon.sa{" "}
+                {langWordsActive.sellOnAmazonSA}
             </Typography>
             <List>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Sell globally, start with Saudi Arabia{" "}
+                {langWordsActive.sellGloballySA}, {langWordsActive.startWithSA} <br/> {langWordsActive.saudiArabia}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            <a href="https://aws.amazon.com/what-is-cloud-computing/?sc_channel=EL&sc_campaign=AE_amazonfooter">
             <Typography className={classes.listTitle1}>
-              {" "}
-              Amazon Web Services{" "}
+              {langWordsActive.amazonWebServices}
             </Typography>
             <List>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Scalable Cloud Computing Services
+                {langWordsActive.cloudComputing}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <Typography className={classes.listTitle1}> Goodreads </Typography>
             <List>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Book reviews & recommendations
+                {langWordsActive.bookReviews} {langWordsActive.and} <br/> {langWordsActive.recommendations}
               </ListItem>
             </List>
           </Grid>
@@ -226,62 +256,68 @@ export default function Footer() {
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
-            <List>
+              <a href="https://www.audible.ca/?ref=Adbl_ip_rdr_from_US&source_code=CANGBHP09121700NN&ipRedirectFrom=US&ipRedirectOriginalURL=">
+              <List>
               <Typography className={classes.listTitle1}> Audible </Typography>
               <ListItem className={classes.listItem1}>
                 {" "}
-                Download Audio Books{" "}
+                {langWordsActive.download} <br /> {langWordsActive.audioBooks}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+            <a href="https://www.imdb.com/">
             <List>
               <Typography className={classes.listTitle1}>IMDb </Typography>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Movies, TV & Celebrities{" "}
+                {langWordsActive.moviesTV} <br /> {langWordsActive.celebrities}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <List>
-              <Typography className={classes.listTitle1}>IMDb </Typography>
+              <Typography className={classes.listTitle1}>Alexa </Typography>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Movies, TV & Celebrities{" "}
+              {langWordsActive.actionableAnalytics} <br/> {langWordsActive.forWeb}
               </ListItem>
             </List>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+          <a href="https://www.bookdepository.com/">
             <List>
               <Typography className={classes.listTitle1}>
                 Book Depository{" "}
               </Typography>
               <ListItem className={classes.listItem1}>
-                {" "}
-                Books With Free Delivery Worldwide{" "}
+                {langWordsActive.booksFreeDelivery} <br /> {langWordsActive.Worldwide}
               </ListItem>
             </List>
+            </a>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <List>
               <Typography className={classes.listTitle1}>Shopbop </Typography>
               <ListItem className={classes.listItem1}>
                 {" "}
-                Designer Fashion Brands{" "}
+                {langWordsActive.designer} <br /> {langWordsActive.fashionBrands}
               </ListItem>
             </List>
           </Grid>
         </Grid>
-        <Grid container spacing={2} columnSpacing={2}
+        <Grid
+          container
+          spacing={2}
+          columnSpacing={2}
           style={{ justifyContent: "center", alignItems: "center" }}
         >
           <Grid item>
             <Typography className={classes.listTitle1}>
-              {" Conditions of Use & Sale Privacy Notice Interest-Based Ads"}
+              {langWordsActive.conditionsUseSale}  &nbsp; {langWordsActive.privacyNotice} &nbsp;  {langWordsActive.InterestAds}
             </Typography>
-            <Typography className={classes.listTitle1}>
-              {"&copy; 1996–2023, Amazon.com, Inc. or its affiliates "}
+            <Typography className={classes.listTitle1} sx={{align: 'center'}}>
+              {langWordsActive.copyRight} {langWordsActive.year1996}, {langWordsActive.amazonInc}  {langWordsActive.or} {langWordsActive.itsAffiliates} 
             </Typography>
           </Grid>
         </Grid>

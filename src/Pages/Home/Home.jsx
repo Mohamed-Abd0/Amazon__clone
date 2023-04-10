@@ -11,6 +11,7 @@ import {collection, getDocs, query, where} from "firebase/firestore";
 
 import { useDispatch, useSelector } from 'react-redux';
 import words from "../../leng.json";
+import Footer from '../../Components/Footer/Footer';
 
 
 const Home = () => {
@@ -110,6 +111,7 @@ const Home = () => {
             })}
         </Grid>
       </Container>
+      <Footer/>
       </>
     );
     }

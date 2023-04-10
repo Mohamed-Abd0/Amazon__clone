@@ -35,7 +35,7 @@ const BackToTopButton = () => {
         sx={{
           height: "9% !important",
           width: "100%",
-          backgroundColor: "#485768",
+          backgroundColor: "#485768 !important",
           borderRadius: 0,
           boxShadow: 0,
           padding: 0,

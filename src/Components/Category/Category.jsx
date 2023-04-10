@@ -1,9 +1,17 @@
 import { React, useState, useEffect, useCallback } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Container from "@mui/material/Container";
-import {Grid, Card, CardMedia, CardContent, Typography, Button, Box} from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  Box,
+} from "@material-ui/core";
 import "react-loading-skeleton/dist/skeleton.css";
 import LinesEllipsis from "react-lines-ellipsis";
 import { Rating } from "@material-ui/lab";
@@ -16,28 +24,21 @@ import cameraAccessories from "../../assets/cameraAccessories.jpg";
 import cameraDeals from "../../assets/cameraDeals.jpg";
 import kitchen from "../../assets/Kitchen.jpg";
 import homeTools from "../../assets/toolsHome.jpg";
-
 import { useSelector, useDispatch } from "react-redux";
-import words from '../../leng.json';
+import words from "../../leng.json";
 import GridSkeleton from "../ReuseableComponets/GridSkeleton";
 // Active Language selector
-import { getactiveLeng } from '../../Store/nav_slice/lengRedusers';
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-
+import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { style } from "@mui/system";
 import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
 import Footer from "../Footer/Footer";
-
-
+import SwiperContainer from "../ReuseableComponets/SwiperContainer";
+import { suggestProductsBP } from "../../Constants/Constants";
 
 const Category = () => {
   const classes = useStyles();
@@ -76,6 +77,70 @@ const Category = () => {
     }, 1000);
   }, []);
 
+  const productsRendering = () =>
+    products.map((product) => (
+      <Box
+      // key={product.id}
+      // onClick={() => Navigate(`/product/${product.id}`)}
+      // style={{ cursor: "pointer" }}
+      >
+        <Link to={"/product/" + product.id}>
+          <Card className={classes.root}>
+            {/* <Typography className={classes.cardHeader}>
+                          {langWordsActive.todaysDeals}
+                        </Typography> */}
+            <CardMedia
+              className={classes.media}
+              image={product.mainImg}
+              title={product.title}
+            />
+            <CardContent align="left">
+              <Typography style={{ marginBottom: 9 }}>
+                <span
+                  style={{
+                    background: "#CC0C39",
+                    boxShadow: "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
+                    color: "white",
+                    fontSize: 12,
+                    fontWeight: "bold",
+                    padding: 5,
+                    marginRight: 5,
+                  }}
+                >
+                  {langWordsActive.discount} {`${product.discountValue}%`}
+                </span>
+                <span
+                  style={{
+                    color: "#CC0C39",
+                    alignItems: "center",
+                    fontSize: 12,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    padding: 5,
+                    marginRight: 10,
+                  }}
+                >
+                  {langWordsActive.deal}
+                </span>
+              </Typography>
+
+              <Box
+                fontSize="10"
+                component="div"
+                overflow="hidden"
+                whiteSpace="pre-line"
+                textOverflow="ellipsis"
+                height={70}
+              >
+                <Typography variant="subtitle2">
+                  {product.minTitle[activeLeng]}
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Link>
+      </Box>
+    ));
   return (
     <>
       {isLoading ? (
@@ -84,7 +149,7 @@ const Category = () => {
         </>
       ) : (
         <>
-         <HomePageCarousel/>
+          <HomePageCarousel />
           {/* Main Container */}
           <Container maxWidth="l" style={{ background: "#E2E6E6" }}>
             <Grid container justify="center" spacing={2}>
@@ -103,7 +168,7 @@ const Category = () => {
                         alt="makeup"
                       />
                       <CardContent>
-                        <Typography variant="caption" color="#007185">
+                        <Typography variant="subtitle2" color="#007185">
                           {langWordsActive.seeMore}
                         </Typography>
                       </CardContent>
@@ -126,7 +191,7 @@ const Category = () => {
                       />
                       <CardContent>
                         <Typography
-                          variant="caption"
+                          variant="subtitle2"
                           color="#007185"
                           component="p"
                         >
@@ -152,7 +217,7 @@ const Category = () => {
                       />
                       <CardContent>
                         <Typography
-                          variant="caption"
+                          variant="subtitle2"
                           color="#007185"
                           component="p"
                         >
@@ -226,17 +291,6 @@ const Category = () => {
                               </span>
                             </Box>
                           </Typography>
-                          {randomDoc.stock < 10 && (
-                            <Typography
-                              style={{
-                                color: "red",
-                                fontWeight: "bold",
-                                fontSize: 12,
-                              }}
-                            >
-                              Only {randomDoc.stock} left in stock.
-                            </Typography>
-                          )}
                         </CardContent>
                         <Box
                           style={{
@@ -281,6 +335,11 @@ const Category = () => {
                             {langWordsActive.seeMore}
                           </Button>
                         </Box>
+                        {randomDoc.count < 10 &&
+                        <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12, padding: '10px'}}>
+                          {langWordsActive.only} {randomDoc.count} {langWordsActive.leftInStock}.
+                        </Typography>
+                          }
                       </Card>
                     </Link>
                   </Grid>
@@ -392,6 +451,7 @@ const Category = () => {
                 </Grid>
               </Grid>
               {/* Today's Deals Using Swiper MUI */}
+              {/* <Box sx={{ mt: { xs: 8, lg: 16 }, mb: 3, width: "65%", mx: "auto" }}> */}
               <Grid
                 className={classes.paper}
                 item
@@ -401,96 +461,20 @@ const Category = () => {
                 <Typography className={classes.cardHeader}>
                   {langWordsActive.todaysDeals}
                 </Typography>
-                <Swiper
-                  className={classes.swiper}
-                  style={{ background: "#fff" }}
-                  modules={[Navigation, Pagination, Scrollbar, A11y]}
-                  spaceBetween={10}
-                  slidesPerView={5}
-                  navigation
-                  // pagination={{ clickable: false }}
-                  scrollbar={{ draggable: true }}
-                >
-                  {products.map((product, index) => {
-                    console.log("products", product);
-                    if (product.discountValue && product.discountValue <= 10) {
-                      return (
-                        <SwiperSlide
-                          className={classes.swipeSlide}
-                          key={product.id}
-                        >
-                          <Link to={"/product/" + product.id}>
-                            <Card className={classes.root}>
-                              {/* <Typography className={classes.cardHeader}>
-                          {langWordsActive.todaysDeals}
-                        </Typography> */}
-                              <CardMedia
-                                className={classes.media}
-                                image={product.mainImg}
-                                title={product.title}
-                              />
-                              <CardContent align="left">
-                                <Typography style={{ marginBottom: 9 }}>
-                                  <span
-                                    style={{
-                                      background: "#CC0C39",
-                                      boxShadow:
-                                        "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
-                                      color: "white",
-                                      fontSize: 12,
-                                      fontWeight: "bold",
-                                      padding: 5,
-                                      marginRight: 5,
-                                    }}
-                                  >
-                                    {langWordsActive.discount}{" "}
-                                    {`${product.discountValue}%`}
-                                  </span>
-                                  <span
-                                    style={{
-                                      color: "#CC0C39",
-                                      alignItems: "center",
-                                      fontSize: 12,
-                                      textAlign: "center",
-                                      fontWeight: "bold",
-                                      padding: 5,
-                                      marginRight: 10,
-                                    }}
-                                  >
-                                    {langWordsActive.deal}
-                                  </span>
-                                </Typography>
-
-                                <Box
-                                  fontSize="10"
-                                  component="div"
-                                  overflow="hidden"
-                                  whiteSpace="pre-line"
-                                  textOverflow="ellipsis"
-                                  height={70}
-                                >
-                                  <Typography variant="subtitle2" >
-                                    {product.minTitle[activeLeng]}
-                                  </Typography>
-                                  {/* {product.minTitle[activeLeng]} */}
-                                </Box>
-                              </CardContent>
-                            </Card>
-                          </Link>
-                        </SwiperSlide>
-                      );
-                    }
-                  })}
-                </Swiper>
-              </Grid>    
+                <SwiperContainer breakPoints={suggestProductsBP}>
+                  {productsRendering()}
+                </SwiperContainer>
+                {/* </Box> */}
+              </Grid>
             </Grid>
           </Container>
-           {/* Bact To Top button */}
-              <BackToTopButton/>
-          <Footer/>
+          {/*  */}
+
+          {/* Bact To Top button */}
+          <BackToTopButton />
+          <Footer />
         </>
       )}
-      
     </>
   );
 };
