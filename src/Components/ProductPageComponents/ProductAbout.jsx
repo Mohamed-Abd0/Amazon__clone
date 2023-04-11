@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Box, Typography } from "@mui/material";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
+
+import { db } from "../../firebase";
+import { getFirestore, collection, getDocs, QuerySnapshot } from "firebase/firestore";
 
 const ProductAbout = () => {
-  const arr = useCurrentProduct("aboutItem");
+
+  const [aboutItem, setAboutItem] = useState([]);
+
+  useEffect(() => {
+    const fetchAboutItem = async () => {
+      const snapshot = await db.collection("products").get();
+      const aboutItemData = snapshot.docs.map((doc) => doc.data());
+      setAboutItem(aboutItemData)
+    };
+    fetchAboutItem(); 
+  }, [])
+  
+
 
   const renderingList = () => (
     <ul style={{ listStyle: "disc" }}>
-      {arr.map((li, idx) => (
+      {aboutItem.map((li, idx) => (
         <li key={idx}>
           <Typography
             variant="body2"

@@ -7,19 +7,21 @@ import { Modal } from "../../Modal";
 import CheckoutHeader from "./CheckoutHeader";
 
 const Layout = () => {
-  const HeaderFn = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    return (
-      <div>
-        {location.pathname === "/payment" ? <CheckoutHeader /> : <Header />}
-      </div>
-    );
-  };
+  // sellect the nave will appear depend on the route
+  let header;
+  if(location.pathname === "/signin" || location.pathname === "/signup") {
+    header = null
+  }else {
+    header = location.pathname=== "/payment"? <CheckoutHeader /> : <Header />
+
+  }
+
 
   return (
     <Fragment>
-      <HeaderFn />
+      {header}
       <main className={classes.main}>
         <Outlet />
       </main>

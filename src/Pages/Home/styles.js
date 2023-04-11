@@ -4,14 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      // maxWidth: '100%',
-      maxHeight: '100%',
-      height: 'auto',
+      // height: '100%',
       background: '#fff',
-    
-  
+      overflow: 'hidden',
+      borderRadius: 0,
+      boxShadow: 'none',
       
-      
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'space-between'
     },
     media: {
       paddingTop: '56.25%', // 16:9
@@ -19,25 +20,27 @@ export default makeStyles((theme) => ({
       backgroundSize: 'contain',
     },
     media1: {
-      height: 'auto',
+      // height: 'auto',
       // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
-      padding: '10'
+      paddingLeft: 10,
+      paddingRight: 10
     },
 
     cardHeader: {
-      paddingLeft: 15, 
-      paddingBottom: 15, 
-      paddingTop: 15, 
-      fontSize: 20,
+      padding: 15,
+      fontSize: 21,
+      // lineHeight: 27.3,
       color: 'black',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      whiteSpace: 'normal',
+      fontWeight: 'bolder',
+      fontFamily: `'Alexandria', sans-serif`
     },
     
     cardActions: {
       textAlign: 'left',
-     
     },
     cardContent: {
       display: 'flex',
@@ -58,8 +61,8 @@ export default makeStyles((theme) => ({
     paper: {
       whiteSpace: 'nowrap',
       marginBottom: theme.spacing.unit * 2,
-      height: 400,
-      borderRadius: 0,
+      // height: 400,
+      // borderRadius: 0,
     },
     swiperImage: {
       padding: 10,

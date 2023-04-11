@@ -1,0 +1,181 @@
+
+:root {
+  --primary-color: #F1C75D;
+  --secondary-color: #FF9933;
+}
+
+
+.logo {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.logo img {
+  display: inline-block;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.frame {
+  width: 350px;
+  height: fit-content;
+  margin: 15px auto;
+}
+
+
+
+.formBox{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 16px;
+}
+
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 10px !important;
+  font-size: 1.8rem !important;
+  font-weight: 400 !important;
+}
+
+.text_field {
+  margin-bottom: 12px;
+}
+
+.text_field label{
+  font-size: 13px;
+  font-weight: 700;   
+}
+
+.text_field input {
+
+  width: 100%;
+  height: 31px;
+  padding: 3px 7px;
+  border: 1px solid #a6a6a6;
+  border-top-color: #949494;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset;
+  border-top-color: #949494;
+}
+
+
+.text_field input:focus {
+  border-color: #e77600 !important;
+  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  outline: none;
+}
+.text_field input::placeholder{
+  font-size: small;
+}
+
+
+
+
+.button {
+  width: 100%;
+  background-color: var(--primary-color) !important;
+  border: none;
+  border-radius: 4px;
+  height: 2rem;
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+
+.devider {
+  position: relative;
+  text-align: center;
+  margin: 20px 0 10px;
+  z-index: 1;
+}
+.devider h5{
+    line-height: 1;
+    font-size: 12px;
+    color: #767676;
+    font-weight: 400;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    padding: 0 8px 0 7px;
+}
+.devider::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  border-top: 1px solid #e7e7e7;
+  background-color: transparent;
+  z-index: 0;
+}
+
+
+.creatAccount{
+  /* background: #e7e9ec; */
+  border-radius: 3px;
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  height: 2rem;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+}
+.creatAccount a {
+  color: #111;
+  display: block;
+}
+.creatAccount:hover{
+  border-color: #a2a6ac #979aa1 #82858a;
+  background: #DEE1E6;
+}
+
+.privaciy {
+  margin-top: 18px;
+  font-size: 12px;
+}
+.privaciy span{
+  color: #0066c0;
+}
+
+.switch{
+  margin-top: 20px;
+  font-size: 13px;
+}
+.switch a {
+  cursor: pointer;
+  color: #0066c0;
+}
+.switch a:hover{
+  text-decoration: underline;
+}
+.togle {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: #e7e9ec !important;
+  border: none;
+  border-radius: 4px;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.togle:hover {
+  background-color: #d7d9dc ;
+}
+
+.error{
+color: red;
+}

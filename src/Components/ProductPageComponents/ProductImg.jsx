@@ -1,15 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Stack, Box, CardMedia } from "@mui/material";
 import { setCurrentImg } from "../../Store/ProductSlice";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
+
+import { getFirestore, collection, getDocs, QuerySnapshot } from "firebase/firestore";
+
+
 const ProductImg = () => {
   const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
 
-  const imgsArr = useCurrentProduct("productImgs");
+  const [imgsArr, setImgArr] = useState([]);
 
   const action = useDispatch();
+
+  useEffect(() => {
+    const db = getFirestore();
+    const imgRef = collection(db, 'images');
+
+    // fetch the documents from the 'images' collection
+    const fetchData = async () => {
+      const guerySnapshot = await getDocs(imgRef)
+      // convert the snapshot query to an array of object with src and state properties
+      const imgData = QuerySnapshot.docs.map((doc) => ({
+        src: doc.data().images,
+      }));
+      setImgArr(imgData)
+    };
+    fetchData();
+  }, [ ]);
 
   const renderinOthersIms = () =>
     imgsArr?.map((item, index) => (
@@ -35,10 +54,7 @@ const ProductImg = () => {
       </Box>
     ));
 
-  useEffect(() => {
-    const targetImg = imgsArr.find((li) => li.state === true);
-    action(setCurrentImg(targetImg.src));
-  }, [action, imgsArr]);
+
 
   return (
     <Stack
@@ -52,6 +68,7 @@ const ProductImg = () => {
       }}
       gap={3}
     >
+
       <Stack
         gap={1}
         justifyContent="center"
@@ -60,6 +77,7 @@ const ProductImg = () => {
       >
         {renderinOthersIms()}
       </Stack>
+
       <Box
         sx={{
           maxWidth: { lg: "400px" },
@@ -68,6 +86,8 @@ const ProductImg = () => {
           flexGrow: 1,
         }}
       >
+
+
         <CardMedia
           src={currentImg}
           component="img"
