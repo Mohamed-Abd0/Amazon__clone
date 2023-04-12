@@ -46,16 +46,16 @@ const Product = () => {
     content = (
       <Fragment>
         <Stack  sx={{ mx: '1rem' }}>
-          <Grid item xs={12} >
+          <Grid item xs={12} display={{xs: 'none' , md:'flex'}}>
             <Breadcrumb />
           </Grid>
           <Grid container justifyContent="space-between" spacing={2}>
             <Grid item xs={12} md={8} lg={9} >
               <Grid container justifyContent={{ lg: "space-between" }} spacing={2}>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={7}>
                   <ProductImg />
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={5}>
                   <ProductContent />
                 </Grid>
               </Grid>

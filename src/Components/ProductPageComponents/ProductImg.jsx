@@ -12,7 +12,7 @@ const ProductImg = () => {
   // get the main image of product from product slice
   const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
 
-  const action = useDispatch();
+  const dispatch = useDispatch();
 
 
   
@@ -24,14 +24,12 @@ const ProductImg = () => {
       <Box
         key={index}
         sx={{
-          border: `${
-            item === currentImg ? "1px solid transparent" : "1px solid gray"
-          }`,
+          border: `${item === currentImg ? "1px solid transparent" : "1px solid gray"}`,
           boxShadow: `${item === currentImg ? "0px 0px 2px 2px orange" : ""}`,
           p: 0.3,
           cursor: "pointer",
         }}
-        onMouseOver={() => action(setCurrentImg(item))}
+        onMouseOver={() => dispatch(setCurrentImg(item))}
       >
         <CardMedia
           component="img"
@@ -51,17 +49,17 @@ const ProductImg = () => {
       justifyContent="space-between"
       sx={{
         position: { lg: "sticky" },
-        top: "80px",
-        maxHeight: { md: "400px" },
-        minWidth: { lg: "400px" },
+        top: "10px",
+        // maxHeight: { md: "400px" },
+        // minWidth: { lg: "400px" },  
       }}
-      gap={3}
+      gap={1}
     >
 
 
       <Stack
         gap={1}
-        justifyContent="center"
+        justifyContent="flexStart"
         flexDirection={{ xs: "row", sm: "column" }}
         sx={{ order: { xs: 2, sm: 1 } }}
       >
@@ -71,18 +69,23 @@ const ProductImg = () => {
 
       <Box
         sx={{
-          maxWidth: { lg: "400px" },
-          height: "400px",
+          // height:'100%',
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
           order: { xs: 1, sm: 2 },
           flexGrow: 1,
         }}
       >
+        
         <CardMedia
-          src={currentImg}
           component="img"
+          src={currentImg}
           sx={{
-            height: "100%",
+            width:{lg:'100%' },
+            maxWidth:{xs:'400px' , lg:'600px'},
             objectFit: "contain",
+            
           }}
         />
       </Box>
