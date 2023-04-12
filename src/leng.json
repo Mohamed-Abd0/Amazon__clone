@@ -43,6 +43,7 @@
             "EGP": "EGP",
             "backToTop": "back To Top",
             
+            "home" : "Home",
             "brand": "brand",
             "rating": "rating",
             "askedQuestions": "asked questions"
@@ -95,6 +96,7 @@
             "backToTop": "الرجوع للأعلى",
 
 
+            "home" : "الصفحة الرئيسية ",
             "brand": "العلامة التجارية",
             "rating": "تقييم",
             "askedQuestions": "أسئلة مجاب عنها"

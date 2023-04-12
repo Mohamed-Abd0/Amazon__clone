@@ -1,24 +1,24 @@
 import React, { Fragment, useEffect } from "react";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setProductData } from "../Store/ProductSlice";
 import { useParams } from "react-router-dom";
+import getProductData from "../Firebase-APIS/Product/getProductData";
 import {
+  Breadcrumb,
   ProductImg,
   ProductContent,
   SuggestProducts,
   ProductOptions,
 } from "../Components/ProductPageComponents";
-import { BackToHome, FloatingIcon } from "../Components/ReuseableComponets";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { Stack, Box } from "@mui/material";
-import getProductData from "../Firebase-APIS/Product/getProductData";
+import {  Grid, Stack } from "@mui/material";
+// import SettingsIcon from "@mui/icons-material/Settings";
 
 const Product = () => {
   console.log("product is running");
 
   // get productId from the url
   const { productId } = useParams();
-  
+
   const dispatch = useDispatch();
 
   // get product object from redux store
@@ -40,46 +40,41 @@ const Product = () => {
     getProduct();
   }, []);
 
-  // render the content if the product object is full 
+  // render the content if the product object is full
   let content;
   if (product) {
     content = (
       <Fragment>
-        <Box sx={{ maxWidth: "1400px", m: "auto" }}>
-          <Box sx={{ mx: { xs: "1rem", sm: "2rem" } }}>
-            <BackToHome />
-          </Box>
-          <Stack
-            flexDirection={{ md: "row" }}
-            sx={{ mx: { xs: "1rem", sm: "2rem" } }}
-            justifyContent="space-between"
-            gap={2}
-          >
-            <Stack
-              flexDirection={{ lg: "row" }}
-              sx={{ maxWidth: { xs: "100%", md: "65%", lg: "75%" } }}
-              gap={4}
-            >
-              <ProductImg />
-              <ProductContent />
-            </Stack>
-            <ProductOptions />
-          </Stack>
-        </Box>
-        <SuggestProducts />
+        <Stack  sx={{ mx: '1rem' }}>
+          <Grid item xs={12} >
+            <Breadcrumb />
+          </Grid>
+          <Grid container justifyContent="space-between" spacing={2}>
+            <Grid item xs={12} md={8} lg={9} >
+              <Grid container justifyContent={{ lg: "space-between" }} spacing={2}>
+                <Grid item xs={12} lg={6}>
+                  <ProductImg />
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                  <ProductContent />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item  md={4} lg={3}>
+              <ProductOptions />
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <SuggestProducts />
+          </Grid>
+        </Stack>
       </Fragment>
     );
   } else {
     content = null;
   }
 
-
-
-
-
   return content;
-
-  
 };
 
 export default Product;
