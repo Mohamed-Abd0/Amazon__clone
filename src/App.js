@@ -13,8 +13,6 @@ import SignUp from "./Pages/SignUp";
 import Payment from "./Pages/Payment";
 import NotFound from "../src/Pages/NotFound";
 import Product from "../src/Pages/Product";
-import { AddProduct } from "./Pages/AddProduct";
-// import { AddCategory } from "./Pages/AddCategory";
 import Category from "./Components/Category/Category";
 import AddProduct2 from "./Pages/Home/AddProduct2";
 import { AddCategory } from "./Pages/AddCategory";
