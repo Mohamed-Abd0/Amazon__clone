@@ -1,52 +1,45 @@
 import React from "react";
-import { Box } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
+import { Box, Stack , Typography } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    gap: "10px",
+    lineHeight: "20px",
+    fontSize: "14px !important",
+  },
+  title: {
+    fontWeight: "700 !important",
+  },
+  value: {
+    fontWeight: "300",
+  }
+}));
+
+
 
 const ProductTable = () => {
-
-  const {product} = useSelector(({ProductSlice}) => ProductSlice)
-  const lengActive = useSelector(({leng}) => leng)
-
-  const technicalProperties = product.technicalProperties
-
-
-
-  const renderTable = () => {
-    return technicalProperties.map((item , index) => (
-      <TableRow
-        key={index}
-        sx={{
-          "&:last-child td, &:last-child th": { border: 0 },
-          th: { p: 1, fontSize: "13px", borderBottom: "unset" },
-          "th:last-child": { color: "gray" },
-          "th:first-of-type": { pl: 0 },
-        }}
-      >
-        <TableCell component="th" scope="row">
-          {item.name[`${lengActive.lang}`]}
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {item.value[`${lengActive.lang}`]}
-        </TableCell>
-      </TableRow>
-    ));
-  };
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const lengActive = useSelector(({ leng }) => leng);
+  const technicalProperties = product.technicalProperties;
+  const classes = useStyles();
 
   return (
     <Box>
-      <Box sx={{ maxWidth: "350px", pt: 1 }}>
-        <TableContainer sx={{ boxShadow: "unset" }} component={Paper}>
-          <Table aria-label="simple table">
-            <TableBody>{renderTable()}</TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+      <Stack sx={{ pt: 1 }}>
+        {technicalProperties.map((item , index) => (
+            <Box className={classes.root} item key={index}>
+              <Typography variant="body1" className={classes.title}>
+                {item.name[`${lengActive.lang}`]}:
+              </Typography>
+              <Typography variant="body1" className={classes.value}>
+                {item.value[`${lengActive.lang}`]}
+              </Typography>
+            </Box>
+        ))}
+      </Stack>
     </Box>
   );
 };

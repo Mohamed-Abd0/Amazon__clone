@@ -1,35 +1,33 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Stack, Box, CardMedia } from "@mui/material";
-import { setCurrentImg } from "../../Store/ProductSlice";
+import { useState } from "react";
 
 const ProductImg = () => {
   console.log("productImg is running");
 
   // get product data from the product slice [redux]
-  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const { product , currentImg} = useSelector(({ ProductSlice }) => ProductSlice);
 
-  // get the main image of product from product slice
-  const { currentImg } = useSelector(({ ProductSlice }) => ProductSlice);
+  const [currentImage , setCurrentImage] = useState(currentImg)
 
-  const dispatch = useDispatch();
 
 
   
-  const renderinOthersIms = () => {
+  const renderThumbnailImages = () => {
     // Combine the main image and the thumbnail images into one array
     const images = [product.mainImg, ...product.images];
   
-    return images.map((item, index) => (
+    return images.map((item) => (
       <Box
-        key={index}
+        key={item}
         sx={{
-          border: `${item === currentImg ? "1px solid transparent" : "1px solid gray"}`,
-          boxShadow: `${item === currentImg ? "0px 0px 2px 2px orange" : ""}`,
+          border: `${item === currentImage ? "1px solid transparent" : "1px solid gray"}`,
+          boxShadow: `${item === currentImage ? "0px 0px 2px 2px orange" : ""}`,
           p: 0.3,
           cursor: "pointer",
         }}
-        onMouseOver={() => dispatch(setCurrentImg(item))}
+        onMouseOver={() => setCurrentImage(item)}
       >
         <CardMedia
           component="img"
@@ -50,8 +48,6 @@ const ProductImg = () => {
       sx={{
         position: { lg: "sticky" },
         top: "10px",
-        // maxHeight: { md: "400px" },
-        // minWidth: { lg: "400px" },  
       }}
       gap={1}
     >
@@ -59,20 +55,19 @@ const ProductImg = () => {
 
       <Stack
         gap={1}
-        justifyContent="flexStart"
+        justifyContent={{sx:'center' , sm:"flexStart"}}
         flexDirection={{ xs: "row", sm: "column" }}
         sx={{ order: { xs: 2, sm: 1 } }}
       >
 
-        {renderinOthersIms()}
+        {renderThumbnailImages()}
       </Stack>
 
       <Box
         sx={{
-          // height:'100%',
           display:'flex',
           justifyContent:'center',
-          alignItems:'center',
+          alignItems:'flexStart',
           order: { xs: 1, sm: 2 },
           flexGrow: 1,
         }}
@@ -80,7 +75,7 @@ const ProductImg = () => {
         
         <CardMedia
           component="img"
-          src={currentImg}
+          src={currentImage}
           sx={{
             width:{lg:'100%' },
             maxWidth:{xs:'400px' , lg:'600px'},

@@ -9,7 +9,7 @@ const Breadcrumb = () => {
   const activWrods = words[`${lengActive.lang}`];
 
   const home = activWrods.home;
-  const category = product.category[1];
+  const category = product.category[`${lengActive.lang}`];
   const title = product.minTitle[`${lengActive.lang}`];
 
   return (
@@ -38,7 +38,7 @@ const Breadcrumb = () => {
         {category}
       </Link>
       <Typography color="text.primary" fontSize="inherit">
-        {"title"}
+        {title}
       </Typography>
     </Breadcrumbs>
   );

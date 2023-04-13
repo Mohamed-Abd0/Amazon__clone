@@ -6,7 +6,6 @@ import {
   Grid,
   Typography,
   Link,
-  useMediaQuery,
   Divider,
 } from "@mui/material";
 import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
@@ -15,6 +14,8 @@ import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
 
 const ProductOptions = () => {
+  console.log("ProductOptions is runing");
+  
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   console.log(product);
 
@@ -24,7 +25,6 @@ const ProductOptions = () => {
   const shipCompany = product.shipCompany.en;
   const count = product.count;
 
-  const mediaQuery = useMediaQuery("(min-width:900px)");
 
   return (
     <Box
@@ -51,7 +51,7 @@ const ProductOptions = () => {
           pt: 2.5,
           "& p": { fontSize: "12.5px", color: "text.gray" },
           a: { fontSize: "13px", color: "text.teal", cursor: "pointer" },
-          "a:hover": { color: "text.darkOriange" },
+          "a:hover": { color: "text.darkOrange" },
           gap: "0.6rem",
         }}
       >

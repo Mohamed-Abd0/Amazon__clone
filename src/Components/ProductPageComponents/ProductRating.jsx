@@ -1,7 +1,5 @@
 
 import { Box, Rating, IconButton } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import { useSelector } from "react-redux";
 
 

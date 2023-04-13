@@ -11,7 +11,6 @@ import {
   ProductOptions,
 } from "../Components/ProductPageComponents";
 import {  Grid, Stack } from "@mui/material";
-// import SettingsIcon from "@mui/icons-material/Settings";
 
 const Product = () => {
   console.log("product is running");
@@ -38,7 +37,7 @@ const Product = () => {
     };
 
     getProduct();
-  }, []);
+  }, [productId]);
 
   // render the content if the product object is full
   let content;
