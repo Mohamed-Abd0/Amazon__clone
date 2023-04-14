@@ -1,12 +1,12 @@
 import React from "react";
 import { Grid, Box, Link } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import words from "../../leng.json";
+import words from "../../../leng.json";
 import { useSelector } from "react-redux";
-import payImg from "../../assets/productPageIcons/pay.png";
-import returnImg from "../../assets/productPageIcons/return.png";
-import deleveryImg from "../../assets/productPageIcons/delevery.png";
-import warrantyImg from "../../assets/productPageIcons/warranty.png";
+import payImg from "../../../assets/productPageIcons/pay.png";
+import returnImg from "../../../assets/productPageIcons/return.png";
+import deleveryImg from "../../../assets/productPageIcons/delevery.png";
+import warrantyImg from "../../../assets/productPageIcons/warranty.png";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -39,7 +39,7 @@ const SellingOptions = () => {
   const manufacturerWarranty = activWords.manufacturerWarranty;
 
   return (
-    <Grid container spacing={3} >
+    <Grid container spacing={3}>
       <Grid item xs={3}>
         <Box className={classes.container}>
           <img src={payImg} alt="Cash on Delivery" className={classes.img} />

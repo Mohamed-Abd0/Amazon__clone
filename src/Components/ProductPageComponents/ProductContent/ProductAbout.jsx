@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import words from "../../leng.json";
+import words from "../../../leng.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,17 +28,20 @@ const ProductAbout = () => {
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   const productPropertes = product.ProductProperties;
 
-
   const lengActive = useSelector(({ leng }) => leng);
   const activWrods = words[`${lengActive.lang}`];
 
   const about = activWrods.about;
 
   const renderingList = () => (
-    <ul className={classes.list} >
-      {productPropertes.map((li , index) => (
+    <ul className={classes.list}>
+      {productPropertes.map((li, index) => (
         <li key={index}>
-          <Typography variant="body2" color="black" className={classes.listItem}>
+          <Typography
+            variant="body2"
+            color="black"
+            className={classes.listItem}
+          >
             {li[`${lengActive.lang}`]}
           </Typography>
         </li>
