@@ -15,7 +15,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const activeLeng = lengActive.lang;
 
   const signInStatus = useSelector((state) => state.nameUserSlice);
-  // console.log(signInStatus.status);
+ 
   const itemCart = useSelector((state) => state.cartItemNumber);
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([

@@ -98,7 +98,19 @@
             "only": "only",
             "off": "OFF",
             "copoun": "COUPON",
-            "ar": ""
+            "ar": "",
+            "home": "Home",
+    "brand": "brand",
+    "rating": "rating",
+    "askedQuestions": "asked questions",
+    "about": "About this Item",
+    "listPrice": "List price",
+    "freeReturns": "FREE Returns",
+    "priceIncludeVAT": "price include VAT",
+    "cashOnDelivery": "Cash on Delivery",
+    "returnable": "15 days Returnable",
+    "deliveredByAmazon": "Delivered by Amazon",
+    "manufacturerWarranty": "10 Year Manufacturer Warranty"
 
         } ,
         "ar" : {
@@ -199,7 +211,19 @@
             "leftInStock": "تبقى ",
             "only": "فقط",
             "off": "تخفيض",
-            "copoun": "قسيمة"
+            "copoun": "قسيمة",
+            "home": "الصفحة الرئيسية ",
+            "brand": "العلامة التجارية",
+            "rating": "تقييم",
+            "askedQuestions": "أسئلة مجاب عنها",
+            "about": "حول هذه السلعة",
+            "listPrice": "السعر الاصلي",
+            "freeReturns": "إرجاع مجاني ",
+            "priceIncludeVAT": "الأسعار تشمل ضريبة القيمة المضافة ",
+            "cashOnDelivery": "الدفع عند الاستلام",
+            "returnable": "إمكانية الإرجاع خلال 15 يومًا",
+            "deliveredByAmazon": "توصيل من أمازون",
+            "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات"
 
         } 
 

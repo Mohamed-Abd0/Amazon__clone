@@ -20,7 +20,7 @@ const AddToListBtn = () => {
         mb: { xs: "12px", md: "0px" },
       }}
     >
-      AddToListBtn
+      Add to list
     </Button>
   );
 };

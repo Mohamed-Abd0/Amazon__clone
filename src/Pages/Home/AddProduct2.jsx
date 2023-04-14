@@ -30,15 +30,27 @@ const schema = Yup.object().shape({
     )
     .required()
     .min(1, ""),
-  category: Yup.array().required().of(Yup.string().required()),
+  // category: Yup.array().required().of(Yup.string().required()),
   count: Yup.number().required("").min(1),
   price: Yup.number().required("").min(3),
-  seller: Yup.array().of(Yup.string().required()).required(),
+  // seller: Yup.array().of(Yup.string().required()).required(),
+  seller: Yup.object().shape({
+    ar: Yup.string().required("Required"),
+    en: Yup.string().required("Required"),
+  }),
+  category: Yup.object().shape({
+    ar: Yup.string().required("Required"),
+    en: Yup.string().required("Required"),
+  }),
   minTitle: Yup.object().shape({
     ar: Yup.string().required("Required"),
     en: Yup.string().required("Required"),
   }),
   description: Yup.object().shape({
+    ar: Yup.string().required("Required"),
+    en: Yup.string().required("Required"),
+  }),
+  brand: Yup.object().shape({
     ar: Yup.string().required("Required"),
     en: Yup.string().required("Required"),
   }),
@@ -120,6 +132,14 @@ const AddProduct2 = () => {
     });
   }
 
+  function sortArray(arr) {
+    arr.sort(function (a, b) {
+      return a.localeCompare(b, "ar", { sensitivity: "base" });
+    });
+
+    // console.log(arr);
+  }
+
   //   functions
 
   useEffect(() => {
@@ -155,6 +175,7 @@ const AddProduct2 = () => {
           seller: "",
           minTitle: { ar: "", en: "" },
           description: { ar: "", en: "" },
+          brand: { ar: "", en: "" },
           ShippingFree: "",
           ShippingValue: "",
           discount: "",
@@ -165,16 +186,14 @@ const AddProduct2 = () => {
         onSubmit={(values, { resetForm }) =>
           setTimeout(() => {
             [...selectSeler.current.children].map((e) => {
-              if (values.seller.includes(e.innerHTML)) {
+              if (Object(values.seller.ar) == e.innerHTML) {
                 values.sellerID = e.getAttribute("value2");
               }
             });
             getMainImgUrl(mainImg);
             setAddBtn(false);
-            // console.log();
             getImgasUrl(images).then((sec) => {
               values.images = sec;
-              console.log(values);
               getMainImgUrl(mainImg).then((main) => {
                 values.mainImg = main;
                 sendDataToFirebase(values)
@@ -205,7 +224,18 @@ const AddProduct2 = () => {
                 }) => (
                   <select
                     onChange={(e) =>
-                      (values.category = e.target.value.split("-"))
+                      (values.category = {
+                        ar: e.target.value.split("-").sort(function (a, b) {
+                          return a.localeCompare(b, "ar", {
+                            sensitivity: "base",
+                          });
+                        })[0],
+                        en: e.target.value.split("-").sort(function (a, b) {
+                          return a.localeCompare(b, "ar", {
+                            sensitivity: "base",
+                          });
+                        })[1],
+                      })
                     }
                     className={
                       meta.touched && meta.error
@@ -278,7 +308,18 @@ const AddProduct2 = () => {
                   <select
                     ref={selectSeler}
                     onChange={(e) =>
-                      (values.seller = e.target.value.split("-"))
+                      (values.seller = {
+                        ar: e.target.value.split("-").sort(function (a, b) {
+                          return a.localeCompare(b, "ar", {
+                            sensitivity: "base",
+                          });
+                        })[0],
+                        en: e.target.value.split("-").sort(function (a, b) {
+                          return a.localeCompare(b, "ar", {
+                            sensitivity: "base",
+                          });
+                        })[1],
+                      })
                     }
                     className={
                       meta.touched && meta.error
@@ -368,6 +409,44 @@ const AddProduct2 = () => {
                   <input
                     type="text"
                     placeholder="ادخال الوصف  باللغة العربية"
+                    {...field}
+                    className={
+                      meta.touched && meta.error
+                        ? "border border-[#eee] p-2 px-8 rounded-lg outline-none w-full error-Input "
+                        : "border border-[#eee] p-2 px-8 rounded-lg outline-none w-full"
+                    }
+                  />
+                )}
+              </Field>
+            </div>
+            <div className="row">
+              <Field name={`brand.en`}>
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                  meta,
+                }) => (
+                  <input
+                    type="text"
+                    placeholder="ادخال اسم البراند  باللغة الانجليزية"
+                    {...field}
+                    className={
+                      meta.touched && meta.error
+                        ? "border border-[#eee] p-2 px-8 rounded-lg outline-none w-full error-Input "
+                        : "border border-[#eee] p-2 px-8 rounded-lg outline-none w-full"
+                    }
+                  />
+                )}
+              </Field>
+              <Field name={`brand.ar`}>
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                  meta,
+                }) => (
+                  <input
+                    type="text"
+                    placeholder="ادخال اسم البراند باللغة العربية"
                     {...field}
                     className={
                       meta.touched && meta.error

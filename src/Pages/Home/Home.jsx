@@ -23,7 +23,6 @@ const Home = () => {
    // Active lang
    const lengActive = useSelector((state) => state.leng);
    const activeLeng = lengActive.lang;
-  //  console.log("activeLeng", activeLeng);
    const langWordsActive = words[`${lengActive.lang}`];
 
   // ********** Firebase query ***************

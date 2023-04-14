@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const ProductSlice = createSlice({
   name: "product",
   initialState: {
-    product: {},
-    currentImg: "",
+    product: null,
+    currentImg: null,
     amount: 1,
   },
   reducers: {
-    getProductFromParam: (state, { payload }) => {
-      state.product = payload;
-      state.currentImg = payload.productImgs.find((e) => e.state === true).src;
+    setProductData: (state, { payload }) => {
+      state.product = payload.productData;
+      state.currentImg = payload.productData.mainImg;
       state.amount = 1;
     },
     setCurrentImg: (state, { payload }) => {
@@ -27,7 +27,7 @@ const ProductSlice = createSlice({
   },
 });
 
-export const { getProductFromParam, setCurrentImg, increment, decrement } =
+export const { setProductData, setCurrentImg, increment, decrement } =
   ProductSlice.actions;
 
 export default ProductSlice.reducer;

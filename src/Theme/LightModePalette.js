@@ -7,8 +7,8 @@ export const LightModePalette = {
   },
   text: {
     gray: "#606060",
-    darkOriange: "#C7511F",
-    teal: "#007185",
+    darkOrange: "#C7511F",
+    teal: "#007185",  
     green: "#007600",
     black: "#3e3e3e",
   },

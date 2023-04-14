@@ -7,6 +7,7 @@ import SwiperContainer from "../ReuseableComponets/SwiperContainer";
 import { suggestProductsBP } from "../../Constants/Constants";
 
 const SuggestProducts = () => {
+  console.log("SuggestProducts is running");
   const navigate = useNavigate();
 
   const productsRendering = () =>
