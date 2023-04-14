@@ -93,9 +93,12 @@
             "bookReviews": "Book reviews ",
             "and": "&",
             "recommendations": "recommendations",
-            "findAttract": "Find, attract",
+            "findAttract": "Find, attract and engage customers",
             "leftInStock": "left in Stock ",
-            "only": "only"
+            "only": "only",
+            "off": "OFF",
+            "copoun": "COUPON",
+            "ar": ""
 
         } ,
         "ar" : {
@@ -194,7 +197,9 @@
             "fashionBrands": " علامات الأزياء التجارية",
             "findAttract": "إيجاد العملاء وجذبهم والتفاعل معهم",
             "leftInStock": "تبقى ",
-            "only": "فقط"
+            "only": "فقط",
+            "off": "تخفيض",
+            "copoun": "قسيمة"
 
         } 
 
