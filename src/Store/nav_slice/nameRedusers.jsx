@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const nameUserSlice = createSlice({
-    initialState : {name : "mohmed yousry" , status : false , token : "sdlgfdsjgl646fdsfsd"}, 
+    initialState : {name : "mohmed yousry" , status : true } ,
     name : "nameUserSlice" , 
     reducers : {}
 })

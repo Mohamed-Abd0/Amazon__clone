@@ -39,7 +39,9 @@ const DiscountedPrice = () => {
 
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   const { price, discountValue } = product;
+  const numberdiscountValue = +discountValue
 
+  
   // Access language data from Redux store
   const lengActive = useSelector(({ leng }) => leng);
   const activWrods = words[`${lengActive.lang}`];
@@ -49,7 +51,7 @@ const DiscountedPrice = () => {
   const EGP = activWrods.EGP;
 
   // If discountValue is available, show discount price and list price
-  if (discountValue) {
+  if (numberdiscountValue) {
     const discountedPrice = `${(price * (1 - discountValue / 100)).toFixed(0)}`;
     const discountPercentage = `${discountValue}%`;
 

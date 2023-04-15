@@ -6,7 +6,7 @@ import lengRedusers from "./nav_slice/lengRedusers";
 import cartItemNumber from "./nav_slice/cartRedusers";
 import nameUserSlice from "./nav_slice/nameRedusers";
 import chechout from "./checkout_slice/checkoutSlice";
-import userSlice from "./nav_slice/userSlice";
+// import userSlice from "./nav_slice/userSlice";
 import loginSlice from "./Authentication_slice/loginSlice";
 import userDataSlice from "./Authentication_slice/userDataSlice";
   
@@ -21,6 +21,6 @@ export default configureStore({
     chechout,
     cartItemNumber,
     nameUserSlice,
-    user: userSlice,
+    // user: userSlice,
   },
 });
