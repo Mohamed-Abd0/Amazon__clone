@@ -1,12 +1,11 @@
 import React from "react";
 import ProductRating from "./ProductRating";
-import words from "../../leng.json";
+import words from "../../../leng.json";
 import { useSelector } from "react-redux";
 import { Box, Link, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-
   title: {
     lineHeight: "1.3",
   },
@@ -17,11 +16,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     alignItems: "center",
   },
-
 }));
 
 const ProductTitle = () => {
-  console.log("ProductTitle is runing")
+  console.log("ProductTitle is runing");
   const classes = useStyles();
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   const lengActive = useSelector(({ leng }) => leng);
@@ -41,11 +39,11 @@ const ProductTitle = () => {
       </Link>
       <Box className={classes.rating}>
         <ProductRating max={5} />
-        <Link variant="subtitle2" underline="hover" >
+        <Link variant="subtitle2" underline="hover">
           {`${rating} ${activWrods.rating}`}
         </Link>
         <span style={{ margin: "0 5px" }}>|</span>
-        <Link variant="subtitle2" underline="hover" >
+        <Link variant="subtitle2" underline="hover">
           {`${0} ${activWrods.askedQuestions}`}
         </Link>
       </Box>

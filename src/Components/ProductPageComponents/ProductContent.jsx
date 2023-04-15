@@ -1,11 +1,11 @@
 import React from "react";
-import { Stack  , Divider} from "@mui/material";
+import { Stack, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-import ProductTable from "./ProductTable";
-import ProductAbout from "./ProductAbout";
-import ProductTitle from "./ProductTitle";
-import ProductPrice from "./ProductPrice";
+import ProductTitle from "./ProductContent/ProductTitle";
+import ProductPrice from "./ProductContent/ProductPrice";
+import ProductTable from "./ProductContent/ProductTable";
+import ProductAbout from "./ProductContent/ProductAbout";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProductContent = () => {
-  console.log("ProductContent is runing")
+  console.log("ProductContent is runing");
   const classes = useStyles();
 
   return (
@@ -48,4 +48,4 @@ const ProductContent = () => {
   );
 };
 
-export default  ProductContent;
+export default ProductContent;
