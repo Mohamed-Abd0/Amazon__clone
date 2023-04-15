@@ -42,7 +42,6 @@
             "starting": "Starting",
             "EGP": "EGP",
             "backToTop": "back To Top",
-
             "knowUs": "Get to Know Us",
             "aboutAmazon": "About Amazon",
             "careers": "Careers",
@@ -94,24 +93,24 @@
             "bookReviews": "Book reviews ",
             "and": "&",
             "recommendations": "recommendations",
-            "findAttract": "Find, attract",
+            "findAttract": "Find, attract and engage customers",
             "leftInStock": "left in Stock ",
             "only": "only",
-
+            "off": "OFF",
+            "copoun": "COUPON",
+            "ar": "",
             "home": "Home",
-            "brand": "brand",
-            "rating": "rating",
-            "askedQuestions": "asked questions",
-            "about": "About this Item",
-            "listPrice": "List price",
-            "freeReturns": "FREE Returns",
-            "priceIncludeVAT": "price include VAT",
-            "cashOnDelivery": "Cash on Delivery",
-            "returnable": "15 days Returnable",
-            "deliveredByAmazon": "Delivered by Amazon",
-            "manufacturerWarranty": "10 Year Manufacturer Warranty"
-
-            
+    "brand": "brand",
+    "rating": "rating",
+    "askedQuestions": "asked questions",
+    "about": "About this Item",
+    "listPrice": "List price",
+    "freeReturns": "FREE Returns",
+    "priceIncludeVAT": "price include VAT",
+    "cashOnDelivery": "Cash on Delivery",
+    "returnable": "15 days Returnable",
+    "deliveredByAmazon": "Delivered by Amazon",
+    "manufacturerWarranty": "10 Year Manufacturer Warranty"
 
         } ,
         "ar" : {
@@ -157,7 +156,6 @@
             "starting": "تبدأ من",
             "EGP": "جنيه",
             "backToTop": "الرجوع للأعلى",
-
             "knowUs": "اعرف المزيد عنا",
             "aboutAmazon": "معلومات عن أمازون",
             "careers": "وظائف",
@@ -212,7 +210,8 @@
             "findAttract": "إيجاد العملاء وجذبهم والتفاعل معهم",
             "leftInStock": "تبقى ",
             "only": "فقط",
-
+            "off": "تخفيض",
+            "copoun": "قسيمة",
             "home": "الصفحة الرئيسية ",
             "brand": "العلامة التجارية",
             "rating": "تقييم",
@@ -225,7 +224,9 @@
             "returnable": "إمكانية الإرجاع خلال 15 يومًا",
             "deliveredByAmazon": "توصيل من أمازون",
             "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات"
+
         } 
+
         
     
 }

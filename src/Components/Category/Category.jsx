@@ -34,11 +34,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
 import Footer from "../Footer/Footer";
 import SwiperContainer from "../ReuseableComponets/SwiperContainer";
 import { suggestProductsBP } from "../../Constants/Constants";
+import AnotherSwiperContainer from '../ReuseableComponets/AnotherSwiperContainer'
 
 const Category = () => {
   const classes = useStyles();
@@ -79,11 +79,7 @@ const Category = () => {
 
   const productsRendering = () =>
     products.map((product) => (
-      <Box
-      // key={product.id}
-      // onClick={() => Navigate(`/product/${product.id}`)}
-      // style={{ cursor: "pointer" }}
-      >
+      // <Box>
         <Link to={"/product/" + product.id}>
           <Card className={classes.root}>
             {/* <Typography className={classes.cardHeader}>
@@ -139,7 +135,7 @@ const Category = () => {
             </CardContent>
           </Card>
         </Link>
-      </Box>
+      // {/* </Box> */}
     ));
   return (
     <>
@@ -303,8 +299,8 @@ const Category = () => {
                             className="coupon"
                             style={{
                               backgroundColor: "#E57A00",
-                              width: 115,
-                              height: 26,
+                              width: 120,
+                              height: 30,
                               justifyContent: "center",
                               borderRadius: "4px",
                               fontSize: 10,
@@ -316,7 +312,7 @@ const Category = () => {
                               marginBottom: "20px",
                             }}
                           >
-                            $25 off coupon
+                            $25 {langWordsActive.off} {langWordsActive.copoun}
                           </Button>
                           <Button
                             variant="contained"
@@ -461,9 +457,10 @@ const Category = () => {
                 <Typography className={classes.cardHeader}>
                   {langWordsActive.todaysDeals}
                 </Typography>
-                <SwiperContainer breakPoints={suggestProductsBP}>
-                  {productsRendering()}
-                </SwiperContainer>
+                <AnotherSwiperContainer  breakPoints={suggestProductsBP}>
+                {productsRendering()}
+                </AnotherSwiperContainer>
+               
                 {/* </Box> */}
               </Grid>
             </Grid>
@@ -471,7 +468,7 @@ const Category = () => {
           {/*  */}
 
           {/* Bact To Top button */}
-          <BackToTopButton />
+
           <Footer />
         </>
       )}

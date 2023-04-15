@@ -1,40 +1,40 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Divider, List, ListItem, Typography } from "@mui/material";
-import { Box, width } from "@mui/system";
+import { Box } from "@mui/system";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import TopNav from "../../Components/Layout/nav/TopNav";
 // Active Language selector
-import Flag from '../../assets/Flag_of_Egypt.png'
 import words from "../../leng.json";
 import { useDispatch, useSelector } from "react-redux";
-import languageChange from "./LangChoose";
 import LangChoose from "./LangChoose";
-import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
+import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 const useStyles = makeStyles((theme) => ({
   listItem: {
     lineHeight: "120%",
     fontSize: "13px",
     lineHeight: "120%",
     color: "#DDD",
-    // textAlign: "center",
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   listItem1: {
-    // lineHeight: "120%",
     fontSize: "10px",
     lineHeight: "120%",
     color: "#DDD",
     paddingTop: "0 !important",
-    paddingRight: '0 !important'
+    paddingRight: '0 !important',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
 
   listTitle: {
     fontWeight: "700 !important",
     fontSize: "16px",
-    // margin: "6px 0 14px 0",
     whiteSpace: "nowrap",
     paddingLeft: "16px",
     color: "#FFF",
@@ -45,9 +45,11 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     paddingLeft: "16px",
     color: "#FFF",
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   logo: {
-    // height: "40px",
     width: "80px",
   },
 }));
@@ -63,30 +65,25 @@ const homePage = () => {
 
 export default function Footer() {
   const classes = useStyles();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const location = useLocation();
   const lengActive = useSelector((state) => state.leng);
-  console.log(lengActive)
-  const activeLeng = lengActive.lang;
   const langWordsActive = words[`${lengActive.lang}`];
 
 
   return (
     <>
+    <BackToTopButton />
       <Box sx={{ backgroundColor: "#222F3E" }}>
         <Box
           sx={{
-            // backgroundColor: "white",
             padding: "50px 200px 50px 200px",
           }}
         >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography className={classes.listTitle}>
+              <Typography className={classes.listTitle} >
               {langWordsActive.knowUs}
               </Typography>
-              
               <List>
               <a href="https://www.amazon.eg/b?node=22624915031">
                 <ListItem className={classes.listItem}>{langWordsActive.aboutAmazon}</ListItem>
@@ -153,14 +150,14 @@ export default function Footer() {
           ></Divider>
         </Grid>
 
-        <Grid
-          container
-          spacing={2}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "30px",
-          }}
+
+        {/* <Grid container spacing={2}  direction="row" */}
+        <Grid container spacing={2}
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "30px",
+                }}
         >
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             
@@ -182,28 +179,26 @@ export default function Footer() {
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}
             style={{ padding: "20px" }}
           >
-          {/* <LangChoose/> */}
+          <LangChoose/>
           </Grid>
         </Grid>
       </Box>
-      {/* <TopNav/> */}
-
-      {/* </Box> */}
 
       <Box
-        sx={{ backgroundColor: "#131A22", padding: "50px 150px 50px 150px" }}
+        sx={{ backgroundColor: "#131A22", padding: '40px 90px' }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={2} direction="row"
+              justifyContent="center"
+              alignItems="center">
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <a href="https://advertising.amazon.com/?ref=footer_advtsing_2_eg">
             <Typography className={classes.listTitle1}>
               {langWordsActive.amazonAdvertising}
             </Typography>
-            <List>
+            <List >
               <ListItem className={classes.listItem1}>
                 {" "}
-                {langWordsActive.findAttract} and <br/> 
-                engage customers{" "}
+                {langWordsActive.findAttract} 
               </ListItem>
             </List>
             </a>
@@ -254,7 +249,9 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={2}  direction="row"
+                justifyContent="center"
+                alignItems="center">
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
               <a href="https://www.audible.ca/?ref=Adbl_ip_rdr_from_US&source_code=CANGBHP09121700NN&ipRedirectFrom=US&ipRedirectOriginalURL=">
               <List>
@@ -309,11 +306,12 @@ export default function Footer() {
         <Grid
           container
           spacing={2}
-          columnSpacing={2}
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
-          <Grid item>
-            <Typography className={classes.listTitle1}>
+          justifyContent="center"
+          alignItems="center">
+        
+          <Grid item display="flex"
+    justifyContent="center">
+            <Typography className={classes.listTitle1} align="center">
               {langWordsActive.conditionsUseSale}  &nbsp; {langWordsActive.privacyNotice} &nbsp;  {langWordsActive.InterestAds}
             </Typography>
             <Typography className={classes.listTitle1} sx={{align: 'center'}}>

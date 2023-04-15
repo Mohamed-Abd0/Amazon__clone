@@ -23,8 +23,7 @@ const Home = () => {
    // Active lang
    const lengActive = useSelector((state) => state.leng);
    const activeLeng = lengActive.lang;
-  //  console.log("activeLeng", activeLeng);
-  //  const langWordsActive = words[`${lengActive.lang}`];
+   const langWordsActive = words[`${lengActive.lang}`];
 
   // ********** Firebase query ***************
     const getProducts = async () => {
@@ -97,7 +96,7 @@ const Home = () => {
                         </Typography>
                         {product.count < 10 &&
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
-                          Only {product.count} left in stock.
+                          {langWordsActive.only} {product.count} {langWordsActive.leftInStock}.
                         </Typography>
                           }
                         </CardContent>
