@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import classes from "./Layout.module.css";
 import Header from "./Header.jsx";
-import { Modal } from "../../Modal";
+import { Modal } from "../Modal";
 import CheckoutHeader from "./CheckoutHeader";
 
 const Layout = () => {
@@ -11,13 +11,11 @@ const Layout = () => {
 
   // sellect the nave will appear depend on the route
   let header;
-  if(location.pathname === "/signin" || location.pathname === "/signup") {
-    header = null
-  }else {
-    header = location.pathname=== "/payment"? <CheckoutHeader /> : <Header />
-
+  if (location.pathname === "/signin" || location.pathname === "/signup") {
+    header = null;
+  } else {
+    header = location.pathname === "/payment" ? <CheckoutHeader /> : <Header />;
   }
-
 
   return (
     <Fragment>

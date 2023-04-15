@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BottomNav from "./nav/bottomNav";
 import Canvas from "./nav/Canves";
 import TopNav from "./nav/TopNav";
-import { getCategory } from "../../FirebaseFunctions";
+import { getCategory } from "../../Firebase-APIS/FirebaseFunctions";
 
 const Nav = () => {
   const [showDiolg, setShowDilog] = useState(false);

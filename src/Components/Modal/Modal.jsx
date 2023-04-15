@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, useMediaQuery, Fade } from "@mui/material";
-import { CartMenuSection } from "./";
-import { allModalsState } from "../Store/ModalSlice";
-import { overlayStyless } from "../Constants/Constants";
+import { CartMenuSection } from ".";
+import { allModalsState } from "../../Store/ModalSlice";
+import { overlayStyless } from "../../Constants/Constants";
 
 const Modal = () => {
   const { overlayState, cartMenuSectionState } = useSelector(
@@ -31,7 +31,7 @@ const Modal = () => {
       root.style.height = "100vh";
     } else {
       root.style.overflow = "inherit";
-      root.style.height = "inherit"
+      root.style.height = "inherit";
     }
   }, [overlayState]);
 

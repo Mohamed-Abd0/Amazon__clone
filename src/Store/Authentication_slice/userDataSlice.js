@@ -4,7 +4,7 @@ export const userDataSlice = createSlice({
   name: 'userData',
   initialState: {
     name: localStorage.getItem('name')? localStorage.getItem('name') : 'signin',
-    email: localStorage.getItem('name')? localStorage.getItem('email') : null,
+    email: localStorage.getItem('email')? localStorage.getItem('email') : null,
   },
   reducers: {
     setUserData: (state, action) => {

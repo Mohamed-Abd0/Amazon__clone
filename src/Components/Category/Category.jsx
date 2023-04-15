@@ -80,7 +80,7 @@ const Category = () => {
   const productsRendering = () =>
     products.map((product) => (
       // <Box>
-        <Link to={"/product/" + product.id}>
+        <Link key={product.id} to={"/product/" + product.id}>
           <Card className={classes.root}>
             {/* <Typography className={classes.cardHeader}>
                           {langWordsActive.todaysDeals}

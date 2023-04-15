@@ -38,7 +38,7 @@ const SuggestProducts = () => {
     ));
 
   return (
-    <Box sx={{ mt: { xs: 8, lg: 16 }, mb: 3, width: "65%", mx: "auto" }}>
+    <Box sx={{ mt: { xs: 8, lg: 16 }, mb: 3, width: "95%", mx: "auto" }}>
       <SwiperContainer breakPoints={suggestProductsBP}>
         {productsRendering()}
       </SwiperContainer>

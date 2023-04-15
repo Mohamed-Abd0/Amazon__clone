@@ -20,6 +20,5 @@ export default configureStore({
     chechout,
     cartItemNumber,
     nameUserSlice,
-    // user: userSlice,
   },
 });
