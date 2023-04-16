@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-const AddToCartBtn = () => {
+const AddToCartBtn = ({handleAddToCart}) => {
   return (
     <Button
       sx={{
@@ -14,6 +14,7 @@ const AddToCartBtn = () => {
         textTransfrom: "capitalize",
       }}
       disableRipple={true}
+      onClick={handleAddToCart} 
     >
       add to cart
     </Button>

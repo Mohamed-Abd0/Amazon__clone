@@ -9,7 +9,7 @@ import CheckoutHeader from "./CheckoutHeader";
 const Layout = () => {
   const location = useLocation();
 
-  // sellect the nave will appear depend on the route
+  // select the nav will appear depend on the route
   let header;
   if(location.pathname === "/signin" || location.pathname === "/signup") {
     header = null

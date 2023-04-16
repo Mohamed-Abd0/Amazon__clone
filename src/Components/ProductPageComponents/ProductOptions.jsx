@@ -1,22 +1,31 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Stack,
   Box,
   Grid,
   Typography,
   Link,
-  useMediaQuery,
   Divider,
 } from "@mui/material";
 import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
-import AddToCartBtn from "../ReuseableComponets/AddToCartBtn";
+import AddToCartBtn from "../ReuseableComponets/AddToCartBtn" 
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
+import { useNavigate } from "react-router-dom";
+import {addToCart} from "../../Store/CartSlice";
+
 
 const ProductOptions = () => {
-  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
-  console.log(product);
+  console.log('option is runing ');
+  const navigate = useNavigate();
+
+  
+  const dispatch = useDispatch();
+
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
+  const {items} = useSelector(({ CartSlice }) => CartSlice); 
+  
 
   const price = product.price;
   const seller = product.seller[1];
@@ -24,7 +33,14 @@ const ProductOptions = () => {
   const shipCompany = product.shipCompany.en;
   const count = product.count;
 
-  const mediaQuery = useMediaQuery("(min-width:900px)");
+  const handleAddToCart = (e) => {
+    e.preventDefault(); 
+    navigate('/cart');
+    dispatch(addToCart(product)); 
+    console.log(items);
+  }
+
+  
 
   return (
     <Box
@@ -125,7 +141,7 @@ const ProductOptions = () => {
             "button:first-of-type": { mb: 1 },
           }}
         >
-          <AddToCartBtn />
+          <AddToCartBtn handleAddToCart={handleAddToCart} />
           <BuyNowBtn />
         </Box>
 

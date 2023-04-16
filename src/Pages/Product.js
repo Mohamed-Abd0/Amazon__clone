@@ -8,8 +8,7 @@ import {
   SuggestProducts,
   ProductOptions,
 } from "../Components/ProductPageComponents";
-import { BackToHome, FloatingIcon } from "../Components/ReuseableComponets";
-import SettingsIcon from "@mui/icons-material/Settings";
+import { BackToHome } from "../Components/ReuseableComponets"; 
 import { Stack, Box } from "@mui/material";
 import getProductData from "../Firebase-APIS/Product/getProductData";
 
@@ -38,7 +37,9 @@ const Product = () => {
     };
 
     getProduct();
-  }, []);
+  }, [productId, dispatch]);
+
+
 
   // render the content if the product object is full 
   let content;
