@@ -1,7 +1,20 @@
-* {
-  font-family: 'Alexandria', sans-serif
-}
 
+
+
+
+
+
+
+
+
+
+* {
+  font-family: 'Alexandria', sans-serif ;
+}
+/* 
+.fa-globe {
+  font-family:  sans-serif !important;
+} */
 
 
 .home-image {
@@ -17,12 +30,14 @@
   .carousel-image {
    width: 100%
   }
-
+  /* HomePage slider prev/next buttons */
   .css-1abc02a {
     position: absolute ;
     height: 39% !important;
     background-color: transparent !important;
     z-index: 1;
+    height: 100px;
+    width: 20px;
     top: 0%;
     right: 0;
     color: #888;
@@ -38,6 +53,15 @@
   color: #888;
 }
 
+.css-ktslay-MuiButtonBase-root-MuiIconButton-root {
+  background-color: red;
+  border-radius: 0%;
+  -webkit-border-radius: 0%;
+  -moz-border-radius: 0%;
+  -ms-border-radius: 0%;
+  -o-border-radius: 0%;
+}
+
   .main-grid {
     z-index: 9999999;
   }
@@ -51,32 +75,6 @@
   overflow: visible !important;
 }
 
-.swiper-button-next, .swiper-button-prev {
-  position: absolute;
-  top: 55px;
-  background-color: #fff;
-  height: 80px !important;
-  line-height: 200px !important;
-  width: 45px;
-  text-align: center;
-  box-shadow: 0 1px 3px #888;
-  margin-top: -40px !important;
-  margin-left: -10px !important;
-}
-
-.swiper-button-next {
-  margin-right: 0px !important;
-}
-
-.swiper-button-next:after, .swiper-button-prev:after {
-  color: black;
-  line-height: normal;
-  position: relative;
-  top: 50%;
-  height: 90px !important ;
-  width: 25px;
-  margin-top: -30px;
-}
 
 .coupon::after {
   position: absolute;
@@ -93,7 +91,4 @@ transform: skew(-30deg);
 .MuiButton-label {
   justify-content: center;
 }
-/* 
-.back-to-top-button:hover {
-  background-color: aquamarine !important;
-} */
+

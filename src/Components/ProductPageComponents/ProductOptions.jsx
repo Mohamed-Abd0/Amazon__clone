@@ -67,7 +67,7 @@ const ProductOptions = () => {
           pt: 2.5,
           "& p": { fontSize: "12.5px", color: "text.gray" },
           a: { fontSize: "13px", color: "text.teal", cursor: "pointer" },
-          "a:hover": { color: "text.darkOriange" },
+          "a:hover": { color: "text.darkOrange" },
           gap: "0.6rem",
         }}
       >

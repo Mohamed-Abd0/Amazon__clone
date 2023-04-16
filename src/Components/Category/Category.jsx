@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useCallback } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import {
   Grid,
@@ -15,6 +15,7 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 import LinesEllipsis from "react-lines-ellipsis";
 import { Rating } from "@material-ui/lab";
+
 import useStyles from "../../Pages/Home/styles";
 import menClothes from "../../assets/men-clothes.jpg";
 import KitchenAppliances from "../../assets/Kitchen-appliances.jpg";
@@ -24,22 +25,20 @@ import cameraDeals from "../../assets/cameraDeals.jpg";
 import kitchen from "../../assets/Kitchen.jpg";
 import homeTools from "../../assets/toolsHome.jpg";
 import { useSelector, useDispatch } from "react-redux";
-import words from '../../leng.json';
+import words from "../../leng.json";
 import GridSkeleton from "../ReuseableComponets/GridSkeleton";
 // Active Language selector
-import { getactiveLeng } from '../../Store/nav_slice/lengRedusers';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-
+import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import BackToTopButton from "../ReuseableComponets/BackToTopButton";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
-
+import Footer from "../Footer/Footer";
+import SwiperContainer from "../ReuseableComponets/SwiperContainer";
+import { suggestProductsBP } from "../../Constants/Constants";
+import AnotherSwiperContainer from '../ReuseableComponets/AnotherSwiperContainer'
 
 const Category = () => {
   const classes = useStyles();
@@ -78,6 +77,66 @@ const Category = () => {
     }, 1000);
   }, []);
 
+  const productsRendering = () =>
+    products.map((product) => (
+      // <Box>
+        <Link key={product.id} to={"/product/" + product.id}>
+          <Card className={classes.root}>
+            {/* <Typography className={classes.cardHeader}>
+                          {langWordsActive.todaysDeals}
+                        </Typography> */}
+            <CardMedia
+              className={classes.media}
+              image={product.mainImg}
+              title={product.title}
+            />
+            <CardContent align="left">
+              <Typography style={{ marginBottom: 9 }}>
+                <span
+                  style={{
+                    background: "#CC0C39",
+                    boxShadow: "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
+                    color: "white",
+                    fontSize: 12,
+                    fontWeight: "bold",
+                    padding: 5,
+                    marginRight: 5,
+                  }}
+                >
+                  {langWordsActive.discount} {`${product.discountValue}%`}
+                </span>
+                <span
+                  style={{
+                    color: "#CC0C39",
+                    alignItems: "center",
+                    fontSize: 12,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    padding: 5,
+                    marginRight: 10,
+                  }}
+                >
+                  {langWordsActive.deal}
+                </span>
+              </Typography>
+
+              <Box
+                fontSize="10"
+                component="div"
+                overflow="hidden"
+                whiteSpace="pre-line"
+                textOverflow="ellipsis"
+                height={70}
+              >
+                <Typography variant="subtitle2">
+                  {product.minTitle[activeLeng]}
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Link>
+      // {/* </Box> */}
+    ));
   return (
     <>
       {isLoading ? (
@@ -86,13 +145,13 @@ const Category = () => {
         </>
       ) : (
         <>
-         <HomePageCarousel/>
+          <HomePageCarousel />
           {/* Main Container */}
           <Container maxWidth="l" style={{ background: "#E2E6E6" }}>
             <Grid container justify="center" spacing={2}>
               <Grid className="main-grid" container spacing={2}>
                 {/*  Women's fashion */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/ملابس حريمى">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -105,7 +164,7 @@ const Category = () => {
                         alt="makeup"
                       />
                       <CardContent>
-                        <Typography variant="caption" color="#007185">
+                        <Typography variant="subtitle2" color="#007185">
                           {langWordsActive.seeMore}
                         </Typography>
                       </CardContent>
@@ -113,7 +172,7 @@ const Category = () => {
                   </Link>
                 </Grid>
                 {/*  Men's fashion */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/ملابس رجالى">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -128,7 +187,7 @@ const Category = () => {
                       />
                       <CardContent>
                         <Typography
-                          variant="caption"
+                          variant="subtitle2"
                           color="#007185"
                           component="p"
                         >
@@ -139,7 +198,7 @@ const Category = () => {
                   </Link>
                 </Grid>
                 {/* Save big with coupons */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/لابتوب">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -154,7 +213,7 @@ const Category = () => {
                       />
                       <CardContent>
                         <Typography
-                          variant="caption"
+                          variant="subtitle2"
                           color="#007185"
                           component="p"
                         >
@@ -166,7 +225,7 @@ const Category = () => {
                 </Grid>
 
                 {randomDoc && (
-                  <Grid item key={randomDoc?.id} xs={4} md={3}>
+                  <Grid item key={randomDoc?.id} xs={12} sm={6} md={3}>
                     <Link to={"/product/" + randomDoc.id}>
                       <Card className={classes.root}>
                         <CardMedia
@@ -228,17 +287,6 @@ const Category = () => {
                               </span>
                             </Box>
                           </Typography>
-                          {randomDoc.stock < 10 && (
-                            <Typography
-                              style={{
-                                color: "red",
-                                fontWeight: "bold",
-                                fontSize: 12,
-                              }}
-                            >
-                              Only {randomDoc.stock} left in stock.
-                            </Typography>
-                          )}
                         </CardContent>
                         <Box
                           style={{
@@ -251,8 +299,8 @@ const Category = () => {
                             className="coupon"
                             style={{
                               backgroundColor: "#E57A00",
-                              width: 115,
-                              height: 26,
+                              width: 120,
+                              height: 30,
                               justifyContent: "center",
                               borderRadius: "4px",
                               fontSize: 10,
@@ -264,7 +312,7 @@ const Category = () => {
                               marginBottom: "20px",
                             }}
                           >
-                            $25 off coupon
+                            $25 {langWordsActive.off} {langWordsActive.copoun}
                           </Button>
                           <Button
                             variant="contained"
@@ -283,12 +331,17 @@ const Category = () => {
                             {langWordsActive.seeMore}
                           </Button>
                         </Box>
+                        {randomDoc.count < 10 &&
+                        <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12, padding: '10px'}}>
+                          {langWordsActive.only} {randomDoc.count} {langWordsActive.leftInStock}.
+                        </Typography>
+                          }
                       </Card>
                     </Link>
                   </Grid>
                 )}
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -314,7 +367,7 @@ const Category = () => {
                   </Link>
                 </Grid>
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -340,7 +393,7 @@ const Category = () => {
                   </Link>
                 </Grid>
 
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -367,7 +420,7 @@ const Category = () => {
                 </Grid>
 
                 {/* Kitchen essentials  */}
-                <Grid className={classes.paper} item xs={4} md={3}>
+                <Grid className={classes.paper} item xs={12} sm={6} md={3}>
                   <Link to="category/decor">
                     <Card className={classes.root} style={{ height: "100%" }}>
                       <Typography className={classes.cardHeader}>
@@ -394,6 +447,7 @@ const Category = () => {
                 </Grid>
               </Grid>
               {/* Today's Deals Using Swiper MUI */}
+              {/* <Box sx={{ mt: { xs: 8, lg: 16 }, mb: 3, width: "65%", mx: "auto" }}> */}
               <Grid
                 className={classes.paper}
                 item
@@ -403,96 +457,21 @@ const Category = () => {
                 <Typography className={classes.cardHeader}>
                   {langWordsActive.todaysDeals}
                 </Typography>
-                <Swiper
-                  className={classes.swiper}
-                  style={{ background: "#fff" }}
-                  modules={[Navigation, Pagination, Scrollbar, A11y]}
-                  spaceBetween={10}
-                  slidesPerView={5}
-                  navigation
-                  // pagination={{ clickable: false }}
-                  scrollbar={{ draggable: true }}
-                >
-                  {products.map((product, index) => {
-                    console.log("products", product);
-                    if (product.discountValue && product.discountValue <= 10) {
-                      return (
-                        <SwiperSlide
-                          className={classes.swipeSlide}
-                          key={product.id}
-                        >
-                          <Link to={"/product/" + product.id}>
-                            <Card className={classes.root}>
-                              {/* <Typography className={classes.cardHeader}>
-                          {langWordsActive.todaysDeals}
-                        </Typography> */}
-                              <CardMedia
-                                className={classes.media}
-                                image={product.mainImg}
-                                title={product.title}
-                              />
-                              <CardContent align="left">
-                                <Typography style={{ marginBottom: 9 }}>
-                                  <span
-                                    style={{
-                                      background: "#CC0C39",
-                                      boxShadow:
-                                        "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
-                                      color: "white",
-                                      fontSize: 12,
-                                      fontWeight: "bold",
-                                      padding: 5,
-                                      marginRight: 5,
-                                    }}
-                                  >
-                                    {langWordsActive.discount}{" "}
-                                    {`${product.discountValue}%`}
-                                  </span>
-                                  <span
-                                    style={{
-                                      color: "#CC0C39",
-                                      alignItems: "center",
-                                      fontSize: 12,
-                                      textAlign: "center",
-                                      fontWeight: "bold",
-                                      padding: 5,
-                                      marginRight: 10,
-                                    }}
-                                  >
-                                    {langWordsActive.deal}
-                                  </span>
-                                </Typography>
-
-                                <Box
-                                  fontSize="10"
-                                  component="div"
-                                  overflow="hidden"
-                                  whiteSpace="pre-line"
-                                  textOverflow="ellipsis"
-                                  height={70}
-                                >
-                                  <Typography variant="subtitle2" >
-                                    {product.minTitle[activeLeng]}
-                                  </Typography>
-                                  {/* {product.minTitle[activeLeng]} */}
-                                </Box>
-                              </CardContent>
-                            </Card>
-                          </Link>
-                        </SwiperSlide>
-                      );
-                    }
-                  })}
-                </Swiper>
+                <AnotherSwiperContainer  breakPoints={suggestProductsBP}>
+                {productsRendering()}
+                </AnotherSwiperContainer>
+               
+                {/* </Box> */}
               </Grid>
-
-              {/* Bact To Top button */}
-              <BackToTopButton/>
             </Grid>
           </Container>
+          {/*  */}
+
+          {/* Bact To Top button */}
+
+          <Footer />
         </>
       )}
-      
     </>
   );
 };

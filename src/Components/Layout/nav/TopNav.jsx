@@ -41,10 +41,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         e.classList.add("font-bold");
       }
     });
-    // console.log();
   }, []);
 
-  // console.log(activeLeng);
   const focusInput = (ev) => {
     inputRef.current.classList.add("border-active");
     setShowDilog(true);
@@ -55,7 +53,6 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     inputRef.current.classList.remove("border-active");
   };
 
-  // console.log(activeLeng);
   return (
     <div
       className={
@@ -309,6 +306,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             </span>
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
+
+          
           <Link to={"Cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />

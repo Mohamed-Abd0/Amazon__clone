@@ -16,11 +16,13 @@ const SwiperContainer = (props) => {
 
   return (
     <Box
+
+
+    
       sx={{
         ".swiper-button-next::after , .swiper-button-prev::after": {
           fontSize: "18px",
           color: "white",
-
           py: 1.4,
           px: 1.5,
           borderRadius: "8px",

@@ -1,6 +1,7 @@
 import React from "react";
 import { images } from "../../Pages/Home/SliderImages";
 import Carousel from "react-material-ui-carousel";
+import { useSelector } from "react-redux";
 
 function Item(props) {
   return (
@@ -11,6 +12,10 @@ function Item(props) {
 }
 
 const HomePageCarousel = () => {
+  const lengActive = useSelector((state) => state.leng);
+  const activeLeng = lengActive.lang;
+  console.log(activeLeng)
+  // const active= 'ar'
   return (
     <>
       {/*  Main Slider */}
@@ -22,7 +27,7 @@ const HomePageCarousel = () => {
           timeout={30}
           indicators={false}
         >
-          {images.map((image) => (
+          {images[activeLeng].map((image) => (
             <Item key={image.id} item={image} />
           ))}
         </Carousel>

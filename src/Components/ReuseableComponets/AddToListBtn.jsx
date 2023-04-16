@@ -11,7 +11,6 @@ const AddToListBtn = () => {
         border: "none",
         color: "text.black",
         borderColor: "border.darkgray",
-        // eslint-disable-next-line
         border: "1px solid",
         fontSize: "12px",
         borderRadius: "5px",

@@ -29,14 +29,15 @@ export default makeStyles((theme) => ({
     },
 
     cardHeader: {
+      
+      fontFamily: `'Alexandria', sans-serif !important`,
       padding: 15,
       fontSize: 21,
       // lineHeight: 27.3,
       color: 'black',
-      fontWeight: 'bold',
       whiteSpace: 'normal',
       fontWeight: 'bolder',
-      fontFamily: `'Alexandria', sans-serif`
+      
     },
     
     cardActions: {

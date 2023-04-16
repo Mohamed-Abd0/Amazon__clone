@@ -40,7 +40,6 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
         </Link>
         <div className="allSections relative overflow-scroll h-full">
           {category?.map((e, i) => {
-            // console.log(e.lengNow);
             return (
               <div key={i} className="sec sec1">
                 <Link

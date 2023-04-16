@@ -17,6 +17,19 @@ import PaymentForm from "../Components/Payment/PaymentForm.jsx";
 
 //===================================================================
 
+
+const Confirmation = () => {
+  return (
+    <>
+      <div>
+        <Typography variant="h5">
+          Thank you for your pruchase, firstName lastName
+        </Typography>
+      </div>
+    </>
+  );
+};
+
 const Payment = () => {
   const [activeStep, setActiveStep] = useState(1);
   const classes = useStyles();
@@ -24,17 +37,6 @@ const Payment = () => {
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   // const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-  const Confirmation = () => {
-    return (
-      <>
-        <div>
-          <Typography variant="h5">
-            Thank you for your pruchase, firstName lastName
-          </Typography>
-        </div>
-      </>
-    );
-  };
 
   return (
     <>

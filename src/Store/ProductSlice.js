@@ -4,14 +4,14 @@ const ProductSlice = createSlice({
   name: "product",
   initialState: {
     product: null,
-    currentImg: null,
-    amount: 1,
+    // currentImg: null,
+    // amount: 1,
   },
   reducers: {
     setProductData: (state, { payload }) => {
       state.product = payload.productData;
-      state.currentImg = payload.productData.mainImg;
-      state.amount = 1;
+      // state.currentImg = payload.productData.mainImg;
+      // state.amount = 1;
     },
     setCurrentImg: (state, { payload }) => {
       state.currentImg = payload;

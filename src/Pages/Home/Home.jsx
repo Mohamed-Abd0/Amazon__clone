@@ -8,8 +8,10 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import useStyles from "./styles";
 import { db } from '../../firebase';
 import {collection, getDocs, query, where} from "firebase/firestore";
+
 import { useDispatch, useSelector } from 'react-redux';
 import words from "../../leng.json";
+import Footer from '../../Components/Footer/Footer';
 
 
 const Home = () => {
@@ -19,10 +21,8 @@ const Home = () => {
   const categoryType = useParams();
   const queryResults = [];
    // Active lang
-   const dispatch = useDispatch();
    const lengActive = useSelector((state) => state.leng);
    const activeLeng = lengActive.lang;
-   console.log("activeLeng", activeLeng);
    const langWordsActive = words[`${lengActive.lang}`];
 
   // ********** Firebase query ***************
@@ -96,7 +96,7 @@ const Home = () => {
                         </Typography>
                         {product.count < 10 &&
                         <Typography  style={{color: 'red', fontWeight: 'bold', fontSize: 12}}>
-                          Only {product.count} left in stock
+                          {langWordsActive.only} {product.count} {langWordsActive.leftInStock}.
                         </Typography>
                           }
                         </CardContent>
@@ -110,6 +110,7 @@ const Home = () => {
             })}
         </Grid>
       </Container>
+      <Footer/>
       </>
     );
     }
