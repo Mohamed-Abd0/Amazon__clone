@@ -1,5 +1,5 @@
 import React from "react";
-import { images } from "../../Pages/Home/SliderImages";
+import { images } from "../../Constants/SliderImages"
 import Carousel from "react-material-ui-carousel";
 import { useSelector } from "react-redux";
 

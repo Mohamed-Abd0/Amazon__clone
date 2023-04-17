@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Stack, Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { allModalsState } from "../../Store/ModalSlice";
+import { allModalsState } from "../../../Store/ModalSlice";
 import CartMenuItem from "./CartMenuItem";
 
 const CartMenuSection = () => {

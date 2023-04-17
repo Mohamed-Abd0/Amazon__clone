@@ -9,30 +9,30 @@ const CategoryDetails = ({name, image, title}) => {
     const classes = useStyles();
     const lengActive = useSelector((state) => state.leng);
     const langWordsActive = words[`${lengActive.lang}`];
-  return (
-    <>
-      <Grid className={classes.paper} item xs={12} sm={6} md={3}>
-        <Link to={`category/${name}`} >
-          <Card className={classes.root} style={{ height: "100%" }}>
-            <Typography className={classes.cardHeader}>
-              {title}
-            </Typography>
-            <img
-              className={classes.media1}
-              src={image}
-              title="makeup"
-              alt="makeup"
-            />
-            <CardContent>
-              <Typography variant="subtitle2" color="#007185">
-                {langWordsActive.seeMore}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Link>
-      </Grid>
-    </>
-  );
+    return (
+        <>
+            <Grid className={classes.paper} item xs={12} sm={6} md={3}>
+                <Link to={`category/${name}`} >
+                <Card className={classes.root} style={{ height: "100%" }}>
+                    <Typography className={classes.cardHeader}>
+                    {title}
+                    </Typography>
+                    <img
+                    className={classes.media1}
+                    src={image}
+                    title={name}
+                    alt={name}
+                    />
+                    <CardContent>
+                    <Typography variant="subtitle2" color="#007185">
+                        {langWordsActive.seeMore}
+                    </Typography>
+                    </CardContent>
+                </Card>
+                </Link>
+            </Grid>
+        </>
+    );
 };
 
 export default CategoryDetails;

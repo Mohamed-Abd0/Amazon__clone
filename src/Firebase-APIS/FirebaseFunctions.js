@@ -1,5 +1,5 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "./firebase";
+import { db } from "../firebase";
 
 export async function getCategory() {
   const req = doc(db, "category", "IjcIcmJzA3qlFATugZm0");

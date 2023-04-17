@@ -7,7 +7,8 @@ const ProductImg = () => {
   console.log("productImg is running");
 
   // get product data from the product slice [redux]
-  const { product , currentImg} = useSelector(({ ProductSlice }) => ProductSlice);
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const currentImg = product.mainImg
 
   const [currentImage , setCurrentImage] = useState(currentImg)
 

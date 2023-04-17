@@ -41,10 +41,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         e.classList.add("font-bold");
       }
     });
-    // console.log();
   }, []);
 
-  // console.log(activeLeng);
   const focusInput = (ev) => {
     inputRef.current.classList.add("border-active");
     setShowDilog(true);
@@ -55,7 +53,6 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     inputRef.current.classList.remove("border-active");
   };
 
-  // console.log(activeLeng);
   return (
     <div
       className={

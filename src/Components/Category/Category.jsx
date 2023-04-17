@@ -21,7 +21,6 @@ import GridSkeleton from "../ReuseableComponets/GridSkeleton";
 // Active Language selector
 import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 import HomePageCarousel from "../ReuseableComponets/HomePageCarousel";
-import Footer from "../Footer/Footer";
 import { suggestProductsBP } from "../../Constants/Constants";
 import MainSwiperContainer from '../ReuseableComponets/MainSwiperContainer'
 import CategoryDetails from "../ReuseableComponets/CategoryDetails";
@@ -66,15 +65,12 @@ const Category = () => {
   const productsRendering = () =>
     products.map((product) => (
       // <Box>
-        <Link to={"/product/" + product.id}>
+        <Link key={product.id} to={"/product/" + product.id}>
           <Card className={classes.root}>
-            {/* <Typography className={classes.cardHeader}>
-                          {langWordsActive.todaysDeals}
-                        </Typography> */}
             <CardMedia
               className={classes.media}
               image={product.mainImg}
-              title={product.title}
+              title={product.minTitle[activeLeng]}
             />
             <CardContent align="left">
               <Typography style={{ marginBottom: 9 }}>
@@ -140,21 +136,21 @@ const Category = () => {
               <Grid className="main-grid" container spacing={2}>
                 {/*  MakeUp */}
                 <CategoryDetails
-                  name={"MakeUp"}
+                  name={langWordsActive.makeUp}
                   image={makeup}
                   title={`${langWordsActive.makeUp} | ${langWordsActive.newArrivals}`}
                 />
 
                 {/*  Men's fashion */}
                 <CategoryDetails
-                  name={"ملابس رجالى"}
+                  name={langWordsActive.menFasion}
                   image={menClothes}
                   title={`${langWordsActive.menFasion} | ${langWordsActive.discount}  70%`}
                 />
 
                 {/* Save big with coupons */}
                 <CategoryDetails
-                  name={" لابتوب"}
+                  name={langWordsActive.computer}
                   image={KitchenAppliances}
                   title={`${langWordsActive.kitchenAppliances} | ${langWordsActive.installments}`}
                 />
@@ -166,7 +162,7 @@ const Category = () => {
                         <CardMedia
                           className={classes.media}
                           image={randomDoc.mainImg}
-                          title={randomDoc.title}
+                          title={randomDoc?.minTitle[activeLeng]}
                         />
                         <CardContent align="left">
                           <div className={classes.cardContent}>
@@ -330,7 +326,7 @@ const Category = () => {
               </Grid>
             </Grid>
           </Container>
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>
