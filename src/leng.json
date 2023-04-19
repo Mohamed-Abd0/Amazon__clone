@@ -40,7 +40,7 @@
     "cameraAccessories": "Camera & accessories",
     "securityCameras": "Security cameras",
     "starting": "Starting",
-    "EGP": "EGP",
+    "rgb(255, 164, 28)": "EGP",
     "backToTop": "back To Top",
     "knowUs": "Get to Know Us",
     "aboutAmazon": "About Amazon",
@@ -65,7 +65,7 @@
     "conditionsUseSale": "Conditions of Use & Sale",
     "privacyNotice": "Privacy Notice",
     "InterestAds": "Interest-Based Ads",
-    "copyRight": "&copy;",
+    "copyRight": "©",
     "year1996": "1996-2023",
     "amazonInc": "Amazon.com, Inc.",
     "or": "or",
@@ -111,7 +111,8 @@
     "returnable": "15 days Returnable",
     "deliveredByAmazon": "Delivered by Amazon",
     "manufacturerWarranty": "10 Year Manufacturer Warranty",
-    "computer": "Computer"
+    "computer": "computer",
+    "noProductsIn": "No Products In"
   },
   "ar": {
     "country": "مصر",
@@ -224,6 +225,7 @@
     "returnable": "إمكانية الإرجاع خلال 15 يومًا",
     "deliveredByAmazon": "توصيل من أمازون",
     "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات",
-    "computer": "كمبيوتر"
+    "computer": "كمبيوتر",
+    "noProductsIn": "لا يوجد منتجات "
   }
 }

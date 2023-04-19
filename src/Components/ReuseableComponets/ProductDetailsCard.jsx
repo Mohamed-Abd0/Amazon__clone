@@ -45,7 +45,7 @@ const ProductDetailsCard = ({product}) => {
               size="small"
               justify="left"
               // ratind should come from API
-              value={product.rate}
+              value={product?.reting.mainRating}
               precision={0.5}
               readOnly
             ></Rating>
@@ -53,7 +53,7 @@ const ProductDetailsCard = ({product}) => {
           </Typography>
           <Typography gutterBottom variant="body1" component="h2" align="left">
             <Box sx={{ span: { fontSize: "12px" }, display: "flex" }}>
-              <span style={{ marginLeft: "10px" }}> $</span>
+              <span style={{ marginLeft: "10px" }}> {langWordsActive.EGP}</span>
               <Typography variant="h4" sx={{ mt: "-3px" }}>
                 {Math.floor(product.price)}
               </Typography>

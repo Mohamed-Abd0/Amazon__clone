@@ -10,7 +10,6 @@ const BackToTopButton = () => {
   const dispatch = useDispatch();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;
-  console.log("activeLeng", activeLeng);
   const langWordsActive = words[`${lengActive.lang}`];
   const handleScroll = () => {
     if (window.pageYOffset > 300) {

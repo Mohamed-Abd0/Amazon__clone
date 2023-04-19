@@ -25,7 +25,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Modal />
-      {(location.pathname === "/signIn" || location.pathname === "/signup") ? null : <Footer/> }
+      {(location.pathname === "/signin" || location.pathname === "/signup") ? null : <Footer/> }
       
     </Fragment>
   );
