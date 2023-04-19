@@ -12,31 +12,36 @@ import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
 import AddToCartBtn from "../ReuseableComponets/AddToCartBtn" 
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
+import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
 import { useNavigate } from "react-router-dom";
 import {addToCart} from "../../Store/CartSlice";
-
+import words from "./../../leng.json"
 
 const ProductOptions = () => {
   console.log('option is runing ');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   
-  const dispatch = useDispatch();
 
   const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
   const {items} = useSelector(({ CartSlice }) => CartSlice); 
   
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
 
-  const price = product.price;
-  const seller = product.seller[1];
-  const ShippingFree = product.shippingFree;
-  const shipCompany = product.shipCompany.en;
+  // extract data from the product
+  const seller = product.seller[`${lengActive.lang}`];
+  const shipCompany = product.shipCompany[`${lengActive.lang}`];
   const count = product.count;
+
+  // get translated words
+  const deliveryToEgypt = activWrods.DeliveryToEgypt
 
   const handleAddToCart = (e) => {
     e.preventDefault(); 
-    navigate('/cart');
     dispatch(addToCart(product)); 
+    navigate('/cart');
     console.log(items);
   }
 
@@ -73,36 +78,11 @@ const ProductOptions = () => {
       >
         {/* //-------------------Price--------------------------------------- */}
 
-        <Box
-          variant="body1"
-          sx={{
-            span: { fontSize: "12px" },
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack flexDirection="row">
-            <span>EGP </span>
-            <div
-              style={{
-                fontSize: "25px",
-                fontWeight: "400",
-                marginTop: "-6px",
-              }}
-            >
-              {price}
-            </div>
-            <span> 00</span>
-          </Stack>
-        </Box>
+        <DiscountedOptionsPrice/>
 
         {/* //---------------------------------------------------------------- */}
 
-        <Typography variant="body2">
-          {ShippingFree ? "FREE delivery April 11 - 12" : "FREE delivery"}{" "}
-          <br />
-          <Link underline="hover">Details</Link>
-        </Typography>
+
 
         {/* //---------------------------------------------------------------- */}
 
@@ -114,7 +94,7 @@ const ProductOptions = () => {
         >
           <LocationOnTwoToneIcon />
           <Link underline="hover" sx={{ ml: 0.5 }}>
-            Delivery to egypt
+            {deliveryToEgypt}
           </Link>
         </Box>
 
