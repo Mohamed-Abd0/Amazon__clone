@@ -195,8 +195,8 @@ const Category = () => {
                 </Typography>
                 <MainSwiperContainer breakPoints={suggestProductsBP}>
                   {products.map((product) => (
-                    <Box>
-                      <Link key={product.id} to={"/product/" + product.id}>
+                    <Box key={product.id}>
+                      <Link  to={"/product/" + product.id}>
                         <TodaysDealsCard product={product} />
                       </Link>
                     </Box>
@@ -205,7 +205,6 @@ const Category = () => {
               </Grid>
             </Grid>
           </Container>
-          {/* <Footer /> */}
         </>
       )}
     </>
