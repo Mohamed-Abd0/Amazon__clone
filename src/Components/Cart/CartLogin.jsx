@@ -2,7 +2,7 @@ import React from 'react'
 
 const CartLogin = () => {
   return (
-    <div className="bg-[#EAEDED] h-[100vh]">
+    <div className="h-[100vh]">
       <div className="px-4 py-14 flex space-x-4 bg-white w-full">
         <div className="hidden">
           <img
