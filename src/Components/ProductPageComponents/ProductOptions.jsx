@@ -5,6 +5,7 @@ import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
 import AddToCartBtn from "../ReuseableComponets/AddToCartBtn";
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
+import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../Store/CartSlice";
 
@@ -14,6 +15,8 @@ const ProductOptions = () => {
 
   const dispatch = useDispatch();
 
+  
+
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   const { items } = useSelector(({ CartSlice }) => CartSlice);
 
@@ -22,6 +25,9 @@ const ProductOptions = () => {
   const ShippingFree = product.shippingFree;
   const shipCompany = product.shipCompany.en;
   const count = product.count;
+
+  // get translated words
+  const deliveryToEgypt = activWrods.DeliveryToEgypt
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -66,36 +72,11 @@ const ProductOptions = () => {
       >
         {/* //-------------------Price--------------------------------------- */}
 
-        <Box
-          variant="body1"
-          sx={{
-            span: { fontSize: "12px" },
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack flexDirection="row">
-            <span>EGP </span>
-            <div
-              style={{
-                fontSize: "25px",
-                fontWeight: "400",
-                marginTop: "-6px",
-              }}
-            >
-              {price}
-            </div>
-            <span> 00</span>
-          </Stack>
-        </Box>
+        <DiscountedOptionsPrice/>
 
         {/* //---------------------------------------------------------------- */}
 
-        <Typography variant="body2">
-          {ShippingFree ? "FREE delivery April 11 - 12" : "FREE delivery"}{" "}
-          <br />
-          <Link underline="hover">Details</Link>
-        </Typography>
+
 
         {/* //---------------------------------------------------------------- */}
 
@@ -107,7 +88,7 @@ const ProductOptions = () => {
         >
           <LocationOnTwoToneIcon />
           <Link underline="hover" sx={{ ml: 0.5 }}>
-            Delivery to egypt
+            {deliveryToEgypt}
           </Link>
         </Box>
 
