@@ -1,31 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Stack,
-  Box,
-  Grid,
-  Typography,
-  Link,
-  Divider,
-} from "@mui/material";
+import { Stack, Box, Grid, Typography, Link, Divider } from "@mui/material";
 import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
-import AddToCartBtn from "../ReuseableComponets/AddToCartBtn" 
+import AddToCartBtn from "../ReuseableComponets/AddToCartBtn";
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
 import { useNavigate } from "react-router-dom";
-import {addToCart} from "../../Store/CartSlice";
-
+import { addToCart } from "../../Store/CartSlice";
 
 const ProductOptions = () => {
-  console.log('option is runing ');
+  console.log("option is runing ");
   const navigate = useNavigate();
 
-  
   const dispatch = useDispatch();
 
-  const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
-  const {items} = useSelector(({ CartSlice }) => CartSlice); 
-  
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const { items } = useSelector(({ CartSlice }) => CartSlice);
 
   const price = product.price;
   const seller = product.seller[1];
@@ -34,13 +24,16 @@ const ProductOptions = () => {
   const count = product.count;
 
   const handleAddToCart = (e) => {
-    e.preventDefault(); 
-    navigate('/cart');
-    dispatch(addToCart(product)); 
-    console.log(items);
-  }
+    e.preventDefault();
+ 
+    // Dispatch the addToCart action to add the product to the cart
+    dispatch(addToCart(product));
 
-  
+    // nagigate to the cart page
+    navigate("/cart");
+    console.log(items);
+  };
+
 
   return (
     <Box
@@ -153,7 +146,7 @@ const ProductOptions = () => {
             "p:first-of-type": { mb: 0.6 },
           }}
         >
-          <Grid container spacing={3} sx={ {fontSize: "9px"}}>
+          <Grid container spacing={3} sx={{ fontSize: "9px" }}>
             <Grid item>
               <Typography variant="body2">Payment</Typography>
 

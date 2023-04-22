@@ -1,61 +1,128 @@
-import React from 'react'
+import { Box, Checkbox, Divider, Typography } from "@mui/material";
+import React from "react";
+import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../../../Store/CartSlice";
+import SelectItem from "./productData/SelectItem";
 
-const ProductData = ({mainImg, title, price}) => {
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+const ProductData = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const deleteHandler = () => {
+    dispatch(deleteFromCart(item));
+    console.log("delete");
+  };
+
+  // ____ Product Data ____
+  const mainImg = item.mainImg;
+  const minTitle = item.minTitle.en;
+  const price = item.price;
+  const quantity = item.count;
+  console.log(quantity);
+  // ______________________
+
+  const renderQuantityValue = () => {
+    return `Qty: ${quantity}`;
+  };
+
   return (
-    <>
-    <div className="flex items-center maxmd:items-start flex-row maxmd:flex-col space-x-16 maxmd:space-x-0">
-    {/* image */}
-    <div className="flex items-center space-x-4">
-      <input type="checkbox" name="" id="" />
-      {mainImg.map((img, idx) => (
-        <img key={idx} width={200} height={200} src={img} alt="" />
-      ))}
-    </div>
-    {/* details */}
-    <div className="space-y-2 ">
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginTop: "20px",
+        fontSize: "14px",
+        height: "200px",
+        lineHeight: "1.3rem",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          width: "60%",
+        }}
+      >
+        {/* image */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "30%",
+            paddingRight: "15px",
+          }}
+        >
+          <Checkbox
+            {...label}
+            defaultChecked
+            color="default"
+            sx={{
+              margin: "0",
+              padding: "0",
+              "&.Mui-checked": {
+                color: "#007185",
+              },
+            }}
+          />
+          <img width={170} height={170} src={mainImg} alt="" />
+        </Box>
+        {/*________*/}
 
-      <div className="flex justify-between maxmd:mt-4">
-        <p className="text-sm font-semibold w-3/4">{title}</p>
-        <span className="font-bold">EGP{price}</span>
-      </div>
+        {/* details */}
+        <Box sx={{ paddingLeft: "10px" }}>
+          <div className="flex justify-between maxmd:mt-4">
+            <Typography
+              variant="subTitle1"
+              sx={{ fontSize: "18px", lineHeight: "1.3rem" }}
+            >
+              {minTitle}
+            </Typography>
+          </div>
 
-      <span className="block text-xs text-[#007600]">In stock</span>
-      <div className="flex flex-row items-center">
-        <input type="checkbox" name="" id="" />
-        <p className="text-[12px] ml-2">
-          This is a gift
-          <span className="text-[#007185] cursor-pointer"> Learn more</span>
-        </p>
-      </div>
+          <Box sx={{ fontSize: "12px", lineHeight: "16px", margin: "8px 0" }}>
+            <Typography variant="caption" sx={{ color: "#007600" }}>
+              In stock
+            </Typography>
+            <br />
+            <Typography variant="caption" sx={{ color: "#565959" }}>
+              Eligible for FREE delivery
+            </Typography>
+          </Box>
 
-      <span className="flex text-[12px]">
-        <span className="text-black font-bold">Color:</span> Black
-      </span>
+          <div className="flex flex-row flex-wrap space-x-5 items-center ">
+            <div className="relative">
+              <SelectItem renderQuantityValue={renderQuantityValue}/>
+            </div>
 
-      <div className="flex flex-row flex-wrap space-x-8 items-center text-[14px]">
-        <div className="relative">
-          <button className="border shadow-md py-px px-2 maxmd:mt-4">
-            Qty: 1
-          </button>
-        </div>
-        <div className="h-4 w-px bg-gray-500 maxmd:mt-4"></div>
-        <span className="text-[#007185] maxmd:mt-4 cursor-pointer">
-          Delete
-        </span>
-        <div className="h-4 w-px bg-gray-500 maxmd:mt-4"></div>
-        <span className="text-[#007185] maxmd:mt-4 cursor-pointer">
-          Save for later
-        </span>
-        <div className="h-4 w-px bg-gray-500 maxmd:mt-4"></div>
-        <span className="text-[#007185] maxmd:mt-4 cursor-pointer">
-          Compare with similat items
-        </span>
-      </div>
-      
-    </div>
-  </div>
-    </>
-  )
+            <Divider orientation="vertical" flexItem />
+
+            <UnderLineSpan deleteHandler={deleteHandler}>Delete</UnderLineSpan>
+
+            <Divider orientation="vertical" flexItem />
+
+            <UnderLineSpan>Save for later</UnderLineSpan>
+
+            <Divider orientation="vertical" flexItem />
+
+            <UnderLineSpan>Share</UnderLineSpan>
+          </div>
+        </Box>
+      </Box>
+      {/*________*/}
+
+      {/* Price */}
+      <Box>
+        <Typography
+          variant="subTitle2"
+          sx={{ fontSize: "18px", fontWeight: "600", width: "30%" }}
+        >
+          EGP {price}
+        </Typography>
+      </Box>
+      {/*________*/}
+    </Box>
+  );
 };
 
 export default ProductData;

@@ -1,51 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedItems = localStorage.getItem('product');
+
+const initialState = {
+  items: savedItems ? JSON.parse(savedItems) : [],
+}
+
 const CartSlice = createSlice({
-    name : "Cart",
-    initialState : {
-        items : [],
-        
+  name: "Cart",
+  initialState,
+  reducers: {
+    addToCart: (state, { payload }) => {
+      const existingItems = state.items;
+      const updatedItems = [...existingItems, payload];
+      localStorage.setItem('product', JSON.stringify(updatedItems));
+      state.items = updatedItems;
     },
-    reducers : {
-        addToCart : (state, {payload}) => {
-            state.items.push(payload)
-        }
-    }
+    deleteFromCart: (state, { payload }) => {
+        const existingItems = state.items;
+        const updatedItems = existingItems.filter(items => items.id !== payload.id);
+        localStorage.setItem('product', JSON.stringify(updatedItems));
+        state.items = updatedItems;
+    },
+    clearCart: (state) => {
+      state.items = [];
+      localStorage.removeItem('product');
+    },
+  },
+});
 
-})
+export const { addToCart, deleteFromCart, clearCart } = CartSlice.actions;
 
-export const {addToCart} = CartSlice.actions;
-
-export default CartSlice.reducer
-
- 
-
- 
-//   reducers: {
-//     addToCart: (state, action) => {
-//       const item = action.payload
-//       const existingItem = state.items.find(i => i.id === item.id)
-//       if (existingItem) {
-//         existingItem.quantity++
-//       } else {
-//         state.items.push({ ...item, quantity: 1 })
-//       }
-//     },
-//     removeFromCart: (state, action) => {
-//       const id = action.payload
-//       state.items = state.items.filter(i => i.id !== id)
-//     },
-//     updateQuantity: (state, action) => {
-//       const { id, quantity } = action.payload
-//       const item = state.items.find(i => i.id === id)
-//       if (item) {
-//         item.quantity = quantity
-//       }
-//     },
-//     clearCart: (state) => {
-//       state.items = []
-//     }
-//   } 
-
-// export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions
-// export default cartSlice.reducer
+export default CartSlice.reducer;
