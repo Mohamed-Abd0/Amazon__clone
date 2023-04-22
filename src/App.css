@@ -1,11 +1,6 @@
 * {
   font-family: 'Alexandria', sans-serif ; 
 }
-/* 
-.fa-globe {
-  font-family:  sans-serif !important;
-} */
-
 
 .home-image {
     width: 100% !important;
@@ -13,12 +8,11 @@
     z-index: -1;
     margin-bottom: -350px;
     object-fit: cover;
-    /* -webkit-mask-image: linear-gradient(to top, transparent 2%, black 100%); */
     mask-image: linear-gradient(to top, transparent 2%, black 80%);
   }
 
   .carousel-image {
-   width: 100%
+    width: 100%
   }
   /* HomePage slider prev/next buttons */
   .css-1abc02a {

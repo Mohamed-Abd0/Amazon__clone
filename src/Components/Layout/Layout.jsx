@@ -5,16 +5,19 @@ import classes from "./Layout.module.css";
 import Header from "./Header.jsx";
 import { Modal } from "../Modal";
 import CheckoutHeader from "./CheckoutHeader";
+import Footer from "../Footer/Footer";
 
 const Layout = () => {
   const location = useLocation();
 
-  // select the nav will appear depend on the route
-  let header;
+  // sellect the nave will appear depend on the route
+  let header, footer;
   if (location.pathname === "/signin" || location.pathname === "/signup") {
     header = null;
+    footer = null;
   } else {
     header = location.pathname === "/payment" ? <CheckoutHeader /> : <Header />;
+    footer = location.pathname === "/payment" ? null : <Footer/>;
   }
 
   return (
@@ -24,6 +27,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Modal />
+      {footer}
     </Fragment>
   );
 };

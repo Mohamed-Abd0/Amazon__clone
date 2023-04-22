@@ -8,7 +8,6 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
   const lengActive = useSelector((state) => state.leng);
   const langWordsActive = words[`${lengActive.lang}`];
   // const [allSection, setAllSecions] = useState(["مبيوتاؤ", "لابتبوب"]);
-
   const lengNow = useSelector((state) => state.leng.lang);
   return (
     <Fragment>
@@ -43,7 +42,7 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
             return (
               <div key={i} className="sec sec1">
                 <Link
-                  to={`catgeory/${e[`${lengNow}`]}`}
+                  to={`category/${e[`${lengNow}`]}`}
                   className="flex items-center justify-between cursor-pointer hover:bg-[#cccccc7c] p-3 px-6 text-lg"
                 >
                   <i className="fa-solid fa-chevron-left rtl:order-1"></i>

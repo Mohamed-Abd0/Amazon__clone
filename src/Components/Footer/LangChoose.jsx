@@ -6,9 +6,8 @@ import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 import words from "../../leng.json";
 
 
-const LangChoose = ({ setShowDilog, setShowCanvas, category }) => {
+const LangChoose = () => {
   const ref = useRef();
-  const inputRef = useRef();
   const dispatch = useDispatch();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;

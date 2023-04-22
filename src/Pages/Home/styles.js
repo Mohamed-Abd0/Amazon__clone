@@ -4,24 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      // height: '100%',
       background: '#fff',
       overflow: 'hidden',
-      borderRadius: 0,
+      borderRadius: '0 !important',
       boxShadow: 'none',
-      
-  // display: 'flex',
-  // flexDirection: 'column',
-  // justifyContent: 'space-between'
     },
     media: {
       paddingTop: '56.25%', // 16:9
       paddingRight: '56.25%',
-      backgroundSize: 'contain',
+      backgroundSize: 'contain !important',
     },
     media1: {
-      // height: 'auto',
-      // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
       paddingLeft: 10,
@@ -33,7 +26,6 @@ export default makeStyles((theme) => ({
       fontFamily: `'Alexandria', sans-serif !important`,
       padding: 15,
       fontSize: 21,
-      // lineHeight: 27.3,
       color: 'black',
       whiteSpace: 'normal',
       fontWeight: 'bolder',
@@ -62,25 +54,5 @@ export default makeStyles((theme) => ({
     paper: {
       whiteSpace: 'nowrap',
       marginBottom: theme.spacing.unit * 2,
-      // height: 400,
-      // borderRadius: 0,
     },
-    swiperImage: {
-      padding: 10,
-      margin: 10,
-      width: 'auto',
-      height: 'auto',
-      maxWidth: 270,
-      maxHeight: 200,
-      verticalAlign: 'middle'
-    },
-    swipeSlide: {
-      alignContent: 'center',
-      flexShrink: 10,
-    },
-    swiper: {
-      marginLeft: 50
-    },
-
-    
   }));
