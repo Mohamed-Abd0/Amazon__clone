@@ -8,6 +8,7 @@ import AddToListBtn from "../ReuseableComponets/AddToListBtn";
 import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../Store/CartSlice";
+import words from "../../leng.json";
 
 const ProductOptions = () => {
   console.log("option is runing ");
@@ -19,14 +20,14 @@ const ProductOptions = () => {
 
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
   const { items } = useSelector(({ CartSlice }) => CartSlice);
-
-  const price = product.price;
-  const seller = product.seller[1];
-  const ShippingFree = product.shippingFree;
+ 
+  const seller = product.seller[1]; 
   const shipCompany = product.shipCompany.en;
   const count = product.count;
 
   // get translated words
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
   const deliveryToEgypt = activWrods.DeliveryToEgypt
 
   const handleAddToCart = (e) => {
