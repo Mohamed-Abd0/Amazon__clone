@@ -1,7 +1,18 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import words from "./../../leng.json"
 
 const AddToListBtn = () => {
+
+
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
+
+
+  const addToList= activWrods.addToList;
+
+
   return (
     <Button
       disableRipple={true}
@@ -19,7 +30,7 @@ const AddToListBtn = () => {
         mb: { xs: "12px", md: "0px" },
       }}
     >
-      Add to list
+      {addToList}
     </Button>
   );
 };

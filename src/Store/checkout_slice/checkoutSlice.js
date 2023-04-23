@@ -11,6 +11,7 @@ const initialState = {
   expiryDate: "",
   cardNumber: "",
   cvv: "",
+  perchasedItems: [],
 };
   
 
@@ -33,11 +34,14 @@ const shippingSlice = createSlice({
             state.cardNumber = cardNumber;
             state.cvv = cvv;
         },
+        setPerchasedItems: (state , action)=>{
+            state.perchasedItems = state.perchasedItems.push(action.payload);
+        }
     },
 });
  
 
 
-export const { setShippingData, setPaymentData } = shippingSlice.actions;
+export const { setShippingData, setPaymentData , setPerchasedItems } = shippingSlice.actions;
 
 export default shippingSlice.reducer;

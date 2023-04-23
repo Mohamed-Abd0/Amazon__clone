@@ -1,7 +1,14 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import words from "./../../leng.json";
 
-const BuyNowBtn = () => {
+const BuyNowBtn = ({onCheckout}) => {
+
+
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
+
   return (
     <Button
       sx={{
@@ -14,9 +21,10 @@ const BuyNowBtn = () => {
         textTransfrom: "capitalize",
       }}
       disableRipple={true}
+      onClick= {onCheckout}
     >
-      buy now
-    </Button>
+      {activWrods.buyNow}
+    </Button >
   );
 };
 
