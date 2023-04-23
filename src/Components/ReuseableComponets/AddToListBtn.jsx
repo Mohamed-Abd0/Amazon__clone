@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import words from "./../../leng.json"
 
-const AddToListBtn = () => {
+const AddToListBtn = ({onAddToList}) => {
 
 
   const lengActive = useSelector(({ leng }) => leng);
@@ -29,6 +29,7 @@ const AddToListBtn = () => {
         "&:active": { borderColor: "border.darkgray" },
         mb: { xs: "12px", md: "0px" },
       }}
+      onClick={onAddToList}
     >
       {addToList}
     </Button>

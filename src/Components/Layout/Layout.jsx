@@ -26,8 +26,8 @@ const Layout = () => {
       <main className={classes.main}>
         <Outlet />
       </main>
-      <Modal />
       {footer}
+      {/* <Modal /> */}
     </Fragment>
   );
 };

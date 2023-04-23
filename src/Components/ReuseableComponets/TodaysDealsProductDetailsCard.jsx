@@ -5,7 +5,7 @@ import words from "../../leng.json";
 import useStyles from '../../Pages/Home/styles';
 
 const TodaysDealsProductDetailsCard = ({product}) => {
-  console.log({product})
+  // console.log({product})
   const classes = useStyles();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;

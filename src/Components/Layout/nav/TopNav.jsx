@@ -18,7 +18,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
  
 
   // _______CartItems ________
-  const cartItems = useSelector((state) => state.CartSlice.items); 
+  const cartItems = useSelector((state) => state.CartSlice.cartItems); 
   const itemCount = cartItems.length;
   const displayItems = itemCount === 0 ? '0' : `${itemCount}`; 
   // __________________________

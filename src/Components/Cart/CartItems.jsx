@@ -6,7 +6,7 @@ import CartItemFooter from "./cartItemComponents/CartItemFooter";
 import { Divider } from "@mui/material";
 
 const CartItems = () => {
-  const cartItems = useSelector((state) => state.CartSlice.items);
+  const cartItems = useSelector((state) => state.CartSlice.cartItems);
 
   return (
     <div className="m-4 ">
