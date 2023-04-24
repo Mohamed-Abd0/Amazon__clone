@@ -120,8 +120,14 @@
     "secureTransaction" : "Secure transaction",
     "deliveredBy": "Deleverd by",
     "soldBy": "Sold by",
-    "addToList": "add to list"
+    "addToList": "add to list",
     
+
+
+
+    "yourItems": "Your items",
+    "savedForLater": "Saved for later",
+    "items": "items"
   },
   "ar": {
     "country": "مصر",
@@ -243,6 +249,13 @@
     "secureTransaction" : "معاملتك آمنة",
     "deliveredBy": "يشحن من ",
     "soldBy": "يباع من ",
-    "addToList": "أضف إلى القائمة"
+    "addToList": "أضف إلى القائمة",
+
+
+    "yourItems": "السلع الخاصة بك ",
+    "savedForLater": "سلع محفوظة لوقت لاحق ",
+    "items": "سلع"
+
+
   }
 }

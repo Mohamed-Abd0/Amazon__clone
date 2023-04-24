@@ -7,7 +7,7 @@ import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
 import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
 import { useNavigate } from "react-router-dom";
-import { addToCart, addToList } from "../../Store/CartSlice";
+import { addToCart, addToSavedItems } from "../../Store/CartSlice";
 import { setPerchasedItems } from "../../Store/checkout_slice/checkoutSlice";
 import words from "./../../leng.json";
 
@@ -48,7 +48,6 @@ const ProductOptions = () => {
 
     // nagigate to the cart page
     navigate("/cart");
-    console.log(items);
   };
 
   const checkoutHandler = (e)=>{
@@ -60,11 +59,11 @@ const ProductOptions = () => {
     navigate("/payment");
   }
 
-  const AddToListHandler = (e)=>{
+  const addToList = (e)=>{
     e.preventDefault();
 
     // send the product to perchasedItems in the store
-    dispatch(addToList(product))
+    dispatch(addToSavedItems(product))
 
     navigate("/cart");
   }
@@ -171,7 +170,7 @@ const ProductOptions = () => {
         <Divider />
 
         <Box sx={{ mt: { xs: "auto", md: "0" } }}>
-          <AddToListBtn onAddToList= {AddToListHandler}/>
+          <AddToListBtn onAddToList= {addToList}/>
         </Box>
 
         {/* //---------------------------------------------------------------- */}

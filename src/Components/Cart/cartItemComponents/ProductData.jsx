@@ -2,7 +2,7 @@ import { Box, Checkbox, Divider, Typography } from "@mui/material";
 import React from "react";
 import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
 import { useDispatch } from "react-redux";
-import { deleteFromCart } from "../../../Store/CartSlice";
+import { deleteFromCart ,addToSavedItems } from "../../../Store/CartSlice";
 import SelectItem from "./productData/SelectItem";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -10,11 +10,14 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const ProductData = ({ item }) => {
   const dispatch = useDispatch();
 
-  const deleteHandler = () => {
+  const deleteFromCartHandler = () => {
     dispatch(deleteFromCart(item));
-    console.log("delete");
   };
 
+  const savedLaterHandler = () => {
+    dispatch(addToSavedItems(item))
+    dispatch(deleteFromCart(item));
+  };
   // ____ Product Data ____
   const mainImg = item.mainImg;
   const minTitle = item.minTitle.en;
@@ -97,11 +100,11 @@ const ProductData = ({ item }) => {
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan deleteHandler={deleteHandler}>Delete</UnderLineSpan>
+            <UnderLineSpan actionFun={deleteFromCartHandler}>Delete</UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan>Save for later</UnderLineSpan>
+            <UnderLineSpan actionFun={savedLaterHandler}>Save for later</UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 

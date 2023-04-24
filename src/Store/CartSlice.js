@@ -1,52 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const savedItems = localStorage.getItem('product');
-const listItems = localStorage.getItem('listItems')
+const cartItems = localStorage.getItem('cartItems');
+const savedItems = localStorage.getItem('savedItems')
 
 const initialState = {
-  cartItems: savedItems ? JSON.parse(savedItems) : [],
-  listItems: listItems ? JSON.parse(listItems) : [],
+  cartItems: savedItems ? JSON.parse(cartItems) : [],
+  savedItems: savedItems ? JSON.parse(savedItems) : [],
 }
 
 const CartSlice = createSlice({
   name: "Cart",
-  initialState: initialState,
+  initialState,
   reducers: {
     addToCart: (state, { payload }) => {
       const existingItems = state.cartItems;
       const updatedItems = [...existingItems, payload];
-      localStorage.setItem('product', JSON.stringify(updatedItems));
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
       state.cartItems = updatedItems;
     },
     deleteFromCart: (state, { payload }) => {
         const existingItems = state.cartItems;
         const updatedItems = existingItems.filter(item => item.id !== payload.id);
-        localStorage.setItem('product', JSON.stringify(updatedItems));
+        localStorage.setItem('cartItems', JSON.stringify(updatedItems));
         state.cartItems = updatedItems;
     },
     clearCart: (state) => {
       state.cartItems = [];
-      localStorage.removeItem('product');
+      localStorage.removeItem('cartItems');
     },
 
     // list reducers
-    addToList: (state, { payload }) => {
-      const existingItems = state.listItems;
+    addToSavedItems: (state, { payload }) => {
+      const existingItems = state.savedItems;
       const updatedItems = [...existingItems, payload];
-      localStorage.setItem('listItems', JSON.stringify(updatedItems));
-      state.listItems = updatedItems;
+      localStorage.setItem('savedItems', JSON.stringify(updatedItems));
+      state.savedItems = updatedItems;
     },
-    deleteFromList: (state, { payload }) => {
-        const existingItems = state.listItems;
+    deleteFromSavedItems: (state, { payload }) => {
+        const existingItems = state.savedItems;
         const updatedItems = existingItems.filter(item => item.id !== payload.id);
-        localStorage.setItem('listItems', JSON.stringify(updatedItems));
-        state.listItems = updatedItems;
+        localStorage.setItem('savedItems', JSON.stringify(updatedItems));
+        state.savedItems = updatedItems;
     },
 
 
   },
 });
 
-export const { addToCart, deleteFromCart, clearCart , addToList , deleteFromList} = CartSlice.actions;
+export const { addToCart, deleteFromCart, clearCart , addToSavedItems , deleteFromSavedItems} = CartSlice.actions;
 
 export default CartSlice.reducer;

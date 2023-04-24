@@ -28,7 +28,10 @@ const Product = () => {
       try {
         // get product data from firebase
         const productData = await getProductData(productId);
-        console.log(productData);
+        
+        // add id to product object
+        productData.id = productId;
+        
         // send the product data to product slice in redux
         dispatch(setProductData({ productData }));
       } catch (err) {

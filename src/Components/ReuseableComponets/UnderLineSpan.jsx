@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-const UnderLineSpan = ({ children }) => {
+const UnderLineSpan = ({ children , actionFun }) => {
   const StyledSpan = styled("span")({
     margin: 0,
     fontSize: "12px",
@@ -11,7 +11,7 @@ const UnderLineSpan = ({ children }) => {
       textDecoration: "underline",
     },
   });
-  return <StyledSpan>{children}</StyledSpan>;
+  return <StyledSpan onClick={actionFun}>{children}</StyledSpan>;
 };
 
 export default UnderLineSpan;
