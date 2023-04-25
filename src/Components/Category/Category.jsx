@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, Suspense } from "react";
+import { lazy } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
@@ -13,7 +14,7 @@ import cameraAccessories from "../../assets/cameraAccessories.jpg";
 import cameraDeals from "../../assets/cameraDeals.jpg";
 import kitchen from "../../assets/Kitchen.jpg";
 import homeTools from "../../assets/toolsHome.jpg";
-import TodaysDealsCard from "../ReuseableComponets/TodaysDealsProductDetailsCard";
+// import TodaysDealsCard from "../ReuseableComponets/TodaysDealsProductDetailsCard";
 import { useSelector, useDispatch } from "react-redux";
 import words from "../../leng.json";
 import GridSkeleton from "../ReuseableComponets/GridSkeleton";
@@ -25,6 +26,8 @@ import MainSwiperContainer from "../ReuseableComponets/MainSwiperContainer";
 import CategoryDetails from "../ReuseableComponets/CategoryDetails";
 import ProductDetailsCard from "../ReuseableComponets/ProductDetailsCard";
 
+const  TodaysDealsCard = lazy(() => import('../ReuseableComponets/TodaysDealsProductDetailsCard'));
+  console.log(TodaysDealsCard)
 const Category = () => {
   const classes = useStyles();
   const [products, setProduct] = useState([]);
@@ -197,7 +200,10 @@ const Category = () => {
                   {products.map((product) => (
                     <Box>
                       <Link key={product.id} to={"/product/" + product.id}>
+                        <Suspense fallback={<div>Loading...</div>}>
                         <TodaysDealsCard product={product} />
+                        </Suspense>
+                        {/* <TodaysDealsCard product={product} /> */}
                       </Link>
                     </Box>
                   ))}

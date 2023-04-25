@@ -2,8 +2,6 @@ import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { Grid, Typography } from "@material-ui/core";
-import { db } from "../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import words from "../../leng.json";
 import Footer from "../../Components/Footer/Footer";
@@ -11,9 +9,7 @@ import ProductDetailsCard from "../../Components/ReuseableComponets/ProductDetai
 import { getProductsByGategory } from "../../Firebase-APIS/FirebaseFunctions";
 const Home = () => {
   const [products, setProduct] = useState([]);
-  const productsCollectionRef = collection(db, "products");
   const categoryType = useParams();
-  const queryResults = [];
   // Active lang
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;
@@ -38,7 +34,6 @@ const Home = () => {
             align="center"
             style={{ fontSize: 30, paddingTop: 50, fontWeight: "bold" }}
           >
-             
             {categoryType.type}
           </Typography>
           <Typography
@@ -46,8 +41,7 @@ const Home = () => {
             align="center"
             style={{ fontSize: 30, paddingTop: 50, fontWeight: "bold" }}
           >
-             
-           {langWordsActive.noProductsIn} 
+            {langWordsActive.noProductsIn} {categoryType.type}
           </Typography>
         </>
       ) : (
