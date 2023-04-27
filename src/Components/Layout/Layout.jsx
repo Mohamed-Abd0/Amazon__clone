@@ -11,11 +11,13 @@ const Layout = () => {
   const location = useLocation();
 
   // sellect the nave will appear depend on the route
-  let header;
+  let header, footer;
   if (location.pathname === "/signin" || location.pathname === "/signup") {
-    header = null; 
+    header = null;
+    footer = null;
   } else {
     header = location.pathname === "/payment" ? <CheckoutHeader /> : <Header />;
+    footer = location.pathname === "/payment" ? null : <Footer/>;
   }
 
   return (
@@ -24,9 +26,8 @@ const Layout = () => {
       <main className={classes.main}>
         <Outlet />
       </main>
-      <Modal />
-      {(location.pathname === "/signin" || location.pathname === "/signup") ? null : <Footer/> }
-      
+      {footer}
+      {/* <Modal /> */}
     </Fragment>
   );
 };

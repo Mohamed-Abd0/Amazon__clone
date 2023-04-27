@@ -1,29 +1,73 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  Stack,
-  Box,
-  Grid,
-  Typography,
-  Link,
-  Divider,
-} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { Stack, Box, Grid, Typography, Link, Divider } from "@mui/material";
 import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
 import AddToCartBtn from "../ReuseableComponets/AddToCartBtn";
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
+import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
+import { useNavigate } from "react-router-dom";
+import { addToCart, addToSavedItems } from "../../Store/CartSlice";
+import { setPerchasedItems } from "../../Store/checkout_slice/checkoutSlice";
+import words from "./../../leng.json";
 
 const ProductOptions = () => {
-  console.log("ProductOptions is runing");
-  
-  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
-  console.log(product);
+  console.log("option is runing ");
+  const navigate = useNavigate();
 
-  const price = product.price;
-  const seller = product.seller[1];
-  const ShippingFree = product.shippingFree;
-  const shipCompany = product.shipCompany.en;
+  const dispatch = useDispatch();
+
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
+  const { items } = useSelector(({ CartSlice }) => CartSlice);
+
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
+
+  // extract data from the product
+  const seller = product.seller[`${lengActive.lang}`];
+  const shipCompany = product.shipCompany[`${lengActive.lang}`];
   const count = product.count;
+
+  // get translated words
+  const deliveryToEgypt = activWrods.DeliveryToEgypt;
+  const only = activWrods.only;
+  const leftInStock = activWrods.leftInStock;
+  const orderSoon = activWrods.orderSoon;
+  const payment = activWrods.payment;
+  const deliveredBy = activWrods.deliveredBy;
+  const soldBy = activWrods.soldBy;
+  const secureTransaction = activWrods.secureTransaction;
+
+
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+ 
+    // Dispatch the addToCart action to add the product to the cart
+    dispatch(addToCart(product));
+
+    // nagigate to the cart page
+    navigate("/cart");
+  };
+
+  const checkoutHandler = (e)=>{
+    e.preventDefault();
+
+    // send the product to perchasedItems in the store
+    dispatch(setPerchasedItems(product))
+
+    navigate("/payment");
+  }
+
+  const addToList = (e)=>{
+    e.preventDefault();
+
+    // send the product to perchasedItems in the store
+    dispatch(addToSavedItems(product))
+
+    navigate("/cart");
+  }
+
 
 
   return (
@@ -57,36 +101,8 @@ const ProductOptions = () => {
       >
         {/* //-------------------Price--------------------------------------- */}
 
-        <Box
-          variant="body1"
-          sx={{
-            span: { fontSize: "12px" },
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack flexDirection="row">
-            <span>EGP </span>
-            <div
-              style={{
-                fontSize: "25px",
-                fontWeight: "400",
-                marginTop: "-6px",
-              }}
-            >
-              {price}
-            </div>
-            <span> 00</span>
-          </Stack>
-        </Box>
+        <DiscountedOptionsPrice />
 
-        {/* //---------------------------------------------------------------- */}
-
-        <Typography variant="body2">
-          {ShippingFree ? "FREE delivery April 11 - 12" : "FREE delivery"}{" "}
-          <br />
-          <Link underline="hover">Details</Link>
-        </Typography>
 
         {/* //---------------------------------------------------------------- */}
 
@@ -98,7 +114,7 @@ const ProductOptions = () => {
         >
           <LocationOnTwoToneIcon />
           <Link underline="hover" sx={{ ml: 0.5 }}>
-            Delivery to egypt
+            {deliveryToEgypt}
           </Link>
         </Box>
 
@@ -112,7 +128,7 @@ const ProductOptions = () => {
             fontSize: "14px",
           }}
         >
-          Only {count} left in stock - order soon
+          {`${only} ${count} ${leftInStock} - ${orderSoon} `}
         </Typography>
 
         {/* //---------------------------------------------------------------- */}
@@ -125,42 +141,36 @@ const ProductOptions = () => {
             "button:first-of-type": { mb: 1 },
           }}
         >
-          <AddToCartBtn />
-          <BuyNowBtn />
+          <AddToCartBtn handleAddToCart={handleAddToCart} />
+          <BuyNowBtn onCheckout= {checkoutHandler} />
         </Box>
 
         {/* //---------------------------------------------------------------- */}
 
-        <Box
-          sx={{
-            "p span": { mr: "8px", float: "right" },
-            "p:first-of-type": { mb: 0.6 },
-          }}
-        >
-          <Grid container spacing={3} sx={ {fontSize: "9px"}}>
+ 
+          <Grid container spacing={2} sx={{ fontSize: "9px" , my:"2px"}}>
             <Grid item>
-              <Typography variant="body2">Payment</Typography>
+              <Typography variant="body2">{payment}</Typography>
 
-              <Typography variant="body2">Delivered by</Typography>
+              <Typography variant="body2">{deliveredBy}</Typography>
 
-              <Typography variant="body2">Sold by</Typography>
+              <Typography variant="body2">{soldBy}</Typography>
             </Grid>
 
             <Grid item>
-              <Typography variant="body2">Secure transaction</Typography>
+              <Typography variant="body2">{secureTransaction}</Typography>
 
               <Typography variant="body2">{shipCompany}</Typography>
 
               <Typography variant="body2">{seller}</Typography>
             </Grid>
           </Grid>
-        </Box>
 
-        <Divider />
         {/* //---------------------------------------------------------------- */}
+        <Divider />
 
         <Box sx={{ mt: { xs: "auto", md: "0" } }}>
-          <AddToListBtn />
+          <AddToListBtn onAddToList= {addToList}/>
         </Box>
 
         {/* //---------------------------------------------------------------- */}

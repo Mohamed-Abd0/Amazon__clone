@@ -7,6 +7,8 @@ import words from "../../leng.json";
 import Footer from "../../Components/Footer/Footer";
 import ProductDetailsCard from "../../Components/ReuseableComponets/ProductDetailsCard";
 import { getProductsByGategory } from "../../Firebase-APIS/FirebaseFunctions";
+import PaginationLink from "../../Components/ReuseableComponets/PaginatedItems";
+import PaginatedItems from "../../Components/ReuseableComponets/PaginatedItems";
 const Home = () => {
   const [products, setProduct] = useState([]);
   const categoryType = useParams();
@@ -34,7 +36,7 @@ const Home = () => {
             align="center"
             style={{ fontSize: 30, paddingTop: 50, fontWeight: "bold" }}
           >
-            {categoryType.type}
+            {`${categoryType.type}`}
           </Typography>
           <Typography
             variant="h1"
@@ -51,9 +53,9 @@ const Home = () => {
             align="center"
             style={{ fontSize: 30, paddingTop: 50, fontWeight: "bold" }}
           >
-            {categoryType.type}
+            {`${categoryType.type}`}
           </Typography>
-          <Container maxWidth="xl">
+          {/* <Container maxWidth="xl">
             <Grid container justify="center" spacing={4}>
               {products.map((product) => {
                 return (
@@ -76,7 +78,8 @@ const Home = () => {
                 );
               })}
             </Grid>
-          </Container>
+          </Container> */}
+          <PaginatedItems itemsPerPage={2} data={products}/> 
         </>
       )}
 

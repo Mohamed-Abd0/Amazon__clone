@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
       overflow: 'hidden',
       borderRadius: '0 !important',
       boxShadow: 'none',
+      
     },
     media: {
       paddingTop: '56.25%', // 16:9

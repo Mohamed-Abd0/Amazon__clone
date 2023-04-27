@@ -5,7 +5,7 @@ import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
 import words from "../../../leng.json";
-import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
+import { addToCart } from "../../../Store/CartSlice";
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
@@ -16,7 +16,15 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
   const signInStatus = useSelector((state) => state.nameUserSlice);
  
-  const itemCart = useSelector((state) => state.cartItemNumber);
+
+  // _______CartItems ________
+  const cartItems = useSelector((state) => state.CartSlice.cartItems); 
+  const itemCount = cartItems.length;
+  const displayItems = itemCount === 0 ? '0' : `${itemCount}`; 
+  // __________________________
+
+
+  
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -306,11 +314,13 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             </span>
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
+
+          
           <Link to={"Cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                {itemCart}
+                {displayItems}
               </span>
             </div>
 

@@ -106,15 +106,15 @@ const Category = () => {
                     <Link to={"/product/" + randomDoc.id}>
                       <ProductDetailsCard product={randomDoc} />
                       {/* copoun  */}
-                      <Box
+                      {/* <Box
                         style={{
                           display: "flex",
                           justifyContent: "space-around",
                           alignSelf: "center",
                           backgroundColor: "white",
                         }}
-                      >
-                        {randomDoc.discount === true && (
+                      > */}
+                        {/* {randomDoc.discount === true && (
                           <Button
                             className="coupon"
                             style={{
@@ -152,8 +152,8 @@ const Category = () => {
                           }}
                         >
                           {langWordsActive.seeMore}
-                        </Button>
-                      </Box>
+                        </Button> */}
+                      {/* </Box> */}
                     </Link>
                   </Grid>
                 )}
@@ -211,7 +211,6 @@ const Category = () => {
               </Grid>
             </Grid>
           </Container>
-          {/* <Footer /> */}
         </>
       )}
     </>

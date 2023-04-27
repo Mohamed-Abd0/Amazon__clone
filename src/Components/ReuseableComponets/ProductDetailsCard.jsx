@@ -5,16 +5,23 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import useStyles from '../../Pages/Home/styles';
 import words from "../../leng.json";
 import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
+import {useLocation} from 'react-router-dom';
 const ProductDetailsCard = ({product}) => {
     const classes = useStyles();
     const lengActive = useSelector((state) => state.leng);
     const activeLeng = lengActive.lang;
     const langWordsActive = words[`${lengActive.lang}`];
+    const location = useLocation();
   return (
     <>
       <Card
         className={classes.root}
-        style={{ border: "1px solid #CBCECD", backgroundColor: "#FFFFFF" }}
+        style={{
+          border: "1px solid #CBCECD",
+          backgroundColor: "#FFFFFF",
+          height: "100%",
+        }}
       >
         <CardMedia
           className={classes.media}
@@ -74,6 +81,57 @@ const ProductDetailsCard = ({product}) => {
         <CardActions className={classes.cardActions}>
           {/* <AddShoppingCartIcon /> */}
         </CardActions>
+        {location.pathname === "/" && product.discount === true && (
+          <>
+              <Box
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                          alignSelf: "center",
+                          backgroundColor: "white",
+                        }}
+                      >
+            <Button
+              className="coupon"
+              style={{
+                backgroundColor: "#E57A00",
+                width: 120,
+                height: 30,
+                justifyContent: "center",
+                borderRadius: "4px",
+                fontSize: 10,
+                textAlign: "center",
+                fontWeight: "bold",
+                color: "white",
+                // paddingTop: '20px',
+                marginRight: 40,
+                marginBottom: "20px",
+              }}
+            >
+              {langWordsActive.EGP}
+              {product.discountValue} {langWordsActive.off}{" "}
+              {langWordsActive.copoun}
+            </Button>
+
+            <Button
+              variant="contained"
+              size="small"
+              style={{
+                background: "#ffa41c",
+                border: "1px solid #ff8f00",
+                borderRadius: "20px",
+                boxShadow: "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
+                color: "#0f1111",
+                // textAlign: 'center'
+                alignItems: "center",
+                marginBottom: "20px",
+              }}
+            >
+              {langWordsActive.seeMore}
+            </Button>
+            </Box>
+          </>
+        )}
       </Card>
     </>
   );

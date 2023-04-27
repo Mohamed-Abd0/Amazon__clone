@@ -40,7 +40,7 @@
     "cameraAccessories": "Camera & accessories",
     "securityCameras": "Security cameras",
     "starting": "Starting",
-    "rgb(255, 164, 28)": "EGP",
+    "EGP": "EGP",
     "backToTop": "back To Top",
     "knowUs": "Get to Know Us",
     "aboutAmazon": "About Amazon",
@@ -65,7 +65,7 @@
     "conditionsUseSale": "Conditions of Use & Sale",
     "privacyNotice": "Privacy Notice",
     "InterestAds": "Interest-Based Ads",
-    "copyRight": "©",
+    "copyRight": "&copy;",
     "year1996": "1996-2023",
     "amazonInc": "Amazon.com, Inc.",
     "or": "or",
@@ -94,8 +94,9 @@
     "and": "&",
     "recommendations": "recommendations",
     "findAttract": "Find, attract and engage customers",
-    "leftInStock": "left in Stock ",
     "only": "only",
+    "leftInStock": "left in Stock ",
+    "orderSoon": "order soon",
     "off": "OFF",
     "copoun": "COUPON",
     "ar": "",
@@ -106,13 +107,28 @@
     "about": "About this Item",
     "listPrice": "List price",
     "freeReturns": "FREE Returns",
+    "freeDelivery": "FREE Delivery",
+    "DeliveryToEgypt": " Delivery to Egypt ",
     "priceIncludeVAT": "price include VAT",
     "cashOnDelivery": "Cash on Delivery",
     "returnable": "15 days Returnable",
     "deliveredByAmazon": "Delivered by Amazon",
     "manufacturerWarranty": "10 Year Manufacturer Warranty",
+    "addToCart": "add to cart",
+    "buyNow": "buy now",
+    "payment": "Payment",
+    "secureTransaction" : "Secure transaction",
+    "deliveredBy": "Deleverd by",
+    "soldBy": "Sold by",
+    "addToList": "add to list",
     "computer": "computer",
-    "noProductsIn": "No Products In"
+    "noProductsIn": "No Products In",
+
+
+
+    "yourItems": "Your items",
+    "savedForLater": "Saved for later",
+    "items": "items"
   },
   "ar": {
     "country": "مصر",
@@ -209,8 +225,9 @@
     "recommendations": "التوصيات",
     "fashionBrands": " علامات الأزياء التجارية",
     "findAttract": "إيجاد العملاء وجذبهم والتفاعل معهم",
-    "leftInStock": "تبقى ",
     "only": "فقط",
+    "leftInStock": "تبقى ",
+    "orderSoon": "أطلب الأن ",
     "off": "تخفيض",
     "copoun": "قسيمة",
     "home": "الصفحة الرئيسية ",
@@ -220,12 +237,28 @@
     "about": "حول هذه السلعة",
     "listPrice": "السعر الاصلي",
     "freeReturns": "إرجاع مجاني ",
+    "freeDelivery": "توصيل مجاني",
+    "DeliveryToEgypt": "التوصيل الي مصر ",
     "priceIncludeVAT": "الأسعار تشمل ضريبة القيمة المضافة ",
     "cashOnDelivery": "الدفع عند الاستلام",
     "returnable": "إمكانية الإرجاع خلال 15 يومًا",
     "deliveredByAmazon": "توصيل من أمازون",
     "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات",
     "computer": "كمبيوتر",
-    "noProductsIn": " لا يوجد منتجات في"
+    "noProductsIn": " لا يوجد منتجات في",
+    "addToCart": "أضف إلي العربة",
+    "buyNow": "اشتر الآن",
+    "payment": "الدفع",
+    "secureTransaction" : "معاملتك آمنة",
+    "deliveredBy": "يشحن من ",
+    "soldBy": "يباع من ",
+    "addToList": "أضف إلى القائمة",
+
+
+    "yourItems": "السلع الخاصة بك ",
+    "savedForLater": "سلع محفوظة لوقت لاحق ",
+    "items": "سلع"
+
+
   }
 }
