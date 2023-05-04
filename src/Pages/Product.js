@@ -10,7 +10,8 @@ import {
   SuggestProducts,
   ProductOptions,
 } from "../Components/ProductPageComponents";
-import {  Grid, Stack } from "@mui/material";
+import {  Grid, Stack } from "@mui/material"; 
+
 
 const Product = () => {
   console.log("product is running");
@@ -24,23 +25,27 @@ const Product = () => {
   const { product } = useSelector(({ ProductSlice }) => ProductSlice);
 
   useEffect(() => {
+
     const getProduct = async () => {
       try {
-        // get product data from firebase
+        // Get product data from Firebase
         const productData = await getProductData(productId);
         
-        // add id to product object
+        // Add id and qty to product object
         productData.id = productId;
+        productData.qty = 1;
         
-        // send the product data to product slice in redux
+        // Send the product data to product slice in Redux
         dispatch(setProductData({ productData }));
+    
       } catch (err) {
         console.log(err);
       }
     };
+    
 
     getProduct();
-  }, [productId]);
+  }, [productId, dispatch]);
 
   // render the content if the product object is full
   let content;

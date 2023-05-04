@@ -17,8 +17,7 @@ const ProductOptions = () => {
 
   const dispatch = useDispatch();
 
-  const { product } = useSelector(({ ProductSlice }) => ProductSlice);
-  const { items } = useSelector(({ CartSlice }) => CartSlice);
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
 
   const lengActive = useSelector(({ leng }) => leng);
   const activWrods = words[`${lengActive.lang}`];
@@ -37,25 +36,20 @@ const ProductOptions = () => {
   const deliveredBy = activWrods.deliveredBy;
   const soldBy = activWrods.soldBy;
   const secureTransaction = activWrods.secureTransaction;
-
-
+ 
 
   const handleAddToCart = (e) => {
     e.preventDefault();
- 
     // Dispatch the addToCart action to add the product to the cart
     dispatch(addToCart(product));
-
     // nagigate to the cart page
     navigate("/cart");
   };
 
   const checkoutHandler = (e)=>{
     e.preventDefault();
-
     // send the product to perchasedItems in the store
     dispatch(setPerchasedItems(product))
-
     navigate("/payment");
   }
 

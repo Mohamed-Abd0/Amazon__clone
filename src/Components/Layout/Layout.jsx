@@ -2,8 +2,7 @@ import { Fragment } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import classes from "./Layout.module.css";
-import Header from "./Header.jsx";
-import { Modal } from "../Modal";
+import Header from "./Header.jsx"; 
 import CheckoutHeader from "./CheckoutHeader";
 import Footer from "../Footer/Footer";
 

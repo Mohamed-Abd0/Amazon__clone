@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
-import words from "../../../leng.json";
-import { addToCart } from "../../../Store/CartSlice";
+import words from "../../../leng.json"; 
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
@@ -18,9 +17,12 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
  
 
   // _______CartItems ________
-  const cartItems = useSelector((state) => state.CartSlice.cartItems); 
-  const itemCount = cartItems.length;
-  const displayItems = itemCount === 0 ? '0' : `${itemCount}`; 
+  const cartItemsQty = JSON.parse(localStorage.getItem('cartItems'));
+  console.log(cartItemsQty[0]?.qty)
+  const totalQty = cartItemsQty?.reduce((acc, curr) => {
+    return acc + curr.qty;
+  }, 0);
+  const displayItems = totalQty === 0 ? '0' : `${totalQty}`; 
   // __________________________
 
 
@@ -43,7 +45,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     document.querySelector("html").dir = activeDir;
     document.querySelector("html").lang = activeLeng;
     [...ref.current.children].forEach((e) => {
-      if (activeLeng == e.getAttribute("short-name-leng")) {
+      if (activeLeng === e.getAttribute("short-name-leng")) {
         e.querySelector("input").setAttribute("checked", "");
         e.classList.add("text-mainColor");
         e.classList.add("font-bold");
@@ -76,7 +78,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         </div>
         <div className={`logo w-28 hover-item `}>
           <Link to={"/"} className="w-full h-full">
-            <img className="w-full h-full" src={logo} />
+            <img className="w-full h-full" src={logo} alt=""/>
           </Link>
         </div>
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
@@ -146,7 +148,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
             <div className="all-leng py-4 " ref={ref}>
               {leng.map((e, i) => {
-                return i == 0 ? (
+                return i === 0 ? (
                   <div
                     key={i}
                     direction={e.dir}

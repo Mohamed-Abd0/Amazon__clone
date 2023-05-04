@@ -6,7 +6,7 @@ import Select from "@mui/material/Select";
 import { Box } from "@mui/material";
 
 const SelectInput = ({ label, values, id }) => {
-  const [selectedShipping, seSelectedShipping] = useState(values[0]);
+  const [selectedShipping, setSelectedShipping] = useState(values[0]);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -18,7 +18,7 @@ const SelectInput = ({ label, values, id }) => {
           value={selectedShipping}
           label={label}
           MenuProps={{ id: "quantaty-menu" }}
-          onChange={({ target }) => seSelectedShipping(target.value)}
+          onChange={({ target }) => setSelectedShipping(target.value)}
         >
           {values.map((e, i) => (
             <MenuItem value={e} key={i}>

@@ -2,12 +2,13 @@ import { Box, Checkbox, Divider, Typography } from "@mui/material";
 import React from "react";
 import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
 import { useDispatch } from "react-redux";
-import { deleteFromCart ,addToSavedItems } from "../../../Store/CartSlice";
+import { deleteFromCart, addToSavedItems } from "../../../Store/CartSlice";
 import SelectItem from "./productData/SelectItem";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const ProductData = ({ item }) => {
+  console.log(item);
   const dispatch = useDispatch();
 
   const deleteFromCartHandler = () => {
@@ -15,20 +16,16 @@ const ProductData = ({ item }) => {
   };
 
   const savedLaterHandler = () => {
-    dispatch(addToSavedItems(item))
+    dispatch(addToSavedItems(item));
     dispatch(deleteFromCart(item));
   };
   // ____ Product Data ____
   const mainImg = item.mainImg;
   const minTitle = item.minTitle.en;
-  const price = item.price;
-  const quantity = item.count;
-  console.log(quantity);
+  const price = item.price; 
   // ______________________
 
-  const renderQuantityValue = () => {
-    return `Qty: ${quantity}`;
-  };
+   
 
   return (
     <Box
@@ -74,6 +71,7 @@ const ProductData = ({ item }) => {
 
         {/* details */}
         <Box sx={{ paddingLeft: "10px" }}>
+          {/* ____TiTle____ */}
           <div className="flex justify-between maxmd:mt-4">
             <Typography
               variant="subTitle1"
@@ -83,6 +81,7 @@ const ProductData = ({ item }) => {
             </Typography>
           </div>
 
+          {/* ____Stock____ */}
           <Box sx={{ fontSize: "12px", lineHeight: "16px", margin: "8px 0" }}>
             <Typography variant="caption" sx={{ color: "#007600" }}>
               In stock
@@ -95,16 +94,16 @@ const ProductData = ({ item }) => {
 
           <div className="flex flex-row flex-wrap space-x-5 items-center ">
             <div className="relative">
-              <SelectItem renderQuantityValue={renderQuantityValue}/>
+              <SelectItem item={item} deleteFromCartHandler={deleteFromCartHandler}  />
             </div>
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan actionFun={deleteFromCartHandler}>Delete</UnderLineSpan>
+            <UnderLineSpan onClick={deleteFromCartHandler}>Delete </UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan actionFun={savedLaterHandler}>Save for later</UnderLineSpan>
+            <UnderLineSpan onClick={savedLaterHandler}> Save for later </UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 
