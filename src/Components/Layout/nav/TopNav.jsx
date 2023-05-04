@@ -1,30 +1,27 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { collection, query, where } from "firebase/firestore";
+
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
 import words from "../../../leng.json";
-import { addToCart } from "../../../Store/CartSlice";
+// import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
+import { db } from "../../../firebase";
+import { useFormik } from "formik";
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
+  const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;
-
+  const [search, setSearch] = useState("");
+  const [tearmSearch, setTeamSearch] = useState(search);
   const signInStatus = useSelector((state) => state.nameUserSlice);
- 
-
-  // _______CartItems ________
-  const cartItems = useSelector((state) => state.CartSlice.cartItems); 
-  const itemCount = cartItems.length;
-  const displayItems = itemCount === 0 ? '0' : `${itemCount}`; 
-  // __________________________
-
-
-  
+  const itemCart = useSelector((state) => state.cartItemNumber);
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -61,6 +58,17 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     inputRef.current.classList.remove("border-active");
   };
 
+  const formik = useFormik({
+    initialValues: {
+      selectCategory: "",
+      searchValue: "",
+    },
+    onSubmit: (values) => {
+      // alert(JSON.stringify(values, null, 2));
+      navgite(`/search/${values.selectCategory}/${values.searchValue}`);
+    },
+  });
+
   return (
     <div
       className={
@@ -85,41 +93,58 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <p className="text-[#ccc] text-[12px]">
               {langWordsActive.deleverTo}
             </p>
-            <p className="capitalize  font-bold">{langWordsActive.country}</p>
+            <p className="capitalize  font-bold text-[14px]">
+              {langWordsActive.country}
+            </p>
           </div>
         </div>
       </div>
 
-      <div
-        ref={inputRef}
+      <form
+        onSubmit={formik.handleSubmit}
         className="input-search relative md:flex-1 maxmd:order-1 maxmd:w-full flex items-center  h-11 group border-2 border-transparent mt-2 rounded-lg"
       >
-        <div className="select-cat h-full">
-          <select className="select-category focus:border-mainColor border-2  h-full text-[#0F1111] bg-[#f3f3f3]  border-[#f3f3f3] capitalize outline-none ltr:rounded-l-md rtl:rounded-r-md">
-            <option value={"cat1"}>{langWordsActive.all}</option>
-            {category.map((e, i) => {
-              return (
-                <option key={i} value={e[`${activeLeng}`]}>
-                  {e[`${activeLeng}`]}
-                </option>
-              );
-            })}
-          </select>
+        <div
+          ref={inputRef}
+          className="input-search relative md:flex-1 maxmd:order-1 maxmd:w-full flex items-center  h-11 group border-2 border-transparent mt-2 rounded-lg"
+        >
+          <div className="select-cat h-full">
+            <select
+              name="selectCategory"
+              onChange={formik.handleChange}
+              value={formik.values.selectCategory}
+              className="select-category focus:border-mainColor border-2  h-full text-[#0F1111] bg-[#f3f3f3]  border-[#f3f3f3] capitalize outline-none ltr:rounded-l-md rtl:rounded-r-md text-[12px]"
+            >
+              <option value={""}>{langWordsActive.selectCategory}</option>
+              {category.map((e, i) => {
+                return (
+                  <option key={i} value={e[`${activeLeng}`]}>
+                    {e[`${activeLeng}`]}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="input flex-1 h-full relative">
+            <input
+              onFocus={(ev) => focusInput(ev.target)}
+              onBlur={(ev) => blurInput(ev.target)}
+              name="searchValue"
+              onChange={formik.handleChange}
+              value={formik.values.searchValue}
+              // onChange={(e) => handleSearch(e.target.value)}
+              type={"text"}
+              className="w-full outline-none h-full group-focus:border-mainColor placeholder:text-center"
+              placeholder={langWordsActive.searchValue}
+            />
+            <div className="search-result absolute w-full bg-white top-full left-0 rounded-b-md shadow-md hidden"></div>
+          </div>
+          <div className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md">
+            <button className="fa-solid fa-magnifying-glass"></button>
+          </div>
         </div>
-        <div className="input flex-1 h-full relative">
-          <input
-            onFocus={(ev) => focusInput(ev.target)}
-            onBlur={(ev) => blurInput(ev.target)}
-            type={"text"}
-            className="w-full outline-none h-full group-focus:border-mainColor"
-          />
-          <div className="search-result absolute w-full bg-white top-full left-0 rounded-b-md shadow-md hidden"></div>
-        </div>
-        <div className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md">
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div className="right  flex items-center ltr:ml-4 rtl:mr-4 ">
+      </form>
+      <div className="right  flex items-center ltr:ml-4 rtl:mr-4  maxlg:ltr:ml-0 maxlg:rtl:mr-0">
         <div
           onMouseOver={() => setShowDilog(true)}
           onMouseLeave={() => setShowDilog(false)}
@@ -216,7 +241,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         <div
           onMouseOver={() => setShowDilog(true)}
           onMouseLeave={() => setShowDilog(false)}
-          className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden "
+          className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden text-[14px]"
         >
           <Link to={"LogIn"} className="text-white">
             <p className="text-xs ">
@@ -231,11 +256,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             </p>
           </Link>
 
-          <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999]">
+          <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999] ">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
             {!signInStatus.status && (
               <Fragment>
-                <div className="sing-in-btn text-center">
+                <div className="sing-in-btn text-center text-[14px]">
                   <Link
                     to={"LogIn"}
                     className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
@@ -268,9 +293,9 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               </div>
             )}
 
-            <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee]">
+            <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee] ">
               <div className="left w-1/2 ltr:border-r rtl:border-l  border-[#ccc] ">
-                <h3 className="capitalize font-bold text-lg">
+                <h3 className="capitalize font-bold  maxlg:text-sm">
                   {langWordsActive.YourLists}
                 </h3>
                 <ul className="w-full">
@@ -282,7 +307,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
                 </ul>
               </div>
               <div className="right w-1/2 ltr:pl-6 rtl:pr-6">
-                <h3 className="capitalize font-bold text-lg">
+                <h3 className="capitalize font-bold  maxlg:text-sm">
                   {langWordsActive.YourAccount}
                 </h3>
                 <ul>
@@ -297,13 +322,13 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
           </div>
         </div>
 
-        <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:hidden">
-          <Link to={"#"} className="text-white">
+        <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:hidden ">
+          <Link to={"#"} className="text-white text-[14px]">
             <p className="text-xs">{langWordsActive.returns}</p>
             <p className="text-sm font-bold">{langWordsActive.Orders}</p>
           </Link>
         </div>
-        <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:flex">
+        <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:flex maxlg:ml-0 maxlg:rtl:m-0 text-[14px]">
           <Link
             to={"LogIn"}
             className="md:hidden flex items-center text-white ltr:mr-3 rtl:ml-3 "
@@ -320,11 +345,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                {displayItems}
+                {/* {displayItems} */}
               </span>
             </div>
 
-            <span className="text-sm rtl:text-lg maxmd:hidden">
+            <span className=" maxmd:hidden text-[14px]">
               {langWordsActive.carts}
             </span>
           </Link>

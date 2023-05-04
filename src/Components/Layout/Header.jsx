@@ -23,7 +23,7 @@ const Nav = () => {
   // console.log(category);
   return (
     <Fragment>
-      <nav className="bg-[#232f3e] lg:p-2  relative z-[99999999999]">
+      <nav className="bg-[#232f3e]   relative z-[99999999999]">
         <div className="container">
           <TopNav
             category={category}

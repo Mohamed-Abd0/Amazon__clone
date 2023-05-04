@@ -127,7 +127,9 @@
 
     "yourItems": "Your items",
     "savedForLater": "Saved for later",
-    "items": "items"
+    "items": "items",
+    "searchValue": "search value",
+    "selectCategory": "selectCategory"
   },
   "ar": {
     "country": "مصر",
@@ -256,6 +258,8 @@
     "savedForLater": "سلع محفوظة لوقت لاحق ",
     "items": "سلع"
 
-
+,
+    "searchValue": "ادخال قيمة البحث",
+    "selectCategory": "اختيار القسم"
   }
 }

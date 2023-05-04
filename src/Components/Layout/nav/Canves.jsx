@@ -32,7 +32,7 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
         ></i>
         <Link
           to={"#"}
-          className="sign-in-canves bg-[#232f3e] text-white flex items-center text-2xl h-[50px] px-6 justify-center font-bold sticky top-0"
+          className="sign-in-canves bg-[#232f3e] text-white flex items-center text-2xl h-[50px] px-6 justify-center font-bold sticky top-0 maxlg:text-lg"
         >
           <span>{langWordsActive.helloSignIn}</span>
           <i className="fa-solid fa-circle-user text-2xl mx-3"></i>
