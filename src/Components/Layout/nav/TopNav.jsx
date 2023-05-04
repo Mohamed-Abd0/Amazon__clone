@@ -21,7 +21,19 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const [search, setSearch] = useState("");
   const [tearmSearch, setTeamSearch] = useState(search);
   const signInStatus = useSelector((state) => state.nameUserSlice);
-  const itemCart = useSelector((state) => state.cartItemNumber);
+ 
+
+  // _______CartItems ________
+  const cartItemsQty = JSON.parse(localStorage.getItem('cartItems'));
+  console.log(cartItemsQty[0]?.qty)
+  const totalQty = cartItemsQty?.reduce((acc, curr) => {
+    return acc + curr.qty;
+  }, 0);
+  const displayItems = totalQty === 0 ? '0' : `${totalQty}`; 
+  // __________________________
+
+
+  
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -40,7 +52,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     document.querySelector("html").dir = activeDir;
     document.querySelector("html").lang = activeLeng;
     [...ref.current.children].forEach((e) => {
-      if (activeLeng == e.getAttribute("short-name-leng")) {
+      if (activeLeng === e.getAttribute("short-name-leng")) {
         e.querySelector("input").setAttribute("checked", "");
         e.classList.add("text-mainColor");
         e.classList.add("font-bold");
@@ -84,7 +96,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         </div>
         <div className={`logo w-28 hover-item `}>
           <Link to={"/"} className="w-full h-full">
-            <img className="w-full h-full" src={logo} />
+            <img className="w-full h-full" src={logo} alt=""/>
           </Link>
         </div>
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
@@ -171,7 +183,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
             <div className="all-leng py-4 " ref={ref}>
               {leng.map((e, i) => {
-                return i == 0 ? (
+                return i === 0 ? (
                   <div
                     key={i}
                     direction={e.dir}
@@ -345,7 +357,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                {/* {displayItems} */}
+                {displayItems}
               </span>
             </div>
 
