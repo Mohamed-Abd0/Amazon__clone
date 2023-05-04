@@ -19,6 +19,7 @@ import Category from "./Components/Category/Category";
 import AddProduct2 from "./Pages/Home/AddProduct2";
 import { AddCategory } from "./Pages/AddCategory";
 import { useSelector } from "react-redux";
+import { Search } from "./Pages/Search";
 
 function App() {
   // get the login state from the store to protect the routes
@@ -41,6 +42,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/addProduct" element={<AddProduct2 />} />
         <Route path="/addCategory" element={<AddCategory />} />
+        <Route path="/search/:cat/:text" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     )

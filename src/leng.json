@@ -41,7 +41,9 @@
     "securityCameras": "Security cameras",
     "starting": "Starting",
     "EGP": "EGP",
-    "backToTop": "back To Top"
+    "backToTop": "back To Top",
+    "searchValue": "search value",
+    "selectCategory": "selectCategory"
   },
   "ar": {
     "country": "مصر",
@@ -85,6 +87,8 @@
     "securityCameras": "كاميرات المراقبة",
     "starting": "تبدأ من",
     "EGP": "جنيه",
-    "backToTop": "الرجوع للأعلى"
+    "backToTop": "الرجوع للأعلى",
+    "searchValue": "ادخال قيمة البحث",
+    "selectCategory": "اختيار القسم"
   }
 }

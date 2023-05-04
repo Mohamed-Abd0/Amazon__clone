@@ -185,6 +185,8 @@ const AddProduct2 = () => {
         validationSchema={schema}
         onSubmit={(values, { resetForm }) =>
           setTimeout(() => {
+            values.minTitle.ar = values.minTitle.ar.split(" ");
+            values.minTitle.en = values.minTitle.en.split(" ");
             [...selectSeler.current.children].map((e) => {
               if (Object(values.seller.ar) == e.innerHTML) {
                 values.sellerID = e.getAttribute("value2");
