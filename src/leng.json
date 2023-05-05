@@ -65,7 +65,7 @@
     "conditionsUseSale": "Conditions of Use & Sale",
     "privacyNotice": "Privacy Notice",
     "InterestAds": "Interest-Based Ads",
-    "copyRight": "&copy;",
+    "copyRight": "©",
     "year1996": "1996-2023",
     "amazonInc": "Amazon.com, Inc.",
     "or": "or",
@@ -123,12 +123,11 @@
     "addToList": "add to list",
     "computer": "computer",
     "noProductsIn": "No Products In",
-
-
-
     "yourItems": "Your items",
     "savedForLater": "Saved for later",
-    "items": "items"
+    "items": "items",
+    "previous": "< Previous",
+    "next": "Next >"
   },
   "ar": {
     "country": "مصر",
@@ -253,11 +252,11 @@
     "deliveredBy": "يشحن من ",
     "soldBy": "يباع من ",
     "addToList": "أضف إلى القائمة",
-
-
     "yourItems": "السلع الخاصة بك ",
     "savedForLater": "سلع محفوظة لوقت لاحق ",
-    "items": "سلع"
+    "items": "سلع",
+    "previous": " < السابق ",
+    "next": "  التالي >"
 
 
   }

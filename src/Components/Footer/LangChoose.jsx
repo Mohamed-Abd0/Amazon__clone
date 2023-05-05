@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Flag from '../../assets/Flag_of_Egypt.png';
 import { getactiveLeng } from "../../Store/nav_slice/lengRedusers";
 import words from "../../leng.json";
-
+import { FaGlobe } from 'react-icons/fa';
 
 const LangChoose = () => {
   const ref = useRef();
@@ -43,9 +43,10 @@ const LangChoose = () => {
     <>
         <div className="h-full flex group items-center   text-white text-sm hover-item relative maxmd:hidden">
           <Link to={"#"} className="leng-top flex cursor-pointer">
-            <img alt="fleg" src={Flag} className="w-7" />
+            {/* <img alt="fleg" src={Flag} className="w-7" /> */}
             <span className="mx-2 uppercase">{activeLeng}</span>
-            <span className="fa-thin fa-globe text-[#ccc]"></span>
+            {/* <span className="fa-thin fa-globe text-[#ccc]"></span> */}
+            <FaGlobe className="fa-thin" style = {{color: '#ccc', fontSize: '20px' }}/>
           </Link>
           <div className="leng-drop-down absolute w-52 bg-white left-0 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden group-hover:block z-[99999999999]">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[30%] text-white text-xl"></i>
@@ -113,8 +114,9 @@ const LangChoose = () => {
               </Link>
             </div>
           </div>
+          
         </div>
-
+        <img alt="fleg" src={Flag} className="w-7" />
         
     </>
   );

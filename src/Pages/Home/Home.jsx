@@ -1,22 +1,19 @@
 import { React, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import Container from "@mui/material/Container";
-import { Grid, Typography } from "@material-ui/core";
+import {useParams } from "react-router-dom";
+import {Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import words from "../../leng.json";
-import Footer from "../../Components/Footer/Footer";
-import ProductDetailsCard from "../../Components/ReuseableComponets/ProductDetailsCard";
 import { getProductsByGategory } from "../../Firebase-APIS/FirebaseFunctions";
-import PaginationLink from "../../Components/ReuseableComponets/PaginatedItems";
 import PaginatedItems from "../../Components/ReuseableComponets/PaginatedItems";
 const Home = () => {
   const [products, setProduct] = useState([]);
   const categoryType = useParams();
+  
   // Active lang
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang;
   const langWordsActive = words[`${lengActive.lang}`];
-
+  console.log(`categoryType.${activeLeng}`)
   useEffect(() => {
     getProductsByGategory(`category.${activeLeng}`, categoryType.type).then(
       (data) => {
@@ -55,35 +52,9 @@ const Home = () => {
           >
             {`${categoryType.type}`}
           </Typography>
-          {/* <Container maxWidth="xl">
-            <Grid container justify="center" spacing={4}>
-              {products.map((product) => {
-                return (
-                  <Grid
-                    className="main-grid"
-                    item
-                    key={product.id}
-                    xs={12}
-                    sm={6}
-                    md={4}
-                    lg={3}
-                  >
-                    <Link
-                      to={"/product/" + product.id}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <ProductDetailsCard product={product} />
-                    </Link>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </Container> */}
-          <PaginatedItems itemsPerPage={2} data={products}/> 
+          <PaginatedItems itemsPerPage={1} data={products} />
         </>
       )}
-
-      <Footer />
     </>
   );
 };

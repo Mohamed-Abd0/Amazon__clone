@@ -75,11 +75,11 @@ const Category = () => {
         <>
           <HomePageCarousel />
           {/* Main Container */}
-          <Container maxWidth="l" style={{ background: "#E2E6E6" }}>
+          <Container maxWidth="l" style={{ background: "#E2E6E6" }} >
             {/* Main Grid */}
-            <Grid container justify="center" spacing={2}>
+            <Grid container justify="center" spacing={2} >
               {/* Gategories Grid */}
-              <Grid className="main-grid" container spacing={2}>
+              <Grid className="main-grid" container spacing={2} >
                 {/*  MakeUp */}
                 <CategoryDetails
                   name={langWordsActive.makeUp}
@@ -102,58 +102,9 @@ const Category = () => {
                 />
                 {/* Display a random product */}
                 {randomDoc && (
-                  <Grid item key={randomDoc?.id} xs={12} sm={6} md={3} sx={{ backgroundColor: "white" }}>
+                  <Grid item key={randomDoc?.id} xs={12} sm={6} md={4} lg={3} sx={{ backgroundColor: "white" }}>
                     <Link to={"/product/" + randomDoc.id}>
                       <ProductDetailsCard product={randomDoc} />
-                      {/* copoun  */}
-                      {/* <Box
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          alignSelf: "center",
-                          backgroundColor: "white",
-                        }}
-                      > */}
-                        {/* {randomDoc.discount === true && (
-                          <Button
-                            className="coupon"
-                            style={{
-                              backgroundColor: "#E57A00",
-                              width: 120,
-                              height: 30,
-                              justifyContent: "center",
-                              borderRadius: "4px",
-                              fontSize: 10,
-                              textAlign: "center",
-                              fontWeight: "bold",
-                              color: "white",
-                              // paddingTop: '20px',
-                              marginRight: 40,
-                              marginBottom: "20px",
-                            }}
-                          >
-                            {langWordsActive.EGP}
-                            {randomDoc.discountValue} {langWordsActive.off}{" "}
-                            {langWordsActive.copoun}
-                          </Button>
-                        )}
-                        <Button
-                          variant="contained"
-                          size="small"
-                          style={{
-                            background: "#ffa41c",
-                            border: "1px solid #ff8f00",
-                            borderRadius: "20px",
-                            boxShadow: "0 2px 5px 0 hsl(180deg 5% 84% / 50%)",
-                            color: "#0f1111",
-                            // textAlign: 'center'
-                            alignItems: "center",
-                            marginBottom: "20px",
-                          }}
-                        >
-                          {langWordsActive.seeMore}
-                        </Button> */}
-                      {/* </Box> */}
                     </Link>
                   </Grid>
                 )}
@@ -184,6 +135,13 @@ const Category = () => {
                   image={kitchen}
                   title={`${langWordsActive.KitchenEssentials} |
                   ${langWordsActive.discount} 15%`}
+                />
+
+                 {/*  Men's fashion */}
+                <CategoryDetails
+                  name={langWordsActive.menFasion}
+                  image={menClothes}
+                  title={`${langWordsActive.menFasion} | ${langWordsActive.discount}  70%`}
                 />
               </Grid>
               {/* Today's Deals Using Swiper MUI */}
