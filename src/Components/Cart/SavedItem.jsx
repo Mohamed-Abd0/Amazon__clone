@@ -1,8 +1,13 @@
 import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector} from "react-redux";
 import { addToCart , deleteFromSavedItems } from "../../Store/CartSlice";
+import words from "../../leng.json";
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   itemContainer: {
@@ -49,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function SavedItem({item}) {
+  
   const dispatch = useDispatch();
 
   const moveToCartHandler = () => {
@@ -57,35 +63,45 @@ function SavedItem({item}) {
   };
 
   const classes = useStyles();
+
+
+  // Access language data from Redux store
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWords = words[`${lengActive.lang}`];
+
+  // translated words 
+  const EGP = activWords.EGP
+  const InStock = activWords.inStock
+  const moveToCart = activWords.moveToCart
+
+  // data of product
+  const title = item.minTitle[`${lengActive.lang}`].join(' ');
+  const Price = item.price
+
   return (
     <Grid item xs={12} md={6} lg={3} className={classes.itemContainer} >
       <Box>
         <img
           className={classes.image}
-          src="https://m.media-amazon.com/images/G/42/cart/empty/kettle-desaturated._CB659190457_.svg"
+          src={item.mainImg}
           alt=""
         />
       </Box>
       <Typography variant="h6" className={classes.itemTitle}>
-        Razer Viper V2 Pro HyperSpeed Wireless Gaming Mouse: 58g
-        Ultra-Lightweight - Optical Switches Gen-3 - 30K Optical Sensor -
-        On-Mouse DPI Controls - 80hr Battery - USB Type C Cable Included - Black
+        {title}
       </Typography>
       <Typography variant="h5" className={classes.price}>
-        EGP 42.00
+         {` ${Price} ${EGP} `}
       </Typography>
       <Typography variant="body1" className={classes.status}>
-        In stock
-      </Typography>
-      <Typography variant="body2" className={classes.status}>
-        Eligible for FREE delivery
+        {InStock}
       </Typography>
       <Button
         variant="outlined"
         className={classes.button}
         onClick={moveToCartHandler}
       >
-        Move to cart
+        {moveToCart}
       </Button>
     </Grid>
   );

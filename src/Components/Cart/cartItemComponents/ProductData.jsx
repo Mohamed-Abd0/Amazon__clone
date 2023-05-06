@@ -99,11 +99,11 @@ const ProductData = ({ item }) => {
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan onClick={deleteFromCartHandler}>Delete </UnderLineSpan>
+            <UnderLineSpan actionFun={deleteFromCartHandler}>Delete </UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan onClick={savedLaterHandler}> Save for later </UnderLineSpan>
+            <UnderLineSpan actionFun={savedLaterHandler}> Save for later </UnderLineSpan>
 
             <Divider orientation="vertical" flexItem />
 
