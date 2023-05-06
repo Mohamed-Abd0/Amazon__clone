@@ -28,7 +28,7 @@ const SavedItems = () => {
         <Divider />
       </Stack>
 
-      <Grid container my={2} spacing={2}>
+      <Grid container my={3} px={2} gap={2} spacing={2}>
         {savedProducts.map((item) => (
           <SavedItem key={item.id} item={item} />
         ))}

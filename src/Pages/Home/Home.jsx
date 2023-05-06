@@ -3,7 +3,6 @@ import {useParams } from "react-router-dom";
 import {Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import words from "../../leng.json";
-import ProductDetailsCard from "../../Components/ReuseableComponets/ProductDetailsCard";
 import { getProductsByGategory } from "../../Firebase-APIS/FirebaseFunctions";
 import PaginatedItems from "../../Components/ReuseableComponets/PaginatedItems";
 const Home = () => {
@@ -23,7 +22,6 @@ const Home = () => {
     );
   }, [categoryType]);
 
-  // console.log("queryResults", queryResults);
 
   return (
     <>

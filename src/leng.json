@@ -96,6 +96,7 @@
     "findAttract": "Find, attract and engage customers",
     "only": "only",
     "leftInStock": "left in Stock ",
+    "inStock": "In stock",
     "orderSoon": "order soon",
     "off": "OFF",
     "copoun": "COUPON",
@@ -125,6 +126,7 @@
     "noProductsIn": "No Products In",
     "yourItems": "Your items",
     "savedForLater": "Saved for later",
+    "moveToCart" : "Move To Cart",
     "items": "items",
     "searchValue": "search value",
     "selectCategory": "selectCategory",
@@ -228,6 +230,7 @@
     "findAttract": "إيجاد العملاء وجذبهم والتفاعل معهم",
     "only": "فقط",
     "leftInStock": "تبقى ",
+    "inStock": "موجود في المخزن",
     "orderSoon": "أطلب الأن ",
     "off": "تخفيض",
     "copoun": "قسيمة",
@@ -256,10 +259,11 @@
     "addToList": "أضف إلى القائمة",
     "yourItems": "السلع الخاصة بك ",
     "savedForLater": "سلع محفوظة لوقت لاحق ",
+    "moveToCart" : "أضف إلي عربة التسوق",
     "items": "سلع",
     "previous": " < السابق ",
     "next": "  التالي >"
-
+    
 ,
     "searchValue": "ادخال قيمة البحث",
     "selectCategory": "اختيار القسم"
