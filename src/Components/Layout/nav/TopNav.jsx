@@ -1,15 +1,13 @@
-import { Fragment, useEffect, useRef, useState } from "react";
-import { collection, query, where } from "firebase/firestore";
+import { Fragment, useEffect, useRef, useState } from "react"; 
 
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
-import words from "../../../leng.json";
-// import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
-import { db } from "../../../firebase";
+import words from "../../../leng.json"; 
 import { useFormik } from "formik";
+import { selectCartItems } from "../../../Store/CartSlice";
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
@@ -17,23 +15,22 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const dispatch = useDispatch();
   const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
-  const activeLeng = lengActive.lang;
-  const [search, setSearch] = useState("");
-  const [tearmSearch, setTeamSearch] = useState(search);
+  const activeLeng = lengActive.lang; 
   const signInStatus = useSelector((state) => state.nameUserSlice);
- 
 
   // _______CartItems ________
-  const cartItemsQty = JSON.parse(localStorage.getItem('cartItems'));
-  console.log(cartItemsQty[0]?.qty)
-  const totalQty = cartItemsQty?.reduce((acc, curr) => {
-    return acc + curr.qty;
+
+  // extract the cartItems state from the Redux store 
+  const cartItems = useSelector(selectCartItems); 
+  const cartItemQty = cartItems.map((item) => item.qty);
+  console.log(cartItemQty); 
+  const totalQty = cartItemQty?.reduce((acc, curr) => {
+    console.log(curr, acc);
+    return acc + curr;
   }, 0);
-  const displayItems = totalQty === 0 ? '0' : `${totalQty}`; 
+  const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
   // __________________________
 
-
-  
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -96,7 +93,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         </div>
         <div className={`logo w-28 hover-item `}>
           <Link to={"/"} className="w-full h-full">
-            <img className="w-full h-full" src={logo} alt=""/>
+            <img className="w-full h-full" src={logo} alt="" />
           </Link>
         </div>
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
@@ -352,7 +349,6 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
 
-          
           <Link to={"Cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />

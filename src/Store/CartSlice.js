@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const cartItems = localStorage.getItem("cartItems");
 const savedItems = localStorage.getItem("savedItems");
@@ -74,3 +74,10 @@ export const {
 } = CartSlice.actions;
 
 export default CartSlice.reducer;
+
+
+// Selector for cartItems state
+export const selectCartItems = createSelector(
+  state => state.CartSlice.cartItems,
+  cartItems => cartItems
+);
