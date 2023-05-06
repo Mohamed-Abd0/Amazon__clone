@@ -6,7 +6,6 @@ import { db } from "../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import words from "../../leng.json";
-import Footer from "../../Components/Footer/Footer";
 import ProductDetailsCard from "../../Components/ReuseableComponets/ProductDetailsCard";
 import { getProductsByGategory } from "../../Firebase-APIS/FirebaseFunctions";
 const Home = () => {
@@ -86,7 +85,6 @@ const Home = () => {
         </>
       )}
 
-      <Footer />
     </>
   );
 };

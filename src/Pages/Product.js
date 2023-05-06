@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProductData } from "../Store/ProductSlice";
 import { useParams } from "react-router-dom";
-import getProductData from "../Firebase-APIS/Product/getProductData";
+import {getProductData} from "../Firebase-APIS/FirebaseFunctions";
 import {
   Breadcrumb,
   ProductImg,

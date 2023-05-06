@@ -1,7 +1,7 @@
 import { MenuItem, Select } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import updateProductQty from "../../../../Firebase-APIS/Product/updateProductQty";
+import {updateProductQty} from "../../../../Firebase-APIS/FirebaseFunctions";
 
 const useStyles = makeStyles((theme) => ({
   select: {

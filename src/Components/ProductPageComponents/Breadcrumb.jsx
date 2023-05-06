@@ -10,7 +10,7 @@ const Breadcrumb = () => {
 
   const home = activWrods.home;
   const category = product.category[`${lengActive.lang}`];
-  const title = product.minTitle[`${lengActive.lang}`];
+  // const title = product.minTitle[`${lengActive.lang}`];
 
   return (
     <Breadcrumbs
@@ -37,9 +37,9 @@ const Breadcrumb = () => {
       >
         {category}
       </Link>
-      <Typography color="text.primary" fontSize="inherit">
+      {/* <Typography color="text.primary" fontSize="inherit">
         {title}
-      </Typography>
+      </Typography> */}
     </Breadcrumbs>
   );
 };

@@ -20,7 +20,7 @@ const ProductDetailsCard = ({product}) => {
           className={classes.media}
           image={product.mainImg}
           title={product.minTitle[activeLeng]}
-        />
+          />
         <CardContent align="left">
           <div className={classes.cardContent}>
             <Typography
