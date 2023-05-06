@@ -8,6 +8,9 @@ export default makeStyles((theme) => ({
       overflow: 'hidden',
       borderRadius: '0 !important',
       boxShadow: 'none',
+      "&.MuiGrid-container ":{
+        paddingButton: '90px'
+      }, 
     },
     media: {
       paddingTop: '56.25%', // 16:9
@@ -22,7 +25,6 @@ export default makeStyles((theme) => ({
     },
 
     cardHeader: {
-      
       fontFamily: `'Alexandria', sans-serif !important`,
       padding: 15,
       fontSize: 21,

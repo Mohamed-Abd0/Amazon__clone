@@ -65,7 +65,7 @@
     "conditionsUseSale": "Conditions of Use & Sale",
     "privacyNotice": "Privacy Notice",
     "InterestAds": "Interest-Based Ads",
-    "copyRight": "&copy;",
+    "copyRight": "©",
     "year1996": "1996-2023",
     "amazonInc": "Amazon.com, Inc.",
     "or": "or",
@@ -121,15 +121,15 @@
     "deliveredBy": "Deleverd by",
     "soldBy": "Sold by",
     "addToList": "add to list",
-    
-
-
-
+    "computer": "computer",
+    "noProductsIn": "No Products In",
     "yourItems": "Your items",
     "savedForLater": "Saved for later",
     "items": "items",
     "searchValue": "search value",
-    "selectCategory": "selectCategory"
+    "selectCategory": "selectCategory",
+    "previous": "< Previous",
+    "next": "Next >"
   },
   "ar": {
     "country": "مصر",
@@ -245,6 +245,8 @@
     "returnable": "إمكانية الإرجاع خلال 15 يومًا",
     "deliveredByAmazon": "توصيل من أمازون",
     "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات",
+    "computer": "كمبيوتر",
+    "noProductsIn": " لا يوجد منتجات في",
     "addToCart": "أضف إلي العربة",
     "buyNow": "اشتر الآن",
     "payment": "الدفع",
@@ -252,11 +254,11 @@
     "deliveredBy": "يشحن من ",
     "soldBy": "يباع من ",
     "addToList": "أضف إلى القائمة",
-
-
     "yourItems": "السلع الخاصة بك ",
     "savedForLater": "سلع محفوظة لوقت لاحق ",
-    "items": "سلع"
+    "items": "سلع",
+    "previous": " < السابق ",
+    "next": "  التالي >"
 
 ,
     "searchValue": "ادخال قيمة البحث",
