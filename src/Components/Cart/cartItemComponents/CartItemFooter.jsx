@@ -1,15 +1,21 @@
 import React from "react";
+import Grid from '@material-ui/core/Grid';
+import CheckoutBtn  from '../reusableComonents/CheckoutBtn';
+import SubTotal from "../reusableComonents/SubTotal";
+
+
 
 const CartItemFooter = () => {
+
   return (
-    <>
-      <div className="flex items-center justify-between mb-12">
-        <button className="font bold bg-[#f9c449] rounded p-2">
-          Process to ckeck out
-        </button>
-        <p className="font-bold">Subtotal (2 items): $226.79</p>
-      </div>
-    </>
+    <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+      <Grid item sx={{ display: {  md: "none" } }}>
+        <CheckoutBtn/>
+      </Grid>
+      <Grid item>
+        <SubTotal/>
+      </Grid>
+    </Grid>
   );
 };
 

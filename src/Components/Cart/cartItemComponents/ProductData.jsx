@@ -1,14 +1,56 @@
-import { Box, Checkbox, Divider, Typography } from "@mui/material";
+import { Grid, Box, Checkbox, Divider, Typography } from "@mui/material";
 import React from "react";
 import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { deleteFromCart, addToSavedItems } from "../../../Store/CartSlice";
 import SelectItem from "./productData/SelectItem";
+import { makeStyles } from "@material-ui/core/styles";
+import words from "../../../leng.json"
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+const useStyles = makeStyles(() => ({
+  container: {
+    justifyContent: "space-between",
+    marginTop: "20px",
+    fontSize: "14px",
+  },
+
+  checkBox:{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  img:{
+    width:"220px",
+    flexGrow:"grow",
+  }
+}));
+
+
+
 
 const ProductData = ({ item }) => {
-  console.log(item);
+  const classes = useStyles();
+
+  const lengActive = useSelector(({leng})=> leng);
+  const activeWords = words[`${lengActive.lang}`]
+
+  // translated words 
+  const inStock = activeWords.inStock;
+  const eligibleForFree = activeWords.eligibleForFree;
+  const delet = activeWords.delete;
+  const saveForLater = activeWords.saveForLater;
+  const share = activeWords.share;
+  const EGP = activeWords.EGP;
+
+
+  // ____ Product Data ____
+  const mainImg = item.mainImg;
+  const minTitle = item.minTitle[`${lengActive.lang}`];
+  const price = item.price;
+
+
+
+
   const dispatch = useDispatch();
 
   const deleteFromCartHandler = () => {
@@ -19,42 +61,15 @@ const ProductData = ({ item }) => {
     dispatch(addToSavedItems(item));
     dispatch(deleteFromCart(item));
   };
-  // ____ Product Data ____
-  const mainImg = item.mainImg;
-  const minTitle = item.minTitle.en;
-  const price = item.price; 
-  // ______________________
 
-   
+
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginTop: "20px",
-        fontSize: "14px",
-        height: "200px",
-        lineHeight: "1.3rem",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          width: "60%",
-        }}
-      >
-        {/* image */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "30%",
-            paddingRight: "15px",
-          }}
-        >
+    <Grid container className={classes.container} spacing={1} sx={{bgcolor: "#fff"}}>
+      {/* image */}
+      <Grid item className={classes.imageContainer}  container xs={12} md={3}>
+        <Grid item className={classes.checkBox} sx={2}>
           <Checkbox
-            {...label}
             defaultChecked
             color="default"
             sx={{
@@ -65,65 +80,71 @@ const ProductData = ({ item }) => {
               },
             }}
           />
-          <img width={170} height={170} src={mainImg} alt="" />
-        </Box>
-        {/*________*/}
+        </Grid>
+        <Grid item className={classes.img} sx={10}>
+          <img  src={mainImg} alt="" />
+        </Grid>
+      </Grid>
 
-        {/* details */}
-        <Box sx={{ paddingLeft: "10px" }}>
-          {/* ____TiTle____ */}
-          <div className="flex justify-between maxmd:mt-4">
-            <Typography
-              variant="subTitle1"
-              sx={{ fontSize: "18px", lineHeight: "1.3rem" }}
-            >
-              {minTitle}
-            </Typography>
+      {/* details */}
+      <Grid item  xs={12} md={7}>
+        {/* ____TiTle____ */}
+        <Box className="flex justify-between maxmd:mt-4 overflow-hidden " >
+          <Typography
+            variant="subTitle1"
+            sx={{ fontSize: "18px", lineHeight: "1.3rem" }}
+          >
+            {minTitle}
+          </Typography>
+        </Box>
+
+        {/* ____Stock____ */}
+        <Box sx={{ fontSize: "12px", lineHeight: "16px", margin: "8px 0" }}>
+          <Typography variant="caption" sx={{ color: "#007600" }}>
+            {inStock}
+          </Typography>
+          <br />
+          <Typography variant="caption" sx={{ color: "#565959" }}>
+            {eligibleForFree}
+          </Typography>
+        </Box>
+
+        <div className="flex flex-row flex-wrap space-x-5 items-center ">
+          <div className="relative">
+            <SelectItem
+              product={item}
+              deleteFromCartHandler={deleteFromCartHandler}
+            />
           </div>
 
-          {/* ____Stock____ */}
-          <Box sx={{ fontSize: "12px", lineHeight: "16px", margin: "8px 0" }}>
-            <Typography variant="caption" sx={{ color: "#007600" }}>
-              In stock
-            </Typography>
-            <br />
-            <Typography variant="caption" sx={{ color: "#565959" }}>
-              Eligible for FREE delivery
-            </Typography>
-          </Box>
+          <Divider orientation="vertical" flexItem />
 
-          <div className="flex flex-row flex-wrap space-x-5 items-center ">
-            <div className="relative">
-              <SelectItem item={item} deleteFromCartHandler={deleteFromCartHandler}  />
-            </div>
+          <UnderLineSpan actionFun={deleteFromCartHandler}>
+            {delet}
+          </UnderLineSpan>
 
-            <Divider orientation="vertical" flexItem />
+          <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan actionFun={deleteFromCartHandler}>Delete </UnderLineSpan>
+          <UnderLineSpan actionFun={savedLaterHandler}>
+            {saveForLater}
+          </UnderLineSpan>
 
-            <Divider orientation="vertical" flexItem />
+          <Divider orientation="vertical" flexItem />
 
-            <UnderLineSpan actionFun={savedLaterHandler}> Save for later </UnderLineSpan>
-
-            <Divider orientation="vertical" flexItem />
-
-            <UnderLineSpan>Share</UnderLineSpan>
-          </div>
-        </Box>
-      </Box>
-      {/*________*/}
+          <UnderLineSpan>{share}</UnderLineSpan>
+        </div>
+      </Grid>
 
       {/* Price */}
-      <Box>
+      <Grid item xs={12} md={2} sx={{textAlign: "end"}}>
         <Typography
           variant="subTitle2"
-          sx={{ fontSize: "18px", fontWeight: "600", width: "30%" }}
+          sx={{ fontSize: "18px", fontWeight: "600"  }}
         >
-          EGP {price}
+           {price} { EGP}
         </Typography>
-      </Box>
-      {/*________*/}
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 
