@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectItem = ({ item, deleteFromCartHandler }) => {
+const SelectItem = ({ item, deleteFromCartHandler, increamenterHandler }) => {
   const classes = useStyles();
    
   const Qty = item.qty; 
@@ -43,8 +43,7 @@ const SelectItem = ({ item, deleteFromCartHandler }) => {
   console.log(Qty)
   const [selectedQty, setSelectedQty] = useState(Qty)
 
-  const updateQty = (e) => {
-    console.log(' this is the event', e)
+  const updateQty = (e) => { 
     const newQty = e.target.value;
     setSelectedQty(newQty);
     updateProductQty(item.id, newQty);
@@ -53,8 +52,7 @@ const SelectItem = ({ item, deleteFromCartHandler }) => {
   const renderQuantityValue = () => {
     return `Qty: ${selectedQty}`;
   };
-
-  console.log(selectedQty)
+ 
   return (
     <Select
       className={classes.select}
@@ -69,16 +67,16 @@ const SelectItem = ({ item, deleteFromCartHandler }) => {
       <MenuItem value="" onClick={deleteFromCartHandler}>
         <em>0 (Delete)</em>
       </MenuItem>
-      <MenuItem value={1}>1</MenuItem>
-      <MenuItem value={2}>2</MenuItem>
-      <MenuItem value={3}>3</MenuItem>
-      <MenuItem value={4}>4</MenuItem>
-      <MenuItem value={5}>5</MenuItem>
-      <MenuItem value={6}>6</MenuItem>
-      <MenuItem value={7}>7</MenuItem>
-      <MenuItem value={8}>8</MenuItem>
-      <MenuItem value={9}>9</MenuItem>
-      <MenuItem value={10}>10</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={1}>1</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={2}>2</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={3}>3</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={4}>4</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={5}>5</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={6}>6</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={7}>7</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={8}>8</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={9}>9</MenuItem>
+      <MenuItem onClick={increamenterHandler} value={10}>10</MenuItem>
     </Select>
   );
 };

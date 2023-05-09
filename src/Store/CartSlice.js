@@ -15,10 +15,15 @@ const CartSlice = createSlice({
   reducers: {
     // cartItems reducer
     addToCart: (state, { payload }) => {
-      const existingItems = state.cartItems;
-      const updatedItems = [...existingItems, payload];
-      localStorage.setItem("cartItems", JSON.stringify(updatedItems));
-      state.cartItems = updatedItems;
+      const existingItems = state.cartItems.find(item => item.id === payload.id);
+      if (existingItems){
+        state.totalQty += 1;
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      } else {
+        const updatedItems = [...state.cartItems, {...payload, qty: 1}];
+        localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+        state.cartItems = updatedItems;
+      } 
       state.totalQty += payload.qty; //update total quantity
     },
     deleteFromCart: (state, { payload }) => {
@@ -34,17 +39,18 @@ const CartSlice = createSlice({
       state.cartItems = [];
       localStorage.removeItem("cartItems");
       state.totalQty = 0;
+    }, 
+    incrementQty: (state, { payload }) => {
+      const existingItem = state.cartItems.find(item => item.id === payload.id);
+
+      if (existingItem) {
+        existingItem.qty += payload.qty;
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        state.totalQty += payload.qty;
+      }
     },
-    updateTotalQty: (state, { payload }) => {
-      const existingItems = state.cartItems;
-      const updatedQty = existingItems.reduce((accumulator, current) => {
-        if (current.id === payload.id) {
-          return (accumulator = payload.qty);
-        }
-        return accumulator + current.qty;
-      }, 0);
-      state.totalQty = updatedQty;
-    },
+
+
 
     // savedItem reducers
     addToSavedItems: (state, { payload }) => {
@@ -68,7 +74,7 @@ export const {
   addToCart,
   deleteFromCart,
   clearCart,
-  updateTotalQty,
+  incrementQty,
   addToSavedItems,
   deleteFromSavedItems,
 } = CartSlice.actions;

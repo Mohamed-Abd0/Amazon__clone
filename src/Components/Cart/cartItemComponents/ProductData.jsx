@@ -2,7 +2,7 @@ import { Box, Checkbox, Divider, Typography } from "@mui/material";
 import React from "react";
 import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
 import { useDispatch } from "react-redux";
-import { deleteFromCart, addToSavedItems } from "../../../Store/CartSlice";
+import { deleteFromCart, addToSavedItems, incrementQty } from "../../../Store/CartSlice";
 import SelectItem from "./productData/SelectItem";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -19,6 +19,11 @@ const ProductData = ({ item }) => {
     dispatch(addToSavedItems(item));
     dispatch(deleteFromCart(item));
   };
+
+  const increamenterHandler = () => {
+    dispatch(incrementQty(item));
+  }
+
   // ____ Product Data ____
   const mainImg = item.mainImg;
   const minTitle = item.minTitle.en;
@@ -94,7 +99,7 @@ const ProductData = ({ item }) => {
 
           <div className="flex flex-row flex-wrap space-x-5 items-center ">
             <div className="relative">
-              <SelectItem item={item} deleteFromCartHandler={deleteFromCartHandler}  />
+              <SelectItem item={item} deleteFromCartHandler={deleteFromCartHandler} increamenterHandler={increamenterHandler} />
             </div>
 
             <Divider orientation="vertical" flexItem />
