@@ -1,7 +1,8 @@
 import { MenuItem, Select } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import {updateProductQty} from "../../../../Firebase-APIS/FirebaseFunctions";
+import { updatecartItemQty } from "../../../../Store/CartSlice";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -35,18 +36,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectItem = ({ item, deleteFromCartHandler, increamenterHandler }) => {
+
+
+
+const SelectItem = ({ product }) => {
   const classes = useStyles();
-   
-  const Qty = item.qty; 
   
-  console.log(Qty)
+  const dispatch = useDispatch()
+
+  const Qty = product.qty; 
   const [selectedQty, setSelectedQty] = useState(Qty)
 
-  const updateQty = (e) => { 
+  const updateQty = (e) => {
+
     const newQty = e.target.value;
     setSelectedQty(newQty);
-    updateProductQty(item.id, newQty);
+
+    // updateProductQty
+    dispatch(updatecartItemQty({...product , qty:newQty})); 
   }
 
   const renderQuantityValue = () => {
@@ -64,19 +71,16 @@ const SelectItem = ({ item, deleteFromCartHandler, increamenterHandler }) => {
       value={selectedQty}
       onChange={updateQty}
     >
-      <MenuItem value="" onClick={deleteFromCartHandler}>
-        <em>0 (Delete)</em>
-      </MenuItem>
-      <MenuItem onClick={increamenterHandler} value={1}>1</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={2}>2</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={3}>3</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={4}>4</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={5}>5</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={6}>6</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={7}>7</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={8}>8</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={9}>9</MenuItem>
-      <MenuItem onClick={increamenterHandler} value={10}>10</MenuItem>
+      <MenuItem value={1}>1</MenuItem>
+      <MenuItem value={2}>2</MenuItem>
+      <MenuItem value={3}>3</MenuItem>
+      <MenuItem value={4}>4</MenuItem>
+      <MenuItem value={5}>5</MenuItem>
+      <MenuItem value={6}>6</MenuItem>
+      <MenuItem value={7}>7</MenuItem>
+      <MenuItem value={8}>8</MenuItem>
+      <MenuItem value={9}>9</MenuItem>
+      <MenuItem value={10}>10</MenuItem>
     </Select>
   );
 };
