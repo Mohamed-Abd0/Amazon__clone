@@ -18,15 +18,10 @@ const CartSlice = createSlice({
       // add Qty to cart items
       const newCartItem = { ...payload, qty: 1 };
 
-      const existingItems = state.cartItems.find(item => item.id === payload.id);
-      if (existingItems){
-        state.totalQty += 1;
-        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      } else {
-        const updatedItems = [...state.cartItems, {...newCartItem, qty: 1}];
-        localStorage.setItem("cartItems", JSON.stringify(updatedItems));
-        state.cartItems = updatedItems;
-      } 
+      const existingItems = state.cartItems;
+      const updatedItems = [...existingItems, newCartItem];
+      localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+      state.cartItems = updatedItems;
 
       // update the total price
       let subTotal = 0;
@@ -117,6 +112,7 @@ export const {
   deleteFromCart,
   clearCart,
   incrementQty,
+  updatecartItemQty,
   addToSavedItems,
   deleteFromSavedItems,
 } = CartSlice.actions;
