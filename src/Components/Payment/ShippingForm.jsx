@@ -1,122 +1,153 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { TextField, Button, Grid, Typography } from "@material-ui/core";
-import { setShippingData } from "../../Store/checkout_slice/checkoutSlice";
+// import { useDispatch } from "react-redux";
+import { Typography, Divider, Box } from "@material-ui/core";
+// import { setShippingData } from "../../Store/checkout_slice/checkoutSlice";
 
+import ShippingModal from "./shippingform/ShippingModal";
+import addAddress from "../../assets/payment/addAddress.png";
+import lockerOrange from "../../assets/payment/locker_orange.png";
+import useStyles from "./styles"; 
+import UseAddressBtn from "./shippingform/UseAddressBtn";
+import TextSpan from "../ReuseableComponets/TextSpan";
 //=====================================================================
 
 const ShippingForm = ({ nextStep }) => {
-  const dispatch = useDispatch();
+  const classes = useStyles();
+  // const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [zip, setZip] = useState("");
-  const [formError, setFormError] = useState("");
+  // const [name, setName] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [city, setCity] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [zip, setZip] = useState("");
+  // const [formError, setFormError] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const openHandler = () => setOpen(true);
+  const closeHandler = () => setOpen(false);
 
   const validateForm = () => {
-    if (!name) {
-      return "Your name is required";
-    }
-    if (!address) {
-      return "Your address is required";
-    }
-    if (!city) {
-      return "Your city is required";
-    }
-    if (!country) {
-      return "Your country is required";
-    }
-    if (!zip) {
-      return "Your Zip/Postal code is required";
-    }
-    return "";
+    // if (!name) {
+    //   return "Your name is required";
+    // }
+    // if (!address) {
+    //   return "Your address is required";
+    // }
+    // if (!city) {
+    //   return "Your city is required";
+    // }
+    // if (!country) {
+    //   return "Your country is required";
+    // }
+    // if (!zip) {
+    //   return "Your Zip/Postal code is required";
+    // }
+    // return "";
   };
 
-  const SubmitHandler = (e) => {   
+  const SubmitHandler = (e) => {
     const error = validateForm();
     if (error) {
-      setFormError(error);
+      // setFormError(error);
       return;
     }
-    setFormError();
-    dispatch(setShippingData({ name, address, city, country, zip }));
+    // setFormError();
+    // dispatch(setShippingData({ name, address, city, country, zip }));
     nextStep();
   };
 
   return (
-    <>
-      <Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
+    <Box className={classes.card} style={{ marginLeft: "50px" }}>
+      <div className={classes.cardContainer}>
 
-      <form onSubmit={SubmitHandler}>
-        {formError && <Typography color="error">{formError}</Typography>}
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-basic"
-              label="Name"
-              variant="standard"
-              onChange={(e) => setName(e.target.value)}
-            ></TextField>
+        {/* ********************************* */}
 
-            <TextField
-              id="standard-basic"
-              label="Address line 1"
-              variant="standard"
-              onChange={(e) => setAddress(e.target.value)}
-            ></TextField>
+        <Box style={{ width: "100%", textAlign: "left" }}>
+          <Box style={{ width: "100%", textAlign: "left" }}>
+            <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+              Your addresses
+            </Typography>
+          </Box>
 
-            <TextField
-              id="standard-basic"
-              label="City"
-              variant="standard"
-              onChange={(e) => setCity(e.target.value)}
-            ></TextField>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-basic"
-              label="Email"
-              variant="standard"
-            ></TextField>
-            <TextField
-              id="standard-basic"
-              label="Shipping Country"
-              variant="standard"
-              onChange={(e) => setCountry(e.target.value)}
-            ></TextField>
-            <TextField
-              id="standard-basic"
-              label="Zip/Postal code"
-              variant="standard"
-              onChange={(e) => setZip(e.target.value)}
-            ></TextField>
-          </Grid>
-        </Grid>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "50px",
-          }}
-        >
-          <Button variant="outlined" to="/cart">
-            Back to Cart
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={(e) => SubmitHandler()}
+          <Divider style={{ width: "100%" }} />
+
+          <Box
+            onClick={openHandler}
+            style={{
+              width: "100%",
+              textAlign: "left",
+              display: "flex",
+              flexWrap: "wrap",
+              cursor: "pointer",
+              padding: "5px 0",
+              margin: "7px",
+            }}
           >
-            Next
-          </Button>
-        </div>
-      </form>
-    </>
+            <img
+              src={addAddress}
+              alt=""
+              style={{
+                width: "13px",
+                height: "13px",
+                margin: "4px 5px ",
+              }}
+            />
+            <TextSpan>Add your address</TextSpan>
+          </Box>
+        </Box>
+        {/* ********************************* */}
+
+        <ShippingModal open={open} onClose={closeHandler}/>
+
+        {/* ********************************* */}
+
+        <Box style={{ margin: "10px 0", width: "100%", textAlign: "left" }}>
+          <Box
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            <img
+              src={lockerOrange}
+              alt=""
+              style={{ width: "17px", height: "20px", marginRight: "3px" }}
+            />
+            <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+              Your pickup locations
+            </Typography>
+          </Box>
+
+          <Divider style={{ width: "100%" }} />
+
+          <Box
+            style={{
+              width: "100%",
+              textAlign: "left",
+              display: "flex",
+              flexWrap: "wrap",
+              cursor: "pointer",
+              padding: "5px 0",
+              margin: "7px",
+            }}
+          >
+            <img
+              src={addAddress}
+              alt=""
+              style={{
+                width: "13px",
+                height: "13px",
+                margin: "4px 5px ",
+              }}
+            />
+            <TextSpan>Find a pick-up location near you</TextSpan>
+          </Box>
+        </Box>
+      </div>
+      <div className={classes.cardFooter}>
+        <UseAddressBtn SubmitHandler={SubmitHandler} />
+      </div>
+    </Box>
   );
 };
 
