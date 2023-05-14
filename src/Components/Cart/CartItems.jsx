@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import CartItemHeadter from "./cartItemComponents/CartItemHeadter";
 import ProductData from "./cartItemComponents/ProductData";
 import CartItemFooter from "./cartItemComponents/CartItemFooter";
-import { Divider } from "@mui/material";
+import { Divider, Stack , Box } from "@mui/material";
 
 const CartItems = () => {
   const cartItems = useSelector((state) => state.CartSlice.cartItems);
@@ -16,14 +16,16 @@ const CartItems = () => {
       <Divider sx={{ marginBottom: "20px" }} />
 
       {/* item */}
-      {cartItems.map((item, idx) => (
-        <>
-          <ProductData key={idx} item={item} />
-          {idx !== cartItems.length - 1 && (
-            <Divider sx={{ margin: "20px 0 10px 0 " }} />
-          )}
-        </>
-      ))}
+      <Stack>
+        {cartItems.map((item, idx) => (
+          <Box key={idx} >
+            <ProductData  item={item} />
+            {idx !== cartItems.length - 1 && (
+              <Divider sx={{ margin: "20px 0 10px 0 " }} />
+            )}
+          </Box>
+        ))}
+      </Stack>
 
       {/* footer */}
       <Divider sx={{ margin: "30px 0 5px 0 " }} />

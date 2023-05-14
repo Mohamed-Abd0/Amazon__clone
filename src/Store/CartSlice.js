@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
-const cartItems = localStorage.getItem("cartItems");
-const savedItems = localStorage.getItem("savedItems");
+const storedCartItems = localStorage.getItem("cartItems");
+const storedSavedItems = localStorage.getItem("savedItems");
 
 const initialState = {
-  cartItems: cartItems ? JSON.parse(cartItems) : [],
-  savedItems: savedItems ? JSON.parse(savedItems) : [],
-  totalQty: 0,
+  cartItems: storedCartItems ? JSON.parse(storedCartItems) : [],
+  savedItems: storedSavedItems ? JSON.parse(storedSavedItems) : [],
+  totalPrice: 0,
 };
 
 const CartSlice = createSlice({
@@ -15,11 +15,21 @@ const CartSlice = createSlice({
   reducers: {
     // cartItems reducer
     addToCart: (state, { payload }) => {
+      // add Qty to cart items
+      const newCartItem = { ...payload, qty: 1 };
+
       const existingItems = state.cartItems;
-      const updatedItems = [...existingItems, payload];
+      const updatedItems = [...existingItems, newCartItem];
       localStorage.setItem("cartItems", JSON.stringify(updatedItems));
       state.cartItems = updatedItems;
-      state.totalQty += payload.qty; //update total quantity
+
+      // update the total price
+      let subTotal = 0;
+      updatedItems.forEach((product) => {
+        subTotal += product.price * product.qty;
+      });
+
+      state.totalPrice = subTotal;
     },
     deleteFromCart: (state, { payload }) => {
       const existingItems = state.cartItems;
@@ -28,24 +38,49 @@ const CartSlice = createSlice({
       );
       localStorage.setItem("cartItems", JSON.stringify(updatedItems));
       state.cartItems = updatedItems;
-      state.totalQty -= payload.qty; //update total quantity
+
+      // update the total price
+      let subTotal = 0;
+      updatedItems.forEach((product) => {
+        subTotal += product.price * product.qty;
+      });
+
+      state.totalPrice = subTotal;
+    },
+    updatecartItemQty: (state, { payload }) => {
+      const existingItems = state.cartItems;
+
+      // add the updated porduct to the cart items
+      const updatedItems = existingItems.map((item) => {
+        if (item.id === payload.id) {
+          return payload;
+        } else {
+          return item;
+        }
+      });
+
+      // store the updateditems in localstorage
+      localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+
+      // update the cartItems state
+      state.cartItems = updatedItems;
+
+      // update the total price
+      let subTotal = 0;
+      updatedItems.forEach((product) => {
+        subTotal += product.price * product.qty;
+      });
+
+      state.totalPrice = subTotal;
     },
     clearCart: (state) => {
-      state.cartItems = [];
       localStorage.removeItem("cartItems");
-      state.totalQty = 0;
-    },
-    updateTotalQty: (state, { payload }) => {
-      const existingItems = state.cartItems;
-      const updatedQty = existingItems.reduce((accumulator, current) => {
-        if (current.id === payload.id) {
-          return (accumulator = payload.qty);
-        }
-        return accumulator + current.qty;
-      }, 0);
-      state.totalQty = updatedQty;
+      state.cartItems = [];
     },
 
+
+
+    
     // savedItem reducers
     addToSavedItems: (state, { payload }) => {
       const existingItems = state.savedItems;
@@ -68,9 +103,15 @@ export const {
   addToCart,
   deleteFromCart,
   clearCart,
-  updateTotalQty,
+  updatecartItemQty,
   addToSavedItems,
   deleteFromSavedItems,
 } = CartSlice.actions;
 
 export default CartSlice.reducer;
+
+// Selector for cartItems state
+export const selectCartItems = createSelector(
+  (state) => state.CartSlice.cartItems,
+  (cartItems) => cartItems
+);

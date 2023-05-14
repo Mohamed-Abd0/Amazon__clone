@@ -16,10 +16,13 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "120%",
     fontSize: "13px",
     lineHeight: "120%",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
     color: "#DDD",
     "&:hover": {
       textDecoration: "underline",
     },
+   
   },
   listItem1: {
     fontSize: "10px",
@@ -30,20 +33,28 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       textDecoration: "underline",
     },
+    "&.css-1p823my-MuiListItem-root": {
+      paddingLeft: "0 !important",
+      paddingRight: "0 !important",
+    }
   },
 
   listTitle: {
     fontWeight: "700 !important",
     fontSize: "16px",
     whiteSpace: "nowrap",
-    paddingLeft: "16px",
+    // paddingLeft: "16px",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
     color: "#FFF",
   },
   listTitle1: {
     fontWeight: "700 !important",
     fontSize: "10px !important",
     whiteSpace: "nowrap",
-    paddingLeft: "16px",
+    // paddingLeft: "16px",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
     color: "#FFF",
     "&:hover": {
       textDecoration: "underline",
@@ -192,29 +203,17 @@ export default function Footer() {
               </Link>
             </div>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            lg={2}
-            xl={2}
-            style={{ padding: "20px" }}
-          >
+          <Grid item  xs={12} sm={6} md={3} lg={2} xl={2} style={{ padding: "20px" }}>
             <LangChoose />
           </Grid>
         </Grid>
       </Box>
-
+      {/*  copyRight  */}
       <Box sx={{ backgroundColor: "#131A22", padding: "40px 90px" }}>
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
+        <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center" 
+         sx={{ "@media (max-width: 480px)": { display: "none" } }}
+          >
+          <Grid item xs={12} sm={6} md={3} lg={2} xl={2} >
             <a href="https://advertising.amazon.com/?ref=footer_advtsing_2_eg">
               <Typography className={classes.listTitle1}>
                 {langWordsActive.amazonAdvertising}
@@ -277,13 +276,7 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <a href="https://www.audible.ca/?ref=Adbl_ip_rdr_from_US&source_code=CANGBHP09121700NN&ipRedirectFrom=US&ipRedirectOriginalURL=">
               <List>

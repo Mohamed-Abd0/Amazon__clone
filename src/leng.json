@@ -65,7 +65,7 @@
     "conditionsUseSale": "Conditions of Use & Sale",
     "privacyNotice": "Privacy Notice",
     "InterestAds": "Interest-Based Ads",
-    "copyRight": "&copy;",
+    "copyRight": "©",
     "year1996": "1996-2023",
     "amazonInc": "Amazon.com, Inc.",
     "or": "or",
@@ -96,6 +96,7 @@
     "findAttract": "Find, attract and engage customers",
     "only": "only",
     "leftInStock": "left in Stock ",
+    "inStock": "In stock",
     "orderSoon": "order soon",
     "off": "OFF",
     "copoun": "COUPON",
@@ -121,15 +122,29 @@
     "deliveredBy": "Deleverd by",
     "soldBy": "Sold by",
     "addToList": "add to list",
-    
-
-
-
+    "computer": "computer",
+    "noProductsIn": "No Products In",
     "yourItems": "Your items",
     "savedForLater": "Saved for later",
+    "moveToCart" : "Move To Cart",
     "items": "items",
     "searchValue": "search value",
-    "selectCategory": "selectCategory"
+    "selectCategory": "selectCategory",
+    "previous": "< Previous",
+    "next": "Next >",
+    "processToCheckout": "process To Checkout",
+    "subTotal": "subtotal",
+    "cartEmpty": "Your Amazon cart is empty",
+    "checkYourItems": "Check your saved-for-later items below or",
+    "continueShoopping": "continue shopping.",
+    "noItemSaved": "No items saved for later",
+    "shoppingCart": "shopping cart",
+    "deselectAllItems": "deselect all items",
+    "price": "price",
+    "eligibleForFree": "Eligible for FREE delivery",
+    "delete": "delete ",
+    "saveForLater": "save for later",
+    "share": "share "
   },
   "ar": {
     "country": "مصر",
@@ -228,6 +243,7 @@
     "findAttract": "إيجاد العملاء وجذبهم والتفاعل معهم",
     "only": "فقط",
     "leftInStock": "تبقى ",
+    "inStock": "متوفر",
     "orderSoon": "أطلب الأن ",
     "off": "تخفيض",
     "copoun": "قسيمة",
@@ -245,6 +261,8 @@
     "returnable": "إمكانية الإرجاع خلال 15 يومًا",
     "deliveredByAmazon": "توصيل من أمازون",
     "manufacturerWarranty": "ضمان الشركة المصنعة لمدة 10 سنوات",
+    "computer": "كمبيوتر",
+    "noProductsIn": " لا يوجد منتجات في",
     "addToCart": "أضف إلي العربة",
     "buyNow": "اشتر الآن",
     "payment": "الدفع",
@@ -252,14 +270,26 @@
     "deliveredBy": "يشحن من ",
     "soldBy": "يباع من ",
     "addToList": "أضف إلى القائمة",
-
-
     "yourItems": "السلع الخاصة بك ",
     "savedForLater": "سلع محفوظة لوقت لاحق ",
-    "items": "سلع"
-
-,
+    "moveToCart" : "أضف إلي عربة التسوق",
+    "items": "سلع",
+    "previous": " < السابق ",
+    "next": "  التالي >",
     "searchValue": "ادخال قيمة البحث",
-    "selectCategory": "اختيار القسم"
+    "selectCategory": "اختيار القسم",
+    "processToCheckout": "تابع عملية الشراء",
+    "subTotal": "المجموع الجزئي",
+    "cartEmpty": "عربة تسوق أمازون الخاصة بك فارغة.",
+    "checkYourItems": " قم بزيارة قوائمك أو",
+    "continueShoopping": "تابع التسوق",
+    "noItemSaved": "لا يوجد سلع تم حفظها لوقت لاحق",
+    "shoppingCart": "عربة التسوق",
+    "deselectAllItems": "إلغاء تحديد كافة المنتجات ",
+    "price": "السعر",
+    "eligibleForFree": "مؤهل للحصول على شحن مجاني",
+    "delete": " حذف ",
+    "saveForLater": "حفظ لوقت لاحق ",
+    "share": "مشاركة "
   }
 }

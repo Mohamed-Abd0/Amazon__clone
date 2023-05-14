@@ -86,7 +86,6 @@ const ProductOptions = () => {
         sx={{
           height: "100%",
           px: 1.5,
-          pt: 2.5,
           "& p": { fontSize: "12.5px", color: "text.gray" },
           a: { fontSize: "13px", color: "text.teal", cursor: "pointer" },
           "a:hover": { color: "text.darkOrange" },

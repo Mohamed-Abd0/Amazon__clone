@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Store/Authentication_slice/loginSlice";
 import logo from "../../assets/Amazon_logo.svg.png";
 import classes from "./Auth.module.css";
-import signIn from "../../Firebase-APIS/Authentication/signIn";
-import getUserData from "../../Firebase-APIS/Authentication/getUserData";
+import {signIn , getUserData} from "../../Firebase-APIS/FirebaseFunctions";
 import { setUserData } from "../../Store/Authentication_slice/userDataSlice";
 import { Erorrbox } from "./ErorrMassage";
 

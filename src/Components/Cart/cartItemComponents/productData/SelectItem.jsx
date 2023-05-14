@@ -1,7 +1,8 @@
 import { MenuItem, Select } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import updateProductQty from "../../../../Firebase-APIS/Product/updateProductQty";
+import { updatecartItemQty } from "../../../../Store/CartSlice";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -35,19 +36,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectItem = ({ item, deleteFromCartHandler }) => {
+
+
+
+const SelectItem = ({ product }) => {
   const classes = useStyles();
-   
-  const Qty = item.qty; 
   
-  console.log(Qty)
+  const dispatch = useDispatch()
+
+  const Qty = product.qty; 
   const [selectedQty, setSelectedQty] = useState(Qty)
 
   const updateQty = (e) => {
-    console.log(' this is the event', e)
+
     const newQty = e.target.value;
     setSelectedQty(newQty);
-    updateProductQty(item.id, newQty);
+
+    // updateProductQty
+    dispatch(updatecartItemQty({...product , qty:newQty})); 
   }
 
   const renderQuantityValue = () => {
@@ -66,9 +72,6 @@ const SelectItem = ({ item, deleteFromCartHandler }) => {
       value={selectedQty}
       onChange={updateQty}
     >
-      <MenuItem value="" onClick={deleteFromCartHandler}>
-        <em>0 (Delete)</em>
-      </MenuItem>
       <MenuItem value={1}>1</MenuItem>
       <MenuItem value={2}>2</MenuItem>
       <MenuItem value={3}>3</MenuItem>

@@ -1,15 +1,13 @@
-import { Fragment, useEffect, useRef, useState } from "react";
-import { collection, query, where } from "firebase/firestore";
+import { Fragment, useEffect, useRef, useState } from "react"; 
 
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
-import words from "../../../leng.json";
-// import { incrementCartItem } from "../../../Store/nav_slice/cartRedusers";
-import { db } from "../../../firebase";
+import words from "../../../leng.json"; 
 import { useFormik } from "formik";
+import { selectCartItems } from "../../../Store/CartSlice";
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
@@ -17,17 +15,28 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const dispatch = useDispatch();
   const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
-  const activeLeng = lengActive.lang;
-  const [search, setSearch] = useState("");
-  const [tearmSearch, setTeamSearch] = useState(search);
+  const activeLeng = lengActive.lang; 
   const signInStatus = useSelector((state) => state.nameUserSlice);
 
   // _______CartItems ________
+<<<<<<< HEAD
   const cartItemsQty = JSON.parse(localStorage.getItem("cartItems"));
   // const totalQty = cartItemsQty?.reduce((acc, curr) => {
   //   return acc + curr.qty;
   // }, 0);
   // const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
+=======
+
+  // extract the cartItems state from the Redux store 
+  const cartItems = useSelector(selectCartItems); 
+  const cartItemQty = cartItems.map((item) => item.qty);
+  console.log(cartItemQty); 
+  const totalQty = cartItemQty?.reduce((acc, curr) => {
+    console.log(curr, acc);
+    return acc + curr;
+  }, 0);
+  const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
+>>>>>>> 804e5debb379565c76c3232a9de8b7fad580a189
   // __________________________
 
   const langWordsActive = words[`${lengActive.lang}`];

@@ -2,13 +2,45 @@
   font-family: 'Alexandria', sans-serif ; 
 }
 
-.home-image {
-    width: 100% !important;
+
+
+  .home-image {
+    /* width: 100% !important; */
     height: 100%;
     z-index: -1;
-    margin-bottom: -350px;
+    /* margin-bottom: -350px; */
     object-fit: cover;
     mask-image: linear-gradient(to top, transparent 2%, black 80%);
+  }
+  
+  @media screen and (max-width: 480px) {
+    .home-image {
+      margin-bottom: -150px; /* applies to mobile devices */
+    }
+  }
+  
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    .home-image {
+      margin-bottom: -170px /* applies to iPads, tablets */
+    }
+  }
+  
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .home-image {
+      margin-bottom: -180px; /* applies to small screens, laptops */
+    }
+  }
+  
+  @media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .home-image {
+      margin-bottom: -260px; /* applies to desktops, large screens */
+    }
+  }
+  
+  @media screen and (min-width: 1201px) {
+    .home-image {
+      margin-bottom: -330px; /* applies to extra large screens, TV */
+    }
   }
 
   .carousel-image {

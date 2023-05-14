@@ -1,7 +1,20 @@
 import React from "react";
 import TextSpan from "../../ReuseableComponets/TextSpan";
+import { useSelector } from "react-redux";
+import words from "../../../leng.json";
+
+
 
 const CartItemHeadter = () => {
+
+  const lengActive = useSelector(({leng})=> leng);
+  const activeWords = words[`${lengActive.lang}`]
+
+  // translated words 
+  const shoppingCart = activeWords.shoppingCart;
+  const deselectAllItems = activeWords.deselectAllItems;
+  const price = activeWords.price;
+
   return (
     <>
       <div className="flex flex-col">
@@ -9,9 +22,9 @@ const CartItemHeadter = () => {
           className="text-4xl"
           style={{ fontSize: "28px", fontWeight: 400, lineHeight: "36px" }}
         >
-          Shopping Cart
+          {shoppingCart}
         </h2>
-        <TextSpan>Deselect all items</TextSpan>
+        <TextSpan>{deselectAllItems}</TextSpan>
         <span
           className="flex justify-end"
           style={{
@@ -21,7 +34,7 @@ const CartItemHeadter = () => {
             lineHeight: "20px",
           }}
         >
-          Price
+          {price}
         </span>
       </div>
     </>
