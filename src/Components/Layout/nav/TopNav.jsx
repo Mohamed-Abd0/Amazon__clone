@@ -21,19 +21,15 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const [search, setSearch] = useState("");
   const [tearmSearch, setTeamSearch] = useState(search);
   const signInStatus = useSelector((state) => state.nameUserSlice);
- 
 
   // _______CartItems ________
-  const cartItemsQty = JSON.parse(localStorage.getItem('cartItems'));
-  console.log(cartItemsQty[0]?.qty)
-  const totalQty = cartItemsQty?.reduce((acc, curr) => {
-    return acc + curr.qty;
-  }, 0);
-  const displayItems = totalQty === 0 ? '0' : `${totalQty}`; 
+  const cartItemsQty = JSON.parse(localStorage.getItem("cartItems"));
+  // const totalQty = cartItemsQty?.reduce((acc, curr) => {
+  //   return acc + curr.qty;
+  // }, 0);
+  // const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
   // __________________________
 
-
-  
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -96,7 +92,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         </div>
         <div className={`logo w-28 hover-item `}>
           <Link to={"/"} className="w-full h-full">
-            <img className="w-full h-full" src={logo} alt=""/>
+            <img className="w-full h-full" src={logo} alt="" />
           </Link>
         </div>
         <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
@@ -144,16 +140,18 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               name="searchValue"
               onChange={formik.handleChange}
               value={formik.values.searchValue}
-              // onChange={(e) => handleSearch(e.target.value)}
               type={"text"}
               className="w-full outline-none h-full group-focus:border-mainColor placeholder:text-center"
               placeholder={langWordsActive.searchValue}
             />
             <div className="search-result absolute w-full bg-white top-full left-0 rounded-b-md shadow-md hidden"></div>
           </div>
-          <div className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md">
-            <button className="fa-solid fa-magnifying-glass"></button>
-          </div>
+          <button
+            type="submit"
+            className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md"
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </form>
       <div className="right  flex items-center ltr:ml-4 rtl:mr-4  maxlg:ltr:ml-0 maxlg:rtl:mr-0">
@@ -352,12 +350,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <span className="fa-solid fa-user text-3xl"></span>
           </Link>
 
-          
           <Link to={"Cart"} className="text-white flex items-end">
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                {displayItems}
+                {/* {displayItems} */}
               </span>
             </div>
 
