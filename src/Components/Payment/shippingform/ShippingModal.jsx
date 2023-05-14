@@ -1,7 +1,6 @@
 import { Box, Modal, Paper, Typography } from "@material-ui/core";
 import useStyles from "../styles";
-import FormHeader from "./FormHeader.jsx/FormHeader";
-import FormInput from "./FormHeader.jsx/FormInput";
+import FormFields from "./FormFields";
 
 const ShippingModal = ({ open, onClose }) => {
   const classes = useStyles();
@@ -34,6 +33,7 @@ const ShippingModal = ({ open, onClose }) => {
               padding: "5px 15px",
               borderRadius: "5px",
               fontSize: "17px",
+              cursor: "pointer",
               border: "1px solid #007185",
               boxShadow: "0 0 0 3px #C8F3FA",
             }}
@@ -55,74 +55,8 @@ const ShippingModal = ({ open, onClose }) => {
             >
               Add a new address
             </Typography>
-            <Box>  
-              <Box style={{ margin: "15px 0" }}>
-                <FormHeader for="name">Country/region</FormHeader> 
-                <FormInput type="text" id="name" name="name" /> 
-
-                <FormHeader for="name">
-                  Full name (First and Last name)
-                </FormHeader> 
-                <FormInput type="text" id="name" name="name" /> 
-
-                <FormHeader for="name">Mobile number</FormHeader>  
-                <FormInput
-                style={{width: '70%', display: 'inline'}}
-                  type="tel"
-                  id="name"
-                  name="name"
-                  placeholder="e.g. 1xxxxxxxxx"
-                /> 
-
-                <FormHeader for="name">Street name</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="e.g. Talaat Harb Street"
-                /> 
-
-                <FormHeader for="name">Building name/no</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="e.g. Princess Tower"
-                /> 
-
-                <FormHeader for="name">City/Area</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="e.g. El Nozha, New Cairo City & Dokki"
-                /> 
-
-                <FormHeader for="name">District</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Enter your name"
-                /> 
-
-                <FormHeader for="name">Governorate</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Enter your name"
-                /> 
-
-                <FormHeader for="name">Nearest landmark</FormHeader> 
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="e.g. Cairo festival city"
-                />
-                <br />
-              </Box>
+            <Box>
+              <FormFields />
             </Box>
           </Box>
         </Box>
