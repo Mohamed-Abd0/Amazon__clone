@@ -18,7 +18,6 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const activeLeng = lengActive.lang; 
   const signInStatus = useSelector(({loginSlice}) => loginSlice);
   const name = useSelector(({userDataSlice}) =>  userDataSlice.name);
-  console.log(name);
   
   // _______CartItems ________
 
@@ -354,7 +353,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <div className="images relative w-12">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
-                {/* {displayItems} */}
+                {displayItems}
               </span>
             </div>
 
