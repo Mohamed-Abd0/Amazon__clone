@@ -16,16 +16,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang; 
-  const signInStatus = useSelector((state) => state.nameUserSlice);
-
+  const signInStatus = useSelector(({loginSlice}) => loginSlice);
+  const name = useSelector(({userDataSlice}) =>  userDataSlice.name);
+  console.log(name);
+  
   // _______CartItems ________
-<<<<<<< HEAD
-  const cartItemsQty = JSON.parse(localStorage.getItem("cartItems"));
-  // const totalQty = cartItemsQty?.reduce((acc, curr) => {
-  //   return acc + curr.qty;
-  // }, 0);
-  // const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
-=======
 
   // extract the cartItems state from the Redux store 
   const cartItems = useSelector(selectCartItems); 
@@ -36,7 +31,6 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
     return acc + curr;
   }, 0);
   const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
->>>>>>> 804e5debb379565c76c3232a9de8b7fad580a189
   // __________________________
 
   const langWordsActive = words[`${lengActive.lang}`];
@@ -262,12 +256,9 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
           onMouseLeave={() => setShowDilog(false)}
           className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden text-[14px]"
         >
-          <Link to={"LogIn"} className="text-white">
+          <Link to={"signin"} className="text-white">
             <p className="text-xs ">
-              {" "}
-              {signInStatus.status
-                ? `${langWordsActive.welcome} ${signInStatus.name}`
-                : langWordsActive.helloSignIn}{" "}
+              {`${langWordsActive.Hello} , ${name}`}
             </p>
             <p className="">
               {langWordsActive.accountLists}
@@ -277,11 +268,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
           <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999] ">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
-            {!signInStatus.status && (
+            {!signInStatus.islogin && (
               <Fragment>
                 <div className="sing-in-btn text-center text-[14px]">
                   <Link
-                    to={"LogIn"}
+                    to={"signin"}
                     className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
                     style={{
                       backgroundImage:
@@ -301,7 +292,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               </Fragment>
             )}
 
-            {signInStatus.status && (
+            {signInStatus.islogin && (
               <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
                 <h3>{langWordsActive.selectProfile}</h3>
                 <h3 className="font-bold text-sm text-[#008296]">
