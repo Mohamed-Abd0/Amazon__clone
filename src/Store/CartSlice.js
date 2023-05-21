@@ -75,12 +75,20 @@ const CartSlice = createSlice({
     },
     clearCart: (state) => {
       localStorage.removeItem("cartItems");
-      state.cartItems = [];
+      state.totalQty = 0;
+    }, 
+    incrementQty: (state, { payload }) => {
+      const existingItem = state.cartItems.find(item => item.id === payload.id);
+
+      if (existingItem) {
+        existingItem.qty += payload.qty;
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        state.totalQty += payload.qty;
+      }
     },
 
 
 
-    
     // savedItem reducers
     addToSavedItems: (state, { payload }) => {
       const existingItems = state.savedItems;
@@ -103,6 +111,7 @@ export const {
   addToCart,
   deleteFromCart,
   clearCart,
+  incrementQty,
   updatecartItemQty,
   addToSavedItems,
   deleteFromSavedItems,

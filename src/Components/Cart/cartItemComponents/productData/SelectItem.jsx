@@ -59,8 +59,7 @@ const SelectItem = ({ product }) => {
   const renderQuantityValue = () => {
     return `Qty: ${selectedQty}`;
   };
-
-  console.log(selectedQty)
+ 
   return (
     <Select
       className={classes.select}

@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 
 
-const SubmitButton = ({ SubmitHandler }) => {
+const UseAddressBtn = ({ SubmitHandler }) => {
     const classes = useStyles()
   return (
     <Button
@@ -30,4 +30,4 @@ const SubmitButton = ({ SubmitHandler }) => {
   );
 };
 
-export default SubmitButton
+export default UseAddressBtn

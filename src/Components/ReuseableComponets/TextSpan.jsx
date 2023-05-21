@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const TextSpan = ({ children }) => {
+const TextSpan = ({ children, ActionFn }) => {
   const StyledSpan = styled('span')({
     fontSize: '14px',
     lineHeight: '20px',
@@ -13,7 +13,7 @@ const TextSpan = ({ children }) => {
     },
   });
 
-  return <StyledSpan>{children}</StyledSpan>;
+  return <StyledSpan onClick={ActionFn}>{children}</StyledSpan>;
 };
 
 export default TextSpan;
