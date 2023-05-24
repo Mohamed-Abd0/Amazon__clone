@@ -29,17 +29,17 @@ const PaymentForm = ({ nextStep, backStep }) => {
     return "";
   };
 
-  // const SubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   const error = validateForm();
-  //   if (error) {
-  //     setFormError(error);
-  //     return;
-  //   }
-  //   setFormError();
-  //   dispatch(setPaymentData({ nameOnCard, expiryDate, cardNumber, cvv }));
-  //   nextStep();
-  // };
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    const error = validateForm();
+    if (error) {
+      setFormError(error);
+      return;
+    }
+    setFormError();
+    dispatch(setPaymentData({ nameOnCard, expiryDate, cardNumber, cvv }));
+    nextStep();
+  };
 
   return (
     <>
