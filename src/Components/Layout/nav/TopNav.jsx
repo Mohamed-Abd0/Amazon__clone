@@ -16,8 +16,9 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
   const activeLeng = lengActive.lang; 
-  const signInStatus = useSelector((state) => state.nameUserSlice);
-
+  const signInStatus = useSelector(({loginSlice}) => loginSlice);
+  const name = useSelector(({userDataSlice}) =>  userDataSlice.name);
+  
   // _______CartItems ________
 
   // extract the cartItems state from the Redux store 
@@ -141,16 +142,18 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               name="searchValue"
               onChange={formik.handleChange}
               value={formik.values.searchValue}
-              // onChange={(e) => handleSearch(e.target.value)}
               type={"text"}
               className="w-full outline-none h-full group-focus:border-mainColor placeholder:text-center"
               placeholder={langWordsActive.searchValue}
             />
             <div className="search-result absolute w-full bg-white top-full left-0 rounded-b-md shadow-md hidden"></div>
           </div>
-          <div className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md">
-            <button className="fa-solid fa-magnifying-glass"></button>
-          </div>
+          <button
+            type="submit"
+            className="icon-search flex items-center justify-center bg-[#febd69] hover:bg-[#f3a847] border-2 border-transparent focus:border-mainColor   h-full w-11 cursor-pointer rtl:rounded-l-md ltr:rounded-r-md"
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </form>
       <div className="right  flex items-center ltr:ml-4 rtl:mr-4  maxlg:ltr:ml-0 maxlg:rtl:mr-0">
@@ -252,12 +255,9 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
           onMouseLeave={() => setShowDilog(false)}
           className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden text-[14px]"
         >
-          <Link to={"LogIn"} className="text-white">
+          <Link to={"signin"} className="text-white">
             <p className="text-xs ">
-              {" "}
-              {signInStatus.status
-                ? `${langWordsActive.welcome} ${signInStatus.name}`
-                : langWordsActive.helloSignIn}{" "}
+              {`${langWordsActive.Hello} , ${name}`}
             </p>
             <p className="">
               {langWordsActive.accountLists}
@@ -267,11 +267,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
           <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999] ">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
-            {!signInStatus.status && (
+            {!signInStatus.islogin && (
               <Fragment>
                 <div className="sing-in-btn text-center text-[14px]">
                   <Link
-                    to={"LogIn"}
+                    to={"signin"}
                     className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
                     style={{
                       backgroundImage:
@@ -291,7 +291,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               </Fragment>
             )}
 
-            {signInStatus.status && (
+            {signInStatus.islogin && (
               <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
                 <h3>{langWordsActive.selectProfile}</h3>
                 <h3 className="font-bold text-sm text-[#008296]">

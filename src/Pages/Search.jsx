@@ -27,7 +27,7 @@ export const Search = () => {
       const cityList = querySnapshot.docs.map((doc) => [doc.data(), doc.id]);
       setSearchData(cityList);
     });
-  }, []);
+  }, [cat, text]);
 
   return (
     <div className="p-2">

@@ -7,8 +7,12 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
   const [showlayer, setShowLayer] = useState(false);
   const lengActive = useSelector((state) => state.leng);
   const langWordsActive = words[`${lengActive.lang}`];
-  // const [allSection, setAllSecions] = useState(["مبيوتاؤ", "لابتبوب"]);
   const lengNow = useSelector((state) => state.leng.lang);
+  const name = useSelector(({userDataSlice}) =>  userDataSlice.name);
+
+
+
+
   return (
     <Fragment>
       <div
@@ -34,7 +38,7 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
           to={"#"}
           className="sign-in-canves bg-[#232f3e] text-white flex items-center text-2xl h-[50px] px-6 justify-center font-bold sticky top-0 maxlg:text-lg"
         >
-          <span>{langWordsActive.helloSignIn}</span>
+          <span>{`${langWordsActive.Hello} , ${name} `}</span>
           <i className="fa-solid fa-circle-user text-2xl mx-3"></i>
         </Link>
         <div className="allSections relative overflow-scroll h-full">
@@ -42,6 +46,7 @@ const Canvas = ({ showCanvas, setShowCanvas, category }) => {
             return (
               <div key={i} className="sec sec1">
                 <Link
+                  onClick={() => setShowCanvas(false)}
                   to={`category/${e[`${lengNow}`]}`}
                   className="flex items-center justify-between cursor-pointer hover:bg-[#cccccc7c] p-3 px-6 text-lg"
                 >
