@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useRef, useState } from "react"; 
+import { Fragment, useEffect, useRef, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { getactiveLeng } from "../../../Store/nav_slice/lengRedusers";
 import cart from "../../../assets/cart.png";
-import words from "../../../leng.json"; 
+import words from "../../../leng.json";
 import { useFormik } from "formik";
 import { selectCartItems } from "../../../Store/CartSlice";
 
@@ -15,28 +15,20 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const dispatch = useDispatch();
   const navgite = useNavigate();
   const lengActive = useSelector((state) => state.leng);
-  const activeLeng = lengActive.lang; 
+  const activeLeng = lengActive.lang;
   const signInStatus = useSelector((state) => state.nameUserSlice);
 
   // _______CartItems ________
-<<<<<<< HEAD
-  const cartItemsQty = JSON.parse(localStorage.getItem("cartItems"));
-  // const totalQty = cartItemsQty?.reduce((acc, curr) => {
-  //   return acc + curr.qty;
-  // }, 0);
-  // const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
-=======
 
-  // extract the cartItems state from the Redux store 
-  const cartItems = useSelector(selectCartItems); 
+  // extract the cartItems state from the Redux store
+  const cartItems = useSelector(selectCartItems);
   const cartItemQty = cartItems.map((item) => item.qty);
-  console.log(cartItemQty); 
+  console.log(cartItemQty);
   const totalQty = cartItemQty?.reduce((acc, curr) => {
     console.log(curr, acc);
     return acc + curr;
   }, 0);
   const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
->>>>>>> 804e5debb379565c76c3232a9de8b7fad580a189
   // __________________________
 
   const langWordsActive = words[`${lengActive.lang}`];
@@ -92,11 +84,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         "top-nav flex items-center md:h-[60px] maxmd:flex-wrap maxmd:justify-between "
       }
     >
-      <div className="left flex  md:items-center ">
+      <div className="flex left md:items-center ">
         <div className="open-menu md:hidden ltr:mr-2 rtl:ml-2">
           <i
             onClick={() => setShowCanvas(true)}
-            className="fa-solid fa-bars text-2xl text-white cursor-pointer"
+            className="text-2xl text-white cursor-pointer fa-solid fa-bars"
           ></i>
         </div>
         <div className={`logo w-28 hover-item `}>
@@ -104,7 +96,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             <img className="w-full h-full" src={logo} alt="" />
           </Link>
         </div>
-        <div className="flex items-center text-white hover-item cursor-pointer maxmd:hidden ltr:mr-4 rtl:ml-4 ">
+        <div className="flex items-center text-white cursor-pointer hover-item maxmd:hidden ltr:mr-4 rtl:ml-4 ">
           <i className="fa-solid fa-location-dot ltr:mr-2 rtl:ml-2 "></i>
           <div className="">
             <p className="text-[#ccc] text-[12px]">
@@ -119,13 +111,13 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
       <form
         onSubmit={formik.handleSubmit}
-        className="input-search relative md:flex-1 maxmd:order-1 maxmd:w-full flex items-center  h-11 group border-2 border-transparent mt-2 rounded-lg"
+        className="relative flex items-center mt-2 border-2 border-transparent rounded-lg input-search md:flex-1 maxmd:order-1 maxmd:w-full h-11 group"
       >
         <div
           ref={inputRef}
-          className="input-search relative md:flex-1 maxmd:order-1 maxmd:w-full flex items-center  h-11 group border-2 border-transparent mt-2 rounded-lg"
+          className="relative flex items-center mt-2 border-2 border-transparent rounded-lg input-search md:flex-1 maxmd:order-1 maxmd:w-full h-11 group"
         >
-          <div className="select-cat h-full">
+          <div className="h-full select-cat">
             <select
               name="selectCategory"
               onChange={formik.handleChange}
@@ -142,7 +134,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               })}
             </select>
           </div>
-          <div className="input flex-1 h-full relative">
+          <div className="relative flex-1 h-full input">
             <input
               onFocus={(ev) => focusInput(ev.target)}
               onBlur={(ev) => blurInput(ev.target)}
@@ -150,10 +142,10 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               onChange={formik.handleChange}
               value={formik.values.searchValue}
               type={"text"}
-              className="w-full outline-none h-full group-focus:border-mainColor placeholder:text-center"
+              className="w-full h-full outline-none group-focus:border-mainColor placeholder:text-center"
               placeholder={langWordsActive.searchValue}
             />
-            <div className="search-result absolute w-full bg-white top-full left-0 rounded-b-md shadow-md hidden"></div>
+            <div className="absolute left-0 hidden w-full bg-white shadow-md search-result top-full rounded-b-md"></div>
           </div>
           <button
             type="submit"
@@ -163,13 +155,13 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
           </button>
         </div>
       </form>
-      <div className="right  flex items-center ltr:ml-4 rtl:mr-4  maxlg:ltr:ml-0 maxlg:rtl:mr-0">
+      <div className="flex items-center right ltr:ml-4 rtl:mr-4 maxlg:ltr:ml-0 maxlg:rtl:mr-0">
         <div
           onMouseOver={() => setShowDilog(true)}
           onMouseLeave={() => setShowDilog(false)}
-          className="h-full flex group items-center  uppercase text-white text-sm hover-item relative maxmd:hidden"
+          className="relative flex items-center h-full text-sm text-white uppercase group hover-item maxmd:hidden"
         >
-          <Link to={"#"} className="leng-top flex cursor-pointer">
+          <Link to={"#"} className="flex cursor-pointer leng-top">
             <img
               alt="fleg"
               src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png"
@@ -188,7 +180,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               </Link>
             </div>
 
-            <div className="all-leng py-4 " ref={ref}>
+            <div className="py-4 all-leng " ref={ref}>
               {leng.map((e, i) => {
                 return i === 0 ? (
                   <div
@@ -211,7 +203,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
                     direction={e.dir}
                     short-name-leng={e.short}
                     onClick={(item) => handleChangeLueng(item.target)}
-                    className="leng cursor-pointer flex items-center text-xs mt-2 group hover:text-mainColor z-20"
+                    className="z-20 flex items-center mt-2 text-xs cursor-pointer leng group hover:text-mainColor"
                   >
                     <input
                       type={"radio"}
@@ -246,7 +238,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
               />
               {langWordsActive.shoppingOn} Amazon.com
             </div>
-            <div className="text-center mt-4">
+            <div className="mt-4 text-center">
               <Link
                 to={"/"}
                 className="capitalize text-[#0066C0] hover:underline"
@@ -292,7 +284,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
                   </Link>
                 </div>
 
-                <p className="text-center my-2 text-xs">
+                <p className="my-2 text-xs text-center">
                   {langWordsActive.newCustomer}
                   <Link to={"#"} className="text-[#05a]">
                     {langWordsActive.StartHere}
@@ -302,7 +294,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
             )}
 
             {signInStatus.status && (
-              <div className="cursor-pointer flex items-center justify-between p-3 text-xs">
+              <div className="flex items-center justify-between p-3 text-xs cursor-pointer">
                 <h3>{langWordsActive.selectProfile}</h3>
                 <h3 className="font-bold text-sm text-[#008296]">
                   {langWordsActive.manageProfiles}
@@ -314,7 +306,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
             <div className="flex items-start justify-between px-6 pt-6 border-t border-[#eee] ">
               <div className="left w-1/2 ltr:border-r rtl:border-l  border-[#ccc] ">
-                <h3 className="capitalize font-bold  maxlg:text-sm">
+                <h3 className="font-bold capitalize maxlg:text-sm">
                   {langWordsActive.YourLists}
                 </h3>
                 <ul className="w-full">
@@ -325,8 +317,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
                   </li>
                 </ul>
               </div>
-              <div className="right w-1/2 ltr:pl-6 rtl:pr-6">
-                <h3 className="capitalize font-bold  maxlg:text-sm">
+              <div className="w-1/2 right ltr:pl-6 rtl:pr-6">
+                <h3 className="font-bold capitalize maxlg:text-sm">
                   {langWordsActive.YourAccount}
                 </h3>
                 <ul>
@@ -350,17 +342,17 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
         <div className="ltr:ml-3 rtl:m-3 hover-item maxmd:flex maxlg:ml-0 maxlg:rtl:m-0 text-[14px]">
           <Link
             to={"LogIn"}
-            className="md:hidden flex items-center text-white ltr:mr-3 rtl:ml-3 "
+            className="flex items-center text-white md:hidden ltr:mr-3 rtl:ml-3 "
           >
             <span className="text-[#ccc] text-sm">
               {langWordsActive.signIn}
-              <span className="fa-solid fa-chevron-right text-xs ltr:mr-1 rtl:ml-1"></span>
+              <span className="text-xs fa-solid fa-chevron-right ltr:mr-1 rtl:ml-1"></span>
             </span>
-            <span className="fa-solid fa-user text-3xl"></span>
+            <span className="text-3xl fa-solid fa-user"></span>
           </Link>
 
-          <Link to={"Cart"} className="text-white flex items-end">
-            <div className="images relative w-12">
+          <Link to={"Cart"} className="flex items-end text-white">
+            <div className="relative w-12 images">
               <img src={cart} alt="cart" className="w-full h-full" />
               <span className="cart-number text-mainColor text-xs absolute top-[51%] left-[60%] -translate-x-1/2 -translate-y-1/2 font-bold">
                 {/* {displayItems} */}
