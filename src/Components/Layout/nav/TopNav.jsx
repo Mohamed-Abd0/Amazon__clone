@@ -254,13 +254,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
           onMouseLeave={() => setShowDilog(false)}
           className="relative ltr:ml-3 rtl:m-3 hover-item group sing-in maxmd:hidden text-[14px]"
         >
-          <Link to={"LogIn"} className="text-white">
-            <p className="text-xs ">
-              {" "}
-              {signInStatus.status
-                ? `${langWordsActive.welcome} ${signInStatus.name}`
-                : langWordsActive.helloSignIn}{" "}
-            </p>
+          <Link to={"signin"} className="text-white">
+            <p className="text-xs ">{`${langWordsActive.Hello} , ${"user"}`}</p>
             <p className="">
               {langWordsActive.accountLists}
               <span className="fa-solid fa-caret-down text-[#ccc] mx-2"></span>{" "}
@@ -269,11 +264,11 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
           <div className="account-drop-down absolute w-96 bg-white -left-40 top-[90%] text-[#444] text-xs p-2 rounded-md shadow-md hidden  group-hover:block z-[99999999999] ">
             <i className="fa-solid fa-caret-up absolute -top-4 left-[74%] text-white text-xl"></i>
-            {!signInStatus.status && (
+            {!signInStatus.islogin && (
               <Fragment>
                 <div className="sing-in-btn text-center text-[14px]">
                   <Link
-                    to={"LogIn"}
+                    to={"signin"}
                     className="  block w-48 mx-auto p-2 duration-200 rounded border border-t-[#c89411] border-r-[#b0820f] border-b-[#99710d] hover:!bg-gradient-to-t from-[#f6da95] to-[#ecb21f]"
                     style={{
                       backgroundImage:
