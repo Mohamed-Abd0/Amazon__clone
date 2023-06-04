@@ -54,6 +54,7 @@ export const {
   addDistrict,
   addGovernorate,
   addLandmark,
-} = PaymentSlice.actions;
-
+} = PaymentSlice.actions; 
 export default PaymentSlice.reducer;
+
+
