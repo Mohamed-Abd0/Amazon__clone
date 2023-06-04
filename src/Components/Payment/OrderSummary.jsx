@@ -1,13 +1,27 @@
-import UseAddressBtn from "./shippingform/YellowBtn";
+import YellowBtn from "./shippingform/YellowBtn";
 import useStyles from "./styles";
 import { Box, Divider, Typography } from "@material-ui/core";
 
-const OrderSummary = () => {
+const OrderSummary = ({activeStep}) => {
   const classes = useStyles();
+
+  const yellowBtnContent = () => {
+    if(activeStep === 1){
+      return 'Use this Address';
+    } else if(activeStep === 2){
+      return 'Use this payment method';
+    } else if(activeStep === 3){
+      return 'Place your order';
+    }
+  }
+
+
   return (
     <Box className={classes.card}>
       <div className={classes.cardContainer}>
-        <UseAddressBtn className={classes.cardBtn} />
+        {/********************/}
+        <YellowBtn className={classes.cardBtn}>{yellowBtnContent()}</YellowBtn>
+        {/********************/}  
         <div style={{ padding: "0.5rem" }}>
           <Typography className={classes.cardTextCenter}>
             Choose a shipping address to continue <br />
@@ -15,6 +29,7 @@ const OrderSummary = () => {
             review and edit your order before it's final.
           </Typography>
         </div>
+
         <Divider style={{ width: "100%" }} />
         <div style={{ width: "100%", padding: "5px 0 " }}>
           <Typography

@@ -17,7 +17,7 @@ import Confirmation from "../Components/Payment/Confirmation";
 
 
 const Payment = () => {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(1);
   const classes = useStyles();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -95,7 +95,7 @@ const Payment = () => {
           </div>
 
           <div className={classes.orderSummary}>
-            <OrderSummary />
+            <OrderSummary activeStep={activeStep} />
           </div>
 
         </div>
