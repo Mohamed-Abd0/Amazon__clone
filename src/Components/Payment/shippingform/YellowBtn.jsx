@@ -16,18 +16,16 @@ const useStyles = makeStyles({
 
 
 
-const UseAddressBtn = ({ SubmitHandler }) => {
+const YellowBtn = ({ children, SubmitHandler, OnAction }) => {
     const classes = useStyles()
   return (
     <Button
       type="submit"
       variant="contained"
       className={classes.submitButton}
-      onClick={(e) => SubmitHandler()}
-    >
-      Use this address
-    </Button>
+      onClick={OnAction}
+    > {children}</Button> 
   );
 };
 
-export default UseAddressBtn
+export default YellowBtn

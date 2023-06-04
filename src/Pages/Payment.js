@@ -75,9 +75,9 @@ const Payment = () => {
                 </ListItemText>
               </ListItem>
               {activeStep === 2 && (
-                <Paper variant="outlined" className={classes.paperStyle}>
-                  <PaymentForm />
-                </Paper>
+                <Box>
+                  <PaymentForm nextStep={nextStep} />
+                </Box>
               )}
               <Divider variant="middle" />
 

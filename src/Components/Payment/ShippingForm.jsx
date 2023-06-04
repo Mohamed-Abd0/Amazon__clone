@@ -7,7 +7,7 @@ import ShippingModal from "./shippingform/ShippingModal";
 import addAddress from "../../assets/payment/addAddress.png";
 import lockerOrange from "../../assets/payment/locker_orange.png";
 import useStyles from "./styles"; 
-import UseAddressBtn from "./shippingform/UseAddressBtn";
+import YellowBtn from "./shippingform/YellowBtn";
 import TextSpan from "../ReuseableComponets/TextSpan";
 //=====================================================================
 
@@ -47,6 +47,7 @@ const ShippingForm = ({ nextStep }) => {
 
   const SubmitHandler = (e) => {
     const error = validateForm();
+    console.log('SubmitHandler')
     if (error) {
       // setFormError(error);
       return;
@@ -97,7 +98,7 @@ const ShippingForm = ({ nextStep }) => {
         </Box>
         {/* ********************************* */}
 
-        <ShippingModal open={open} onClose={closeHandler}/>
+        <ShippingModal open={open} onClose={closeHandler} SubmitHandler={SubmitHandler}/>
 
         {/* ********************************* */}
 
@@ -145,7 +146,7 @@ const ShippingForm = ({ nextStep }) => {
         </Box>
       </div>
       <div className={classes.cardFooter}>
-        <UseAddressBtn SubmitHandler={SubmitHandler} />
+        <YellowBtn OnAction={SubmitHandler} >Use this address</YellowBtn>
       </div>
     </Box>
   );

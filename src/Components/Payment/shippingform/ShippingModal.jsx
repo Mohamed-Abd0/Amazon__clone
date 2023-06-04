@@ -1,8 +1,9 @@
 import { Box, Modal, Paper, Typography } from "@material-ui/core";
 import useStyles from "../styles";
 import FormFields from "./FormFields";
+import YellowBtn from "./YellowBtn";
 
-const ShippingModal = ({ open, onClose }) => {
+const ShippingModal = ({ open, onClose, SubmitHandler }) => {
   const classes = useStyles();
   return (
     <Modal
@@ -58,7 +59,9 @@ const ShippingModal = ({ open, onClose }) => {
             <Box>
               <FormFields />
             </Box>
+            <YellowBtn OnAction={onClose}>Add address</YellowBtn>
           </Box>
+          
         </Box>
       </Paper>
     </Modal>

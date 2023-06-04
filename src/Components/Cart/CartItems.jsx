@@ -7,7 +7,6 @@ import { Divider, Stack , Box } from "@mui/material";
 
 const CartItems = () => {
   const cartItems = useSelector((state) => state.CartSlice.cartItems);
-
   return (
     <div className="m-4 ">
       {/* header before items */}
