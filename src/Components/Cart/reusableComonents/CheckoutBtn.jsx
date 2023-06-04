@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import words from "../../../leng.json"
-
+import { useNavigate } from "react-router-dom";
 
 
 const useStyles = makeStyles(() => ({
@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
 const CheckoutBtn = () => {
   const classes = useStyles();
 
+  const navigate = useNavigate()
 
   const lengActive = useSelector(({leng})=> leng);
   const activeWords = words[`${lengActive.lang}`]
@@ -35,7 +36,7 @@ const CheckoutBtn = () => {
 
   const paymentHandler = (e) => {
     e.preventDefault();
-    // complet checkout ...
+    navigate("/payment")
   }
 
 

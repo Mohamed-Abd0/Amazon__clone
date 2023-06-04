@@ -2,7 +2,7 @@ import { Grid, Box, Checkbox, Divider, Typography } from "@mui/material";
 import React from "react";
 import UnderLineSpan from "../../ReuseableComponets/UnderLineSpan";
 import { useDispatch , useSelector } from "react-redux";
-import { deleteFromCart, addToSavedItems } from "../../../Store/CartSlice";
+import { deleteFromCart, addToSavedItems , selectItem } from "../../../Store/CartSlice";
 import SelectItem from "./productData/SelectItem";
 import { makeStyles } from "@material-ui/core/styles";
 import words from "../../../leng.json"
@@ -47,7 +47,7 @@ const ProductData = ({ item }) => {
   const mainImg = item.mainImg;
   const minTitle = item.minTitle[`${lengActive.lang}`];
   const price = item.price;
-
+  const selectItemStatus = item.selected;
 
 
 
@@ -62,6 +62,12 @@ const ProductData = ({ item }) => {
     dispatch(deleteFromCart(item));
   };
 
+  const selecHandler = () => { 
+
+    const selectedStatus = !item.selected
+    console.log(selectedStatus);
+    dispatch(selectItem({...item, selected: selectedStatus}));
+  };
 
 
   return (
@@ -70,7 +76,8 @@ const ProductData = ({ item }) => {
       <Grid item className={classes.imageContainer}  container xs={12} md={3}>
         <Grid item className={classes.checkBox} sx={2}>
           <Checkbox
-            defaultChecked
+            checked={selectItemStatus}
+            onChange={selecHandler}
             color="default"
             sx={{
               margin: "0",

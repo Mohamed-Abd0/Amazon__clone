@@ -6,7 +6,6 @@ import {
   ListItem,
   ListItemText,
   Paper,
-  Typography,
 } from "@material-ui/core";
 
 import useStyles from "../Components/Payment/styles";
@@ -14,21 +13,11 @@ import ShippingForm from "../Components/Payment/ShippingForm";
 import PaymentForm from "../Components/Payment/PaymentForm.jsx";
 import { Container } from "@mui/material";
 import OrderSummary from "../Components/Payment/OrderSummary";
+import Confirmation from "../Components/Payment/Confirmation";
 
-const Confirmation = () => {
-  return (
-    <>
-      <div>
-        <Typography variant="h5">
-          Thank you for your pruchase, firstName lastName
-        </Typography>
-      </div>
-    </>
-  );
-};
 
 const Payment = () => {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(3);
   const classes = useStyles();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);

@@ -1,62 +1,70 @@
 * {
-  font-family: 'Alexandria', sans-serif ; 
+  font-family: "Alexandria", sans-serif;
 }
 
+/* overwirte for mui*/
+.LinesEllipsis {
+  overflow: hidden;
+  line-break: anywhere;
+}
+.MuiBox-root {
+  overflow: hidden;
+}
+/* overwirte for mui*/
 
+.home-image {
+  /* width: 100% !important; */
+  height: 100%;
+  z-index: -1;
+  /* margin-bottom: -350px; */
+  object-fit: cover;
+  mask-image: linear-gradient(to top, transparent 2%, black 80%);
+}
 
+@media screen and (max-width: 480px) {
   .home-image {
-    /* width: 100% !important; */
-    height: 100%;
-    z-index: -1;
-    /* margin-bottom: -350px; */
-    object-fit: cover;
-    mask-image: linear-gradient(to top, transparent 2%, black 80%);
+    margin-bottom: -150px; /* applies to mobile devices */
   }
-  
-  @media screen and (max-width: 480px) {
-    .home-image {
-      margin-bottom: -150px; /* applies to mobile devices */
-    }
-  }
-  
-  @media screen and (min-width: 481px) and (max-width: 768px) {
-    .home-image {
-      margin-bottom: -170px /* applies to iPads, tablets */
-    }
-  }
-  
-  @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .home-image {
-      margin-bottom: -180px; /* applies to small screens, laptops */
-    }
-  }
-  
-  @media screen and (min-width: 1025px) and (max-width: 1200px) {
-    .home-image {
-      margin-bottom: -260px; /* applies to desktops, large screens */
-    }
-  }
-  
-  @media screen and (min-width: 1201px) {
-    .home-image {
-      margin-bottom: -330px; /* applies to extra large screens, TV */
-    }
-  }
+}
 
-  .carousel-image {
-    width: 100%
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .home-image {
+    margin-bottom: -170px; /* applies to iPads, tablets */
   }
-  /* HomePage slider prev/next buttons */
-  .css-1abc02a {
-    position: absolute ;
-    height: 39% !important;
-    background-color: transparent !important;
-    z-index: 1;
-    height: 100px;
-    width: 20px;
-    top: 0%;
-    right: 0;
-    color: #888;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .home-image {
+    margin-bottom: -180px; /* applies to small screens, laptops */
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .home-image {
+    margin-bottom: -260px; /* applies to desktops, large screens */
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .home-image {
+    margin-bottom: -330px; /* applies to extra large screens, TV */
+  }
+}
+
+.carousel-image {
+  width: 100%;
+}
+/* HomePage slider prev/next buttons */
+.css-1abc02a {
+  position: absolute;
+  height: 39% !important;
+  background-color: transparent !important;
+  z-index: 1;
+  height: 100px;
+  width: 20px;
+  top: 0%;
+  right: 0;
+  color: #888;
 }
 
 .css-hn784z {
@@ -78,33 +86,31 @@
   -o-border-radius: 0%;
 }
 
-  .main-grid {
-    z-index: 9999999;
-  }
+.main-grid {
+  z-index: 9999999;
+}
 
-  .Layout_main__RGt3O {
-    margin: 0; 
-    padding: 0 ;
+.Layout_main__RGt3O {
+  margin: 0;
+  padding: 0;
 }
 
 .MuiCard-root {
   overflow: visible !important;
 }
 
-
 .coupon::after {
   position: absolute;
-bottom: 0;
-height: 50px;
-width: 32px;
-right: -28px;
-background: white;
-content: "";
-z-index: 1000;
-transform: skew(-30deg);
+  bottom: 0;
+  height: 50px;
+  width: 32px;
+  right: -28px;
+  background: white;
+  content: "";
+  z-index: 1000;
+  transform: skew(-30deg);
 }
 
 .MuiButton-label {
   justify-content: center;
 }
-

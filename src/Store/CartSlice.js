@@ -16,7 +16,7 @@ const CartSlice = createSlice({
     // cartItems reducer
     addToCart: (state, { payload }) => {
       // add Qty to cart items
-      const newCartItem = { ...payload, qty: 1 };
+      const newCartItem = { ...payload, qty: 1 , selected: true };
 
       const existingItems = state.cartItems;
       const updatedItems = [...existingItems, newCartItem];
@@ -86,6 +86,14 @@ const CartSlice = createSlice({
         state.totalQty += payload.qty;
       }
     },
+    selectItem: (state , {payload})=>{
+      console.log(payload);
+      const existingItem = state.cartItems.find(item => item.id === payload.id);
+      if (existingItem) {
+        existingItem.selected = payload.selected
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
+    },
 
 
 
@@ -113,6 +121,7 @@ export const {
   clearCart,
   incrementQty,
   updatecartItemQty,
+  selectItem,
   addToSavedItems,
   deleteFromSavedItems,
 } = CartSlice.actions;

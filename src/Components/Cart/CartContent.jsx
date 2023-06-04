@@ -1,7 +1,7 @@
 import EmptyCartItem from "./EmptyCartItem";
 import CartItems from "./CartItems";
 import { useSelector } from "react-redux";
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 
 function CartContent() {
   const cartItems = useSelector((state) => state.CartSlice.cartItems);
