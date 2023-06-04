@@ -1,7 +1,7 @@
 
 import { db , auth} from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, getDoc, setDoc , updateDoc ,  getDocs , query, where } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc , updateDoc , addDoc,  getDocs , query, where } from "firebase/firestore";
 
 
 
@@ -69,7 +69,7 @@ export const updateProductQty = async (productId, qty) => {
     const productDocRef = doc(db, 'products', productId);
     const productDocSnapshot = await getDoc(productDocRef);
     const productData = productDocSnapshot.data();
-
+    
     const updatedProductData = {
       ...productData,
       qty: qty
@@ -83,7 +83,7 @@ export const updateProductQty = async (productId, qty) => {
     const productIdx = cartData.findIndex((item) => item.id === productId);
     cartData[productIdx].qty = qty;
     localStorage.setItem('cartItems', JSON.stringify(cartData));
-
+    
 
   } catch (error) {
     console.error("Error updating product qty: ", error);
@@ -128,3 +128,13 @@ export async function getDataByFirebase(namecol) {
 
 
 
+
+
+/******************** send the order to the user's data    *************************/
+
+export const sendOrder = async (uid, order) => {
+  const userRef = doc(db, 'users', uid);
+  const orderRef = collection(userRef, 'orders');
+  
+  await addDoc(orderRef, order);
+};
