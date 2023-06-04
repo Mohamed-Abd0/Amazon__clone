@@ -14,6 +14,8 @@ const loginSlice = createSlice({
         logout: (state)=>{
             localStorage.removeItem('token')
             localStorage.removeItem('uid')
+            localStorage.removeItem('name')
+            localStorage.removeItem('email')
             state.islogin = false
         },
         autoLogout: (state , payload)=>{

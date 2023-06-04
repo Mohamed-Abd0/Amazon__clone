@@ -10,23 +10,27 @@ export const Search = () => {
   const { cat, text } = useParams();
   const [searchData, setSearchData] = useState([]);
   const activeLang = useSelector((state) => state.leng.lang);
-  useEffect(async () => {
-    const citiesRef = collection(db, "products");
-    text.split(" ").map(async (e) => {
-      const q = query(
-        citiesRef,
-        and(
-          or(
-            where("minTitle.ar", "array-contains", e),
-            where("minTitle.en", "array-contains", e)
-          ),
-          or(where("category.ar", "==", cat), where("category.en", "==", cat))
-        )
-      );
-      const querySnapshot = await getDocs(q);
-      const cityList = querySnapshot.docs.map((doc) => [doc.data(), doc.id]);
-      setSearchData(cityList);
-    });
+  useEffect(() => {
+    const searchFun = async () => {
+      const citiesRef = collection(db, "products");
+      text.split(" ").map(async (e) => {
+        const q = query(
+          citiesRef,
+          and(
+            or(
+              where("minTitle.ar", "array-contains", e),
+              where("minTitle.en", "array-contains", e)
+            ),
+            or(where("category.ar", "==", cat), where("category.en", "==", cat))
+          )
+        );
+        const querySnapshot = await getDocs(q);
+        const cityList = querySnapshot.docs.map((doc) => [doc.data(), doc.id]);
+        setSearchData(cityList);
+      });
+    };
+
+    searchFun();
   }, [cat, text]);
 
   return (

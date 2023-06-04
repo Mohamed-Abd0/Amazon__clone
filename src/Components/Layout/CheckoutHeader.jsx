@@ -2,6 +2,7 @@ import React from "react";
 import Amazon_logo from "../../assets/Amazon_logo.svg.png";
 import useStyles from "./CheckoutHeaderStyle";
 import { Container } from "@mui/material";
+import { Link } from "react-router-dom";
 const CheckoutHeader = () => {
   const classes = useStyles();
 
@@ -10,7 +11,13 @@ const CheckoutHeader = () => {
       <div className={classes.main}>
         <Container>
           <div className={classes.imgContainer}>
-            <img src={Amazon_logo} alt="amazon-logo" className={classes.logo} />
+            <Link to="/">
+              <img
+                src={Amazon_logo}
+                alt="amazon-logo"
+                className={classes.logo}
+              />
+            </Link>
           </div>
           <div className={classes.textcontainer}>
             <h2 className={classes.headerText}>
