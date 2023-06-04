@@ -8,6 +8,10 @@ import cart from "../../../assets/cart.png";
 import words from "../../../leng.json"; 
 import { useFormik } from "formik";
 import { selectCartItems } from "../../../Store/CartSlice";
+import { logout } from "../../../Store/Authentication_slice/loginSlice";
+
+
+
 
 const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const ref = useRef();
@@ -32,6 +36,12 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
   const displayItems = totalQty === 0 ? "0" : `${totalQty}`;
   // __________________________
 
+ const logoutHandler = ()=>{
+
+  dispatch(logout());
+  window.reload()
+ }
+  
   const langWordsActive = words[`${lengActive.lang}`];
   const [leng, setLeng] = useState([
     { name: "english - en", dir: "ltr", short: "en" },
@@ -284,7 +294,7 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
 
                 <p className="text-center my-2 text-xs">
                   {langWordsActive.newCustomer}
-                  <Link to={"#"} className="text-[#05a]">
+                  <Link to={"signup"} className="text-[#05a]">
                     {langWordsActive.StartHere}
                   </Link>
                 </p>
@@ -321,8 +331,8 @@ const TopNav = ({ setShowDilog, setShowCanvas, category }) => {
                 </h3>
                 <ul>
                   <li className="hover:text-mainColor text-[#444] my-3">
-                    <Link to={"#"} className="block">
-                      create
+                    <Link onClick={ logoutHandler} className="block">
+                       {langWordsActive.logout} 
                     </Link>
                   </li>
                 </ul>

@@ -144,7 +144,8 @@
     "eligibleForFree": "Eligible for FREE delivery",
     "delete": "delete ",
     "saveForLater": "save for later",
-    "share": "share "
+    "share": "share ",
+    "logout": "logout"
   },
   "ar": {
     "country": "مصر",
@@ -290,6 +291,7 @@
     "eligibleForFree": "مؤهل للحصول على شحن مجاني",
     "delete": " حذف ",
     "saveForLater": "حفظ لوقت لاحق ",
-    "share": "مشاركة "
+    "share": "مشاركة ",
+    "logout": "تسجيل الخروج"
   }
 }
