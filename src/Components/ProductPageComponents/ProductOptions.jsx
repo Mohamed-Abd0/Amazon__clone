@@ -7,9 +7,12 @@ import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
 import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
 import { useNavigate } from "react-router-dom";
-import { addToCart, addToSavedItems } from "../../Store/CartSlice";
+import { addToCart, addToSavedItems,  deselectAllCart } from "../../Store/CartSlice";
 import { setPerchasedItems } from "../../Store/checkout_slice/checkoutSlice";
 import words from "./../../leng.json";
+
+
+
 
 const ProductOptions = () => {
   console.log("option is runing ");
@@ -18,6 +21,11 @@ const ProductOptions = () => {
   const dispatch = useDispatch();
 
   const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
+
+
+
+
+
 
   const lengActive = useSelector(({ leng }) => leng);
   const activWrods = words[`${lengActive.lang}`];
@@ -48,8 +56,14 @@ const ProductOptions = () => {
 
   const checkoutHandler = (e)=>{
     e.preventDefault();
+
+
+    
+    dispatch(deselectAllCart())
+    
+
     // send the product to perchasedItems in the store
-    dispatch(setPerchasedItems(product))
+    dispatch(addToCart(product))
     navigate("/payment");
   }
 

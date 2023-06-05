@@ -94,6 +94,13 @@ const CartSlice = createSlice({
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
+    deselectAllCart: (state) => {
+      const nonSelectedItems = state.cartItems.map(item => {
+        return { ...item, selected: false };
+      });
+
+      state.cartItems = nonSelectedItems;
+    },
 
 
 
@@ -122,6 +129,7 @@ export const {
   incrementQty,
   updatecartItemQty,
   selectItem,
+  deselectAllCart,
   addToSavedItems,
   deleteFromSavedItems,
 } = CartSlice.actions;
