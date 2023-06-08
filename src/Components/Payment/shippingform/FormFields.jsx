@@ -2,68 +2,55 @@ import { Box } from "@material-ui/core";
 import FormHeader from "./FormHeader.jsx/FormHeader";
 import FormInput from "./FormHeader.jsx/FormInput";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  addBuild,
-  addCity,
-  addCountry,
-  addDistrict,
-  addGovernorate,
-  addLandmark,
-  addName,
-  addPhone,
-  addStreet,
-} from "../../../Store/PaymentSlice";
+import { sendAddressData } from "../../../Firebase-APIS/FirebaseFunctions";
+import { useNavigate } from "react-router-dom";
+import YellowBtn from "./YellowBtn";
 
-const FormFields = () => {
-  const dispatch = useDispatch();
+const FormFields = ({ onClose }) => {
+  const navigate = useNavigate();
 
-  const [country, setCountry] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [street, setStreet] = useState("");
-  const [build, setBuild] = useState("");
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
-  const [governorate, setGovernorate] = useState("");
-  const [landmark, setLandmark] = useState("");
+  const [address, setAddress] = useState({
+    country: "",
+    name: "",
+    phone: "",
+    street: "",
+    build: "",
+    city: "",
+    district: "",
+    governorate: "",
+    landmark: "",
+  });
 
-  const changesHandler = (newValue) => {
-    setCountry(newValue);
-    setName(newValue);
-    setPhone(newValue);
-    setStreet(newValue);
-    setBuild(newValue);
-    setCity(newValue);
-    setDistrict(newValue);
-    setGovernorate(newValue);
-    setLandmark(newValue);
+  const changesHandler = (e) => {
+    setAddress({
+      ...address,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault(); // prevent the default form submission behavior
+  const SendAddressData = (e) => {
+    console.log("SendAddressData");
+    const uid = localStorage.getItem("uid");
 
-    // dispatch an action with the form data
-    dispatch(addCountry(country));
-    dispatch(addName(name));
-    dispatch(addPhone(phone));
-    dispatch(addStreet(street));
-    dispatch(addBuild(build));
-    dispatch(addCity(city));
-    dispatch(addDistrict(district));
-    dispatch(addGovernorate(governorate));
-    dispatch(addLandmark(landmark));
+    sendAddressData(uid, address)
+      .then(() => {
+        setAddress({
+          country: "",
+          name: "",
+          phone: "",
+          street: "",
+          build: "",
+          city: "",
+          district: "",
+          governorate: "",
+          landmark: "",
+        });
+      })
+      .catch((error) => {
+        console.log("Error sending address data:", error);
+      });
 
-    // reset the input field
-    setCountry("");
-    setName("");
-    setPhone("");
-    setStreet("");
-    setBuild("");
-    setCity("");
-    setDistrict("");
-    setGovernorate("");
-    setLandmark("");
+    navigate("/");
   };
 
   return (
@@ -155,6 +142,9 @@ const FormFields = () => {
         onChange={changesHandler}
       />
       <br />
+      <YellowBtn OnAction={onClose} SendAddressData={SendAddressData}>
+        Add address
+      </YellowBtn>
     </Box>
   );
 };

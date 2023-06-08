@@ -1,7 +1,6 @@
 import { Box, Modal, Paper, Typography } from "@material-ui/core";
 import useStyles from "../styles";
-import FormFields from "./FormFields";
-import YellowBtn from "./YellowBtn";
+import FormFields from "./FormFields"; 
 
 const ShippingModal = ({ open, onClose, SubmitHandler }) => {
   const classes = useStyles();
@@ -14,6 +13,10 @@ const ShippingModal = ({ open, onClose, SubmitHandler }) => {
       aria-describedby="modal-modal-description"
     >
       <Paper className={classes.boxStyle}>
+
+      {/* **********************  Modal Header  *************************** */}
+
+
         <Box
           className={classes.cardFooter}
           style={{
@@ -43,7 +46,7 @@ const ShippingModal = ({ open, onClose, SubmitHandler }) => {
           </Box>
         </Box>
 
-        {/* ************************************************************************ */}
+        {/* **********************  Modal Form  *************************** */}
 
         <Box
           className={classes.cardContainer}
@@ -57,9 +60,8 @@ const ShippingModal = ({ open, onClose, SubmitHandler }) => {
               Add a new address
             </Typography>
             <Box>
-              <FormFields />
-            </Box>
-            <YellowBtn OnAction={onClose}>Add address</YellowBtn>
+              <FormFields onClose={onClose}/>
+            </Box> 
           </Box>
           
         </Box>

@@ -12,18 +12,23 @@ const useStyles = makeStyles({
       backgroundColor: "#e8bd02",
     },
   },
-});
+}); 
+const YellowBtn = ({ children, OnAction, SendAddressData }) => {
+    const classes = useStyles();
 
 
+    const handleButtonClick = () => { 
+      OnAction(); 
+      SendAddressData();
+    };
 
-const YellowBtn = ({ children, SubmitHandler, OnAction }) => {
-    const classes = useStyles()
+    
   return (
     <Button
       type="submit"
       variant="contained"
       className={classes.submitButton}
-      onClick={OnAction}
+      onClick={handleButtonClick}
     > {children}</Button> 
   );
 };

@@ -138,3 +138,13 @@ export const sendOrder = async (uid, order) => {
   
   await addDoc(orderRef, order);
 };
+
+
+/******************** send the address data to the user's data    *************************/
+
+export const sendAddressData = async (uid, address) => {
+  const userRef = doc(db, 'users', uid);
+  const orderRef = collection(userRef, 'address');
+  
+  await addDoc(orderRef, address);
+};

@@ -13,36 +13,14 @@ import TextSpan from "../ReuseableComponets/TextSpan";
 
 const ShippingForm = ({ nextStep }) => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
 
-  // const [name, setName] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [city, setCity] = useState("");
-  // const [country, setCountry] = useState("");
-  // const [zip, setZip] = useState("");
-  // const [formError, setFormError] = useState("");
 
   const [open, setOpen] = useState(false);
   const openHandler = () => setOpen(true);
   const closeHandler = () => setOpen(false);
 
   const validateForm = () => {
-    // if (!name) {
-    //   return "Your name is required";
-    // }
-    // if (!address) {
-    //   return "Your address is required";
-    // }
-    // if (!city) {
-    //   return "Your city is required";
-    // }
-    // if (!country) {
-    //   return "Your country is required";
-    // }
-    // if (!zip) {
-    //   return "Your Zip/Postal code is required";
-    // }
-    // return "";
+    
   };
 
   const SubmitHandler = (e) => {
