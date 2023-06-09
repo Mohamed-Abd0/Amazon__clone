@@ -11,7 +11,7 @@ import YellowBtn from "./shippingform/YellowBtn";
 import TextSpan from "../ReuseableComponets/TextSpan";
 //=====================================================================
 
-const ShippingForm = ({ nextStep }) => {
+const ShippingForm = ({ nextStep,currentStep, prevStep }) => {
   const classes = useStyles();
 
 
