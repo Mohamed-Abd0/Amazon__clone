@@ -52,7 +52,7 @@ const Payment = () => {
                   <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <Box>1  Choose a shipping address</Box>
                     <Box>
-                    {currentStep > 1 && (
+                    {currentStep != 1 && (
                       <ChangeBtn onAction={prevStepHandler}>
                         Change
                       </ChangeBtn>
@@ -72,7 +72,7 @@ const Payment = () => {
                   />
                 </Box>
               )}
-              <Divider variant="middle" />
+              <Divider style={{margin: '7px 0 7px 0', backgroundColor: '#BBBFBF', height: '0.5px'}} />
 
               <ListItem
                 button
@@ -86,7 +86,7 @@ const Payment = () => {
                 <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
                 <Box>2 Payment method</Box>
                 <Box>
-                {currentStep > 1 && (
+                {currentStep != 2 && (
                   <ChangeBtn onAction={prevStepHandler}>
                     Change
                   </ChangeBtn>
@@ -100,7 +100,7 @@ const Payment = () => {
                   <PaymentForm nextStep={nextStepHandler} />
                 </Box>
               )}
-              <Divider variant="middle" />
+              <Divider style={{margin: '7px 0 7px 0', backgroundColor: '#BBBFBF', height: '0.5px'}} />
 
               <ListItem
                 button
@@ -112,9 +112,9 @@ const Payment = () => {
                   className={currentStep === 3 ? classes.activeStep : null}
                 >
                 <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
-                <Box>3 Items and shipping</Box>
+                <Box>3 Review items and shipping</Box>
                 <Box>
-                {currentStep > 1 && (
+                {currentStep != 3 && (
                   <ChangeBtn onAction={prevStepHandler}>
                     Change
                   </ChangeBtn>
@@ -125,6 +125,7 @@ const Payment = () => {
               </ListItem>
               {currentStep === 3 && <Confirmation />}
             </List>
+            <Divider style={{margin: '7px 0 7px 0', backgroundColor: '#BBBFBF',}} />
           </div>
 
           <div className={classes.orderSummary}>
