@@ -1,9 +1,7 @@
 import { Box, Radio, Typography } from "@material-ui/core";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import words from "../../../leng.json";
-import SelectItem from "../../Cart/cartItemComponents/productData/SelectItem";
-import useStyles from "../styles";
+import { useDispatch, useSelector } from "react-redux"; 
+import SelectItem from "../../Cart/cartItemComponents/productData/SelectItem"; 
 import { deleteFromCart } from "../../../Store/CartSlice";
 
 

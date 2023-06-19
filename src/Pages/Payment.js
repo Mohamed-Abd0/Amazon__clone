@@ -50,7 +50,7 @@ const Payment = () => {
                   <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <Box>1  Choose a shipping address</Box>
                     <Box>
-                    {currentStep != 1 && (
+                    {currentStep !== 1 && (
                       <ChangeBtn onAction={prevStepHandler}>
                         Change
                       </ChangeBtn>
@@ -84,7 +84,7 @@ const Payment = () => {
                 <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
                 <Box>2 Payment method</Box>
                 <Box>
-                {currentStep != 2 && (
+                {currentStep !== 2 && (
                   <ChangeBtn onAction={prevStepHandler}>
                     Change
                   </ChangeBtn>
@@ -112,7 +112,7 @@ const Payment = () => {
                 <Box style={{ display: 'flex', justifyContent: 'space-between'}}>
                 <Box>3 Review items and shipping</Box>
                 <Box>
-                {currentStep != 3 && (
+                {currentStep !== 3 && (
                   <ChangeBtn onAction={prevStepHandler}>
                     Change
                   </ChangeBtn>

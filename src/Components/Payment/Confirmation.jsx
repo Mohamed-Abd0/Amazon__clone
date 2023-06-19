@@ -1,8 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import ProductData from "../Cart/cartItemComponents/ProductData";
-import { Divider, Stack, Box } from "@mui/material";
-import SendOrder from "./ConfirmationConmponents/SendOrder";
+import { useSelector } from "react-redux"; 
+import { Divider,  Box } from "@mui/material"; 
 import useStyles from "./styles";
 import { Typography } from "@material-ui/core";
 import ConfirmationData from "./ConfirmationConmponents/ConfirmationData";
