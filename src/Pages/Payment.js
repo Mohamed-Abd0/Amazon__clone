@@ -21,15 +21,13 @@ const Payment = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
 
-  const nextStepHandler = () => {
-    console.log("Next step");
+  const nextStepHandler = () => { 
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
 
-  const prevStepHandler = () => {
-    console.log("Previous step");
+  const prevStepHandler = () => { 
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }

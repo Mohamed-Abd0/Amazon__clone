@@ -6,12 +6,14 @@ import SelectItem from "../../Cart/cartItemComponents/productData/SelectItem";
 import useStyles from "../styles";
 import { deleteFromCart } from "../../../Store/CartSlice";
 
-const ConfirmationData = ({ item }) => {
-  const dispatch = useDispatch();
-  const classes = useStyles();
 
-  const lengActive = useSelector(({ leng }) => leng);
-  const activeWords = words[`${lengActive.lang}`];
+
+
+
+const ConfirmationData = ({ item, tomorrowDate}) => {
+  const dispatch = useDispatch(); 
+
+  const lengActive = useSelector(({ leng }) => leng); 
 
   const deleteFromCartHandler = () => {
     dispatch(deleteFromCart(item));
@@ -21,17 +23,14 @@ const ConfirmationData = ({ item }) => {
   const title = item.minTitle[`${lengActive.lang}`];
   const price = item.price;
   const seller = item.seller[`${lengActive.lang}`];
-  const ShippingFree = item.ShippingFree;
-
-  console.log(item);
+  // const ShippingFree = item.ShippingFree; 
 
   return (
     <Box
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: "150px",
+        display: "flex", 
+        justifyContent: "space-between", 
+        padding: "10px"
       }}
     >
       <Box
@@ -46,10 +45,10 @@ const ConfirmationData = ({ item }) => {
           <img
             src={img}
             alt="img"
-            style={{ width: "350px", height: "100px", padding: "10px" }}
+            style={{ width: "350px", padding: "10px" }}
           />
         </Box>
-        <Box style={{ padding: "10px" }}>
+        <Box style={{  }}>
           <Typography
             variant="subTitle1"
             style={{
@@ -73,6 +72,7 @@ const ConfirmationData = ({ item }) => {
           <Typography style={{ color: "#565959", fontSize: "12px" }}>
             Sold by: {seller}
           </Typography>
+          <Typography style={{ fontSize: '14px', lineHeight: '20px' , marginTop: '10px'}}>Gift options not available</Typography>
         </Box>
       </Box>
 
@@ -93,20 +93,18 @@ const ConfirmationData = ({ item }) => {
 
         <Box
           style={{
-            display: "flex",
-            alignItems: "center",
+            display: "flex", 
             justifyContent: "space-between",
           }}
         >
-          <Box style={{}}>
+          <Box style={{width: '40px'}}>
             <Radio
               size="small"
               style={{
                 color: "#005CC8",
                 width: "14px",
                 height: "14px",
-                margin: "0 5px",
-                marginTop:'0px'
+                margin: "0 5px", 
               }}
               label=""
             />
@@ -118,7 +116,7 @@ const ConfirmationData = ({ item }) => {
             >
               FREE Standard delivery{" "}
               <span style={{ color: "#007600" }}>
-                — Get it TOMORROW, 19 June
+                — Get it , {tomorrowDate}
               </span>
             </Typography>
           </Box>

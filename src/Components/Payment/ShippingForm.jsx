@@ -24,8 +24,7 @@ const ShippingForm = ({ nextStep,currentStep, prevStep }) => {
   };
 
   const SubmitHandler = (e) => {
-    const error = validateForm();
-    console.log('SubmitHandler')
+    const error = validateForm(); 
     if (error) {
       // setFormError(error);
       return;

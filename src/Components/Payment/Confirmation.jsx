@@ -6,13 +6,18 @@ import SendOrder from "./ConfirmationConmponents/SendOrder";
 import useStyles from "./styles";
 import { Typography } from "@material-ui/core";
 import ConfirmationData from "./ConfirmationConmponents/ConfirmationData";
+import moment from "moment";
+import YellowBtn from "./shippingform/YellowBtn";
+import TextSpan from "../ReuseableComponets/TextSpan";
+
+const currentDate = moment();
+const tomorrowDate = currentDate.add(2, "days").format("D MMMM YYYY");
 
 const Confirmation = () => {
   const classes = useStyles();
 
   const cartItems = useSelector(({ CartSlice }) => CartSlice.cartItems);
-  console.log(cartItems);
-  const selectedItems = cartItems.filter((item) => item.selected === true);
+  // const selectedItems = cartItems.filter((item) => item.selected === true);
 
   // ______________ Products Data _________________
 
@@ -26,10 +31,9 @@ const Confirmation = () => {
               lineHeight: "24px",
               fontWeight: "700",
               color: "#c45500",
-              overflowWrap: "break-word",
             }}
           >
-            Estimated delivery: 15 June 2023
+            Estimated delivery: {tomorrowDate}
           </Typography>
           <Typography
             style={{
@@ -43,7 +47,7 @@ const Confirmation = () => {
           <Box className={classes.FlexBoxy}>
             {cartItems.map((item, idx) => (
               <Box key={idx}>
-                <ConfirmationData item={item} classes={classes} />
+                <ConfirmationData item={item} tomorrowDate={tomorrowDate} />
                 {idx !== cartItems.length - 1 && (
                   <Divider
                     sx={{
@@ -58,9 +62,46 @@ const Confirmation = () => {
           </Box>
         </div>
       </Box>
+
+      {/*________________________________________________________________________*/}
+
       <Box style={{ padding: "10px" }}></Box>
+
+      {/*________________________________________________________________________*/}
+
       <Box className={classes.card} style={{ marginLeft: "50px" }}>
-        <div className={classes.cardContainer}></div>
+        <Box
+          style={{
+            padding: "1rem 1.2rem",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box style={{ width: "20%" }}>
+            <YellowBtn>Place your order</YellowBtn>
+          </Box>
+          <Box style={{ width: "79%" }}>
+            <Typography
+              style={{
+                fontSize: "18px",
+                lineHeight: "24px",
+                fontWeight: "700",
+                color: "#c45500",
+              }}
+            >
+              Order total:EGP 1,002.00
+            </Typography>
+            <Typography
+              style={{
+                color: "#565959",
+                fontSize: "12px",
+                lineHeight: "16px",
+              }}
+            >
+              By placing your order, you agree to Amazon's <TextSpan>privacy notice</TextSpan> and <TextSpan> conditions of use</TextSpan>.
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </>
   );

@@ -9,8 +9,7 @@ import TextSpan from "../ReuseableComponets/TextSpan";
 //=====================================================================
 const PaymentForm = ({ nextStep }) => {
   const classes = useStyles();
-  const SubmitHandler = (e) => { 
-    console.log('SubmitHandler')
+  const SubmitHandler = (e) => {  
      
     // setFormError();
     // dispatch(setShippingData({ name, address, city, country, zip }));
