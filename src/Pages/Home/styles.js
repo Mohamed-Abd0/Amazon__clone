@@ -4,40 +4,38 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-      // maxWidth: '100%',
-      maxHeight: '100%',
-      height: 'auto',
       background: '#fff',
-    
-  
-      
-      
+      overflow: 'hidden',
+      borderRadius: '0 !important',
+      boxShadow: 'none',
+      "&.MuiGrid-container ":{
+        paddingButton: '90px'
+      }, 
     },
     media: {
       paddingTop: '56.25%', // 16:9
       paddingRight: '56.25%',
-      backgroundSize: 'contain',
+      backgroundSize: 'contain !important',
     },
     media1: {
-      height: 'auto',
-      // maxHeight: '50%',
       width: 'auto',
       maxWidth: '250',
-      padding: '10'
+      paddingLeft: 10,
+      paddingRight: 10
     },
 
     cardHeader: {
-      paddingLeft: 15, 
-      paddingBottom: 15, 
-      paddingTop: 15, 
-      fontSize: 20,
+      fontFamily: `'Alexandria', sans-serif !important`,
+      padding: 15,
+      fontSize: 21,
       color: 'black',
-      fontWeight: 'bold'
+      whiteSpace: 'normal',
+      fontWeight: 'bolder',
+      
     },
     
     cardActions: {
       textAlign: 'left',
-     
     },
     cardContent: {
       display: 'flex',
@@ -58,25 +56,5 @@ export default makeStyles((theme) => ({
     paper: {
       whiteSpace: 'nowrap',
       marginBottom: theme.spacing.unit * 2,
-      height: 400,
-      borderRadius: 0,
     },
-    swiperImage: {
-      padding: 10,
-      margin: 10,
-      width: 'auto',
-      height: 'auto',
-      maxWidth: 270,
-      maxHeight: 200,
-      verticalAlign: 'middle'
-    },
-    swipeSlide: {
-      alignContent: 'center',
-      flexShrink: 10,
-    },
-    swiper: {
-      marginLeft: 50
-    },
-
-    
   }));

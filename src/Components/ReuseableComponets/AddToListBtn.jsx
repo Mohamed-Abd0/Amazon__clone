@@ -1,7 +1,18 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import words from "./../../leng.json"
 
-const AddToListBtn = () => {
+const AddToListBtn = ({onAddToList}) => {
+
+
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
+
+
+  const addToList= activWrods.addToList;
+
+
   return (
     <Button
       disableRipple={true}
@@ -11,7 +22,6 @@ const AddToListBtn = () => {
         border: "none",
         color: "text.black",
         borderColor: "border.darkgray",
-        // eslint-disable-next-line
         border: "1px solid",
         fontSize: "12px",
         borderRadius: "5px",
@@ -19,8 +29,9 @@ const AddToListBtn = () => {
         "&:active": { borderColor: "border.darkgray" },
         mb: { xs: "12px", md: "0px" },
       }}
+      onClick={onAddToList}
     >
-      AddToListBtn
+      {addToList}
     </Button>
   );
 };

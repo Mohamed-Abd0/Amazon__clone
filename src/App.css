@@ -1,80 +1,116 @@
+* {
+  font-family: "Alexandria", sans-serif;
+}
+
+/* overwirte for mui*/
+.LinesEllipsis {
+  overflow: hidden;
+  line-break: anywhere;
+}
+.MuiBox-root {
+  overflow: hidden;
+}
+/* overwirte for mui*/
+
 .home-image {
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    margin-bottom: -350px;
-    mask-image: linear-gradient(to bottom, rgb(15, 14, 14), rgba(17, 15, 15, 0));
-  }
+  /* width: 100% !important; */
+  height: 100%;
+  z-index: -1;
+  /* margin-bottom: -350px; */
+  object-fit: cover;
+  mask-image: linear-gradient(to top, transparent 2%, black 80%);
+}
 
-  .carousel-image {
-   width: 100%
+@media screen and (max-width: 480px) {
+  .home-image {
+    margin-bottom: -150px; /* applies to mobile devices */
   }
+}
 
-  .main-grid {
-    z-index: 9999999;
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .home-image {
+    margin-bottom: -170px; /* applies to iPads, tablets */
   }
+}
 
-  .Layout_main__RGt3O {
-    margin: 0; 
-    padding: 0 ;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .home-image {
+    margin-bottom: -180px; /* applies to small screens, laptops */
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .home-image {
+    margin-bottom: -260px; /* applies to desktops, large screens */
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .home-image {
+    margin-bottom: -330px; /* applies to extra large screens, TV */
+  }
+}
+
+.carousel-image {
+  width: 100%;
+}
+/* HomePage slider prev/next buttons */
+.css-1abc02a {
+  position: absolute;
+  height: 39% !important;
+  background-color: transparent !important;
+  z-index: 1;
+  height: 100px;
+  width: 20px;
+  top: 0%;
+  right: 0;
+  color: #888;
+}
+
+.css-hn784z {
+  position: absolute;
+  height: 39% !important;
+  background-color: transparent !important;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  color: #888;
+}
+
+.css-ktslay-MuiButtonBase-root-MuiIconButton-root {
+  background-color: red;
+  border-radius: 0%;
+  -webkit-border-radius: 0%;
+  -moz-border-radius: 0%;
+  -ms-border-radius: 0%;
+  -o-border-radius: 0%;
+}
+
+.main-grid {
+  z-index: 9999999;
+}
+
+.Layout_main__RGt3O {
+  margin: 0;
+  padding: 0;
 }
 
 .MuiCard-root {
   overflow: visible !important;
 }
 
-.swiper-button-next, .swiper-button-prev {
-  position: absolute;
-  top: 55px;
-  background-color: #fff;
-  height: 80px !important;
-  line-height: 200px !important;
-  width: 45px;
-  text-align: center;
-  box-shadow: 0 1px 3px #888;
-  margin-top: -40px !important;
-  margin-left: -10px !important;
-}
-
-.swiper-button-next {
-  margin-right: 0px !important;
-}
-
-.swiper-button-next:after, .swiper-button-prev:after {
-  color: black;
-  line-height: normal;
-  position: relative;
-  top: 50%;
-  height: 90px !important ;
-  width: 25px;
-  margin-top: -30px;
-}
-
 .coupon::after {
   position: absolute;
-bottom: 0;
-height: 50px;
-width: 32px;
-right: -28px;
-background: white;
-content: "";
-z-index: 1000;
-transform: skew(-30deg);
+  bottom: 0;
+  height: 50px;
+  width: 32px;
+  right: -28px;
+  background: white;
+  content: "";
+  z-index: 1000;
+  transform: skew(-30deg);
 }
 
 .MuiButton-label {
   justify-content: center;
-}
-
-.scroll-to-top {
-  right: 40px;
-  bottom: 40px;
-  position: fixed;
-  z-index: 2;
-  cursor: pointer;
-  border-radius: 7px;
-  width: 100%;
-  height: 40px;
-  box-shadow: 0 9px 25px 0 rgb(132 128 177 / 28%);
-  border: none;
 }

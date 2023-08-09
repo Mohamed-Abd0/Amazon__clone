@@ -1,47 +1,34 @@
 import { useState } from "react";
 import {
-  Grid,
+  Box,
   Divider,
   List,
   ListItem,
   ListItemText,
   Paper,
-  Typography,
 } from "@material-ui/core";
 
 import useStyles from "../Components/Payment/styles";
-import ShippingForm from "../Components/Payment/shippingform/ShippingForm";
+import ShippingForm from "../Components/Payment/ShippingForm";
 import PaymentForm from "../Components/Payment/PaymentForm.jsx";
-//===================================================================
-// const steps = ["Shipping address", "Payment details"];
+import { Container } from "@mui/material";
+import OrderSummary from "../Components/Payment/OrderSummary";
+import Confirmation from "../Components/Payment/Confirmation";
 
-//===================================================================
 
 const Payment = () => {
   const [activeStep, setActiveStep] = useState(1);
   const classes = useStyles();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
-
-  const Confirmation = () => {
-    return (
-      <>
-        <div>
-          <Typography variant="h5">
-            Thank you for your pruchase, firstName lastName
-          </Typography>
-        </div>
-      </>
-    );
-  };
 
   return (
     <>
-      <div className={classes.root}>
-        <Grid container spacing={2} className={classes.container}>
-          <Grid item xs={8} className={classes.checkoutContainer}>
+      <Container>
+        <div className={classes.container}>
+          <div className={classes.checkoutContainer}>
             <List>
+
               <ListItem
                 button
                 disabled={activeStep !== 1}
@@ -51,15 +38,18 @@ const Payment = () => {
                   style={{ fontWeight: "bold" }}
                   className={activeStep === 1 ? classes.activeStep : null}
                 >
-                  1 Choose a shipping address
+                  1   Choose a shipping address
                 </ListItemText>
               </ListItem>
+
               {activeStep === 1 && (
-                <Paper variant="outlined" className={classes.paperStyle}>
+                <Box>
                   <ShippingForm nextStep={nextStep} />
-                </Paper>
+                </Box>
               )}
               <Divider variant="middle" />
+
+
 
               <ListItem
                 button
@@ -74,11 +64,13 @@ const Payment = () => {
                 </ListItemText>
               </ListItem>
               {activeStep === 2 && (
-                <Paper variant="outlined" className={classes.paperStyle}>
-                  <PaymentForm />
-                </Paper>
+                <Box>
+                  <PaymentForm nextStep={nextStep} />
+                </Box>
               )}
               <Divider variant="middle" />
+
+
 
               <ListItem
                 button
@@ -98,11 +90,16 @@ const Payment = () => {
                 </Paper>
               )}
               <Divider variant="middle" />
+
             </List>
-          </Grid>
-          <Grid item xs={4} className={classes.orderSummary}></Grid>
-        </Grid>
-      </div>
+          </div>
+
+          <div className={classes.orderSummary}>
+            <OrderSummary activeStep={activeStep} />
+          </div>
+
+        </div>
+      </Container>
     </>
   );
 };

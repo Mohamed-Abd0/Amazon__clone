@@ -1,190 +1,188 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  Stack,
-  Box,
-  IconButton,
-  Typography,
-  Link,
-  Slide,
-  useMediaQuery,
-} from "@mui/material";
-import useCurrentProduct from "../../Hooks/useCurrentProduct";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useDispatch, useSelector } from "react-redux";
+import { Stack, Box, Grid, Typography, Link, Divider } from "@mui/material";
+import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
 import AddToCartBtn from "../ReuseableComponets/AddToCartBtn";
 import BuyNowBtn from "../ReuseableComponets/BuyNowBtn";
-import GppGoodIcon from "@mui/icons-material/GppGood";
 import AddToListBtn from "../ReuseableComponets/AddToListBtn";
-import CloseFloatingSection from "../ReuseableComponets/CloseFloatingSection";
-import ProductQuantaty from "./ProductQuantaty";
+import DiscountedOptionsPrice from "./ProductOptions/DiscountedOptionsPrice";
+import { useNavigate } from "react-router-dom";
+import { addToCart, addToSavedItems,  deselectAllCart } from "../../Store/CartSlice";
+import { setPerchasedItems } from "../../Store/checkout_slice/checkoutSlice";
+import words from "./../../leng.json";
+
+
+
 
 const ProductOptions = () => {
-  const { price } = useCurrentProduct("productDetails");
+  console.log("option is runing ");
+  const navigate = useNavigate();
 
-  const { productOptionsState } = useSelector(({ ModalSlice }) => ModalSlice);
+  const dispatch = useDispatch();
 
-  const mediaQuery = useMediaQuery("(min-width:900px)");
+  const { product } = useSelector(({ ProductSlice }) => ProductSlice); 
+
+
+
+
+
+
+  const lengActive = useSelector(({ leng }) => leng);
+  const activWrods = words[`${lengActive.lang}`];
+
+  // extract data from the product
+  const seller = product.seller[`${lengActive.lang}`];
+  const shipCompany = product.shipCompany[`${lengActive.lang}`];
+  const count = product.count;
+
+  // get translated words
+  const deliveryToEgypt = activWrods.DeliveryToEgypt;
+  const only = activWrods.only;
+  const leftInStock = activWrods.leftInStock;
+  const orderSoon = activWrods.orderSoon;
+  const payment = activWrods.payment;
+  const deliveredBy = activWrods.deliveredBy;
+  const soldBy = activWrods.soldBy;
+  const secureTransaction = activWrods.secureTransaction;
+ 
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    // Dispatch the addToCart action to add the product to the cart
+    dispatch(addToCart(product));
+    // nagigate to the cart page
+    navigate("/cart");
+  };
+
+  const checkoutHandler = (e)=>{
+    e.preventDefault();
+
+
+    
+    dispatch(deselectAllCart())
+    
+
+    // send the product to perchasedItems in the store
+    dispatch(addToCart(product))
+    navigate("/payment");
+  }
+
+  const addToList = (e)=>{
+    e.preventDefault();
+
+    // send the product to perchasedItems in the store
+    dispatch(addToSavedItems(product))
+
+    navigate("/cart");
+  }
+
+
 
   return (
-    <Slide
-      direction="left"
-      in={(!productOptionsState && mediaQuery) || productOptionsState}
-      mountOnEnter
-      unmountOnExit
+    <Box
+      sx={{
+        border: "1px solid",
+        borderColor: "border.gray",
+        padding: "7px",
+        maxWidth: { xs: "260px" },
+        borderRadius: { md: "10px" },
+        height: "410px",
+        overflow: "hidden",
+        svg: { fontSize: "16px" },
+        top: { xs: "0", md: "50px" },
+        right: 0,
+        backgroundColor: "white",
+        zIndex: { xs: 32, md: 9 },
+      }}
+      gap={1.3}
     >
-      <Box
+      <Stack
         sx={{
-          border: "1px solid",
-          borderColor: "border.gray",
-          maxWidth: { xs: "320px", md: "270px" },
-          borderRadius: { md: "10px" },
-          height: { xs: "100vh", md: "600px" },
-          overflow: "auto",
-          svg: { fontSize: "16px" },
-          position: { xs: "fixed", md: "sticky" },
-          top: { xs: "0", md: "50px" },
-          right: 0,
-          backgroundColor: "white",
-          zIndex: { xs: 32, md: 9 },
+          height: "100%",
+          px: 1.5,
+          "& p": { fontSize: "12.5px", color: "text.gray" },
+          a: { fontSize: "13px", color: "text.teal", cursor: "pointer" },
+          "a:hover": { color: "text.darkOrange" },
+          gap: "0.6rem",
         }}
-        gap={1.3}
       >
-        <Stack
+        {/* //-------------------Price--------------------------------------- */}
+
+        <DiscountedOptionsPrice />
+
+
+        {/* //---------------------------------------------------------------- */}
+
+        <Box
           sx={{
-            height: "100%",
-            px: 1.5,
-            pt: 2.5,
-            "& p": { fontSize: "12.5px", color: "text.gray" },
-            a: { fontSize: "13px", color: "text.teal", cursor: "pointer" },
-            "a:hover": { color: "text.darkOriange" },
-            gap: "0.6rem",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Box
-            variant="body1"
-            sx={{
-              span: { fontSize: "14px" },
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            {!mediaQuery && <CloseFloatingSection />}
-            <Stack flexDirection="row">
-              <span>$</span>
-              <div
-                style={{
-                  fontSize: "28px",
-                  fontWeight: "500",
-                  marginTop: "-6px",
-                }}
-              >
-                {price}
-              </div>
-              <span>00</span>
-            </Stack>
-          </Box>
-          <Typography variant="body2">
-            $306.63 Shipping & Import Fees Deposit to United Kingdom
-            <Link sx={{ ml: 1 }} underline="hover">
-              details
-              <IconButton sx={{ p: "0" }}>
-                <ExpandMoreIcon />
-              </IconButton>
-            </Link>
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{ span: { color: "text.green", fontWeight: "600", ml: 0.5 } }}
-          >
-            Delivery <b>Monday</b>, <b>February 6</b>. Order within
-            <span>11 hrs 37 mins</span>
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <LocationOnIcon />
-            <Link underline="hover" sx={{ ml: 0.5 }}>
-              delivery to egypt
-            </Link>
-          </Box>
-          <Typography variant="h6" color="text.green">
-            in stock
-          </Typography>
-          <ProductQuantaty />
-          <Box
-            sx={{
-              Button: {
-                width: "100%",
-              },
-              "button:first-of-type": { mb: 1 },
-            }}
-          >
-            <AddToCartBtn />
-            <BuyNowBtn />
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <GppGoodIcon />
-            <Link
-              underline="hover"
-              sx={{
-                ml: 0.5,
-              }}
-            >
-              secure transaction
-            </Link>
-          </Box>
-          <Box
-            sx={{
-              "p span": { mr: "8px", float: "right" },
-              "p:first-of-type": { mb: 0.6 },
-            }}
-          >
-            <Typography variant="body2">
-              Ships from <span>amazon</span>
-            </Typography>
-            <Typography variant="body2">
-              sold by <span>amazon</span>
-            </Typography>
-          </Box>
-          <Typography variant="body2">
-            return policy{" "}
-            <Link
-              underline="hover"
-              sx={{
-                ml: 0.5,
-              }}
-            >
-              Eligible for Return, Refund or Replacement within 30 days of
-              receipt{" "}
-              <IconButton sx={{ p: "0" }}>
-                <ExpandMoreIcon />
-              </IconButton>
-            </Link>
-          </Typography>
-          <Typography variant="body2">
-            support{" "}
-            <Link
-              underline="hover"
-              sx={{
-                ml: 0.5,
-              }}
-            >
-              Free Amazon tech support included{" "}
-              <IconButton sx={{ p: "0" }}>
-                <ExpandMoreIcon />
-              </IconButton>
-            </Link>
-          </Typography>
-          <Box sx={{ mt: { xs: "auto", md: "0" } }}>
-            <AddToListBtn />
-          </Box>
-        </Stack>
-      </Box>
-    </Slide>
+          <LocationOnTwoToneIcon />
+          <Link underline="hover" sx={{ ml: 0.5 }}>
+            {deliveryToEgypt}
+          </Link>
+        </Box>
+
+        {/* //---------------------------------------------------------------- */}
+
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#8B1111",
+            fontWeight: "800",
+            fontSize: "14px",
+          }}
+        >
+          {`${only} ${count} ${leftInStock} - ${orderSoon} `}
+        </Typography>
+
+        {/* //---------------------------------------------------------------- */}
+
+        <Box
+          sx={{
+            Button: {
+              width: "100%",
+            },
+            "button:first-of-type": { mb: 1 },
+          }}
+        >
+          <AddToCartBtn handleAddToCart={handleAddToCart} />
+          <BuyNowBtn onCheckout= {checkoutHandler} />
+        </Box>
+
+        {/* //---------------------------------------------------------------- */}
+
+ 
+          <Grid container spacing={2} sx={{ fontSize: "9px" , my:"2px"}}>
+            <Grid item>
+              <Typography variant="body2">{payment}</Typography>
+
+              <Typography variant="body2">{deliveredBy}</Typography>
+
+              <Typography variant="body2">{soldBy}</Typography>
+            </Grid>
+
+            <Grid item>
+              <Typography variant="body2">{secureTransaction}</Typography>
+
+              <Typography variant="body2">{shipCompany}</Typography>
+
+              <Typography variant="body2">{seller}</Typography>
+            </Grid>
+          </Grid>
+
+        {/* //---------------------------------------------------------------- */}
+        <Divider />
+
+        <Box sx={{ mt: { xs: "auto", md: "0" } }}>
+          <AddToListBtn onAddToList= {addToList}/>
+        </Box>
+
+        {/* //---------------------------------------------------------------- */}
+      </Stack>
+    </Box>
   );
 };
 

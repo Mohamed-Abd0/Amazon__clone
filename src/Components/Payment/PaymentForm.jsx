@@ -1,105 +1,114 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { Box, Divider, Radio, Typography } from "@material-ui/core";
 
-import { setPaymentData } from "../../Store/checkout_slice/checkoutSlice";
+import addAddress from "../../assets/payment/addAddress.png";
+import cardLogo from "../../assets/payment/card-logo-compact.gif";
+import useStyles from "./styles";
+import YellowBtn from "./shippingform/YellowBtn";
+import TextSpan from "../ReuseableComponets/TextSpan";
 
 //=====================================================================
-const PaymentForm = ({ nextStep, backStep }) => {
-  const dispatch = useDispatch();
-  const [nameOnCard, setNameOnCard] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cvv, setCvv] = useState("");
-  const [formError, setFormError] = useState("");
-
-  const validateForm = () => {
-    if (!nameOnCard) {
-      return "Name on Card is required";
-    }
-    if (!expiryDate) {
-      return "Expiry Date is required";
-    }
-    if (!cardNumber) {
-      return "Card Number is required";
-    }
-    if (!cvv) {
-      return "CVV is required";
-    }
-    return "";
-  };
-
-  const SubmitHandler = (e) => {
-    e.preventDefault();
-    const error = validateForm();
-    if (error) {
-      setFormError(error);
-      return;
-    }
-    setFormError();
-    dispatch(setPaymentData({ nameOnCard, expiryDate, cardNumber, cvv }));
+const PaymentForm = ({ nextStep }) => {
+  const classes = useStyles();
+  const SubmitHandler = (e) => { 
+    console.log('SubmitHandler')
+     
+    // setFormError();
+    // dispatch(setShippingData({ name, address, city, country, zip }));
     nextStep();
   };
-
   return (
-    <>
-      <Typography variant="h6" gutterBottom>
-        Payment Method
-      </Typography>
-      <form onSubmit={SubmitHandler}>
-        {formError && <Typography color="error">{formError}</Typography>}
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="name-on-card"
-              label="Name on Card"
-              variant="standard"
-              onChange={(e) => setNameOnCard(e.target.value)}
-            />
-            <TextField
-              id="expiry-date"
-              label="Expiry Date"
-              variant="standard"
-              onChange={(e) => setExpiryDate(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="card-number"
-              label="Card Number"
-              variant="standard"
-              onChange={(e) => setCardNumber(e.target.value)}
-            />
-            <TextField
-              id="cvv"
-              label="CVV"
-              variant="standard"
-              onChange={(e) => setCvv(e.target.value)}
-            />
-          </Grid>
-        </Grid>
+    <Box className={classes.card} style={{ marginLeft: "50px" }}>
+      <div className={classes.cardContainer}>
+        {/* ********************************* */}
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "50px",
-          }}
-        >
-          <Button variant="outlined" onClick={() => backStep()}>
-            Back
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={(e) => SubmitHandler()}
+        <Box style={{ width: "100%", textAlign: "left" }}>
+          <Box style={{ width: "100%", textAlign: "left" }}>
+            <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+              Your credit and debit cards
+            </Typography>
+          </Box>
+
+          <Divider style={{ width: "100%" }} />
+
+          <Box
+            style={{
+              width: "100%",
+              textAlign: "left",
+              display: "flex",
+              flexWrap: "wrap",
+              cursor: "pointer",
+              padding: "5px 0",
+              margin: "7px",
+            }}
           >
-            Pay $100
-          </Button>
-        </div>
-      </form>
-    </>
+            <img
+              src={addAddress}
+              alt=""
+              style={{
+                width: "13px",
+                height: "13px",
+                margin: "4px 5px ",
+              }}
+            />
+            <img
+              src={cardLogo}
+              alt=""
+              style={{ width: "35px", height: "20px", margin: " 0 10px 0 7px" }}
+            />
+            <TextSpan>Add a credit or debit card {">"} </TextSpan>
+          </Box>
+        </Box>
+
+        {/* ********************************* */}
+
+        <Box style={{ margin: "10px 0", width: "100%", textAlign: "left" }}>
+          <Box
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+              Other payment options
+            </Typography>
+          </Box>
+
+          <Divider style={{ width: "100%" }} />
+
+          <Box
+            style={{ 
+              textAlign: "left",
+              display: "flex", 
+              justifyContent: "space-between",
+              cursor: "pointer",
+              padding: "5px 0",
+              margin: "7px",
+              border: "1px solid #fbd8b4",
+              borderRadius: "5px",
+              backgroundColor: "#fcf5ee",
+            }}
+          >
+            
+              <Box style={{ width: '40px'}}> 
+                <Radio size="small" style={{ color: "#005CC8", marginTop:'0px' }} label="" />
+              </Box>
+              <Box style={{ fontSize: '13px'}}>
+                <Typography variant="subtitle1" style={{ fontWeight: "bold" }}>
+                  Cash on Delivery (COD)
+                </Typography>
+                <Typography variant="subtitle2" style={{ }}>
+                  Pay by cash on delivery. Non-refundable COD fees of EGP 12 may
+                  apply. Learn more. Pay online for contactless deliveries.
+                </Typography>
+              </Box>
+            
+          </Box>
+        </Box>
+      </div>
+      <div className={classes.cardFooter}>
+        <YellowBtn OnAction={SubmitHandler}>Use this payment method</YellowBtn>
+      </div>
+    </Box>
   );
 };
 

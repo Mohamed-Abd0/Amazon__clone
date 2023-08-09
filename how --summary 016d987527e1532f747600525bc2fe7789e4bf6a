@@ -1,0 +1,140 @@
+[33mcommit 016d987527e1532f747600525bc2fe7789e4bf6a[m[33m ([m[1;36mHEAD -> [m[1;32mpayment[m[33m, [m[1;31morigin/payment[m[33m)[m
+Merge: a4f89e0 804e5de
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Tue May 9 23:12:55 2023 +0200
+
+    after cart finishing 9/5
+
+[33mcommit a4f89e04fa8f15e78536d82dd387004590e65509[m
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Tue May 9 23:02:35 2023 +0200
+
+    9/5
+
+[33mcommit 804e5debb379565c76c3232a9de8b7fad580a189[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Tue May 9 16:35:41 2023 +0300
+
+    finish the cart
+
+[33mcommit 4833bb8a86690259999c6dc975cf90fa30093c18[m
+Merge: ad26e2c 736c06f
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Sat May 6 21:06:18 2023 +0200
+
+    --
+
+[33mcommit ad26e2cb83c1c7c43b405046945bb6cd16fd7876[m
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Sat May 6 21:03:34 2023 +0200
+
+    .
+
+[33mcommit 736c06f819655ed067ebbd5b8369bd61a1d78fe4[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sat May 6 20:30:28 2023 +0300
+
+    update cart
+
+[33mcommit c910ea9b93e1c7cf3675c9d37e8288c8ca511532[m
+Merge: 810b81c 6f11438
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sat May 6 15:22:36 2023 +0300
+
+    merge home into develop
+
+[33mcommit 810b81c7b2ae7c7bd29dcf64cefec5202f9b1d33[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sat May 6 14:47:49 2023 +0300
+
+    put all apis in one file
+
+[33mcommit 6f1143859e7be5937dfad2e19fe898d494a702f4[m[33m ([m[1;31morigin/home[m[33m)[m
+Author: ZakiyaA <zakiyaalfughi@gmail.com>
+Date:   Fri May 5 19:01:39 2023 -0400
+
+    update pagination on homePage
+
+[33mcommit 19dd07f830ccff66f0d167a0f0d42f6370801200[m
+Merge: ac5b587 89f784c
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Thu May 4 22:22:56 2023 +0300
+
+    merge payment into develop
+
+[33mcommit ac5b5874dd0a0f701eefd9992fc9fa616c64a6b6[m
+Merge: 57bb383 1600065
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Thu May 4 22:12:57 2023 +0300
+
+    merge header into develop
+
+[33mcommit 1600065e65912d5c4147c569fbea7e14467c1771[m[33m ([m[1;31morigin/header[m[33m)[m
+Author: Mohmed_Yousry <mohmedahmed32@gmail.com>
+Date:   Thu May 4 21:49:04 2023 +0300
+
+    create search
+
+[33mcommit 89f784c2b46d515112d103ba09c16acce52c8f18[m
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Thu May 4 16:27:18 2023 +0200
+
+    last update 4/5
+
+[33mcommit fb816d14137b4e7a66443e811f1a3864c626c0c5[m
+Merge: 3fac75d 57bb383
+Author: ZakiyaA <zakiyaalfughi@gmail.com>
+Date:   Wed Apr 26 20:25:21 2023 -0400
+
+    Add Pagination on products page
+
+[33mcommit 3fac75df92fbab1917055cc67d720022fe2aec8d[m
+Author: ZakiyaA <zakiyaalfughi@gmail.com>
+Date:   Tue Apr 25 11:34:38 2023 -0400
+
+    Update pages' Footer
+
+[33mcommit 57bb3830cc913d6f82b6a93a9e8da1669d3b61a1[m[33m ([m[1;31morigin/login[m[33m)[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Mon Apr 24 16:15:36 2023 +0200
+
+    modify the saved items
+
+[33mcommit 8fc4068f111ed2eab7815139fab90d4ecb3f171b[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sun Apr 23 11:45:42 2023 +0200
+
+    update the cart
+
+[33mcommit 3a60590241fa966a3d9b74df39a78b89db472bab[m
+Merge: 77c2fb1 96cd865
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sun Apr 23 09:24:09 2023 +0200
+
+    merge payment branch into develop
+
+[33mcommit 96cd8650cf5fc55dbcfa79ef2e00efe5bd7ccdb0[m
+Author: Mohamed Abd El-fattah <eng.mohamedabdo98@gmail.com>
+Date:   Sun Apr 23 07:21:17 2023 +0200
+
+    add translation to product option component
+
+[33mcommit 77c2fb1a1ee7132a5a756efd6a61c46a30ddd98f[m
+Merge: c1966b1 19c8c0a
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Sat Apr 22 13:25:59 2023 +0200
+
+    gg
+
+[33mcommit c1966b13fce50106ea58a1df79aede4a0765837b[m
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Sat Apr 22 13:20:18 2023 +0200
+
+    update cart
+
+[33mcommit 2eb3f28e021ea211ff4f53c647ec390122806e9d[m
+Merge: c4fbb12 baa3915
+Author: Honida Mohammed <honidaomar99@gmail.com>
+Date:   Sat Apr 22 13:19:14 2023 +0200
+
+    update cart design

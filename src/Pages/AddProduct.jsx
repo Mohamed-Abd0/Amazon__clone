@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getCategory } from "../FirebaseFunctions";
 
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
@@ -56,12 +57,6 @@ export const AddProduct = () => {
     const querySnapshot = await getDocs(collection(db, "ShippingCompany"));
     const cityList = querySnapshot.docs.map((doc) => [doc.data(), doc.id]);
     return cityList;
-  }
-
-  async function getCategory() {
-    const req = doc(db, "category", "IjcIcmJzA3qlFATugZm0");
-    const citySnapshot = await getDoc(req);
-    return citySnapshot.data();
   }
 
   const handleMulteImges = (e) => {
